@@ -1,0 +1,93 @@
+﻿<Window
+    x:Class="AK.Toolkit.Samples.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:AK.Toolkit.WinUI3"
+    mc:Ignorable="d">
+
+    <StackPanel Margin="10" Orientation="Vertical">
+
+        <StackPanel.Resources>
+            <Style TargetType="Grid">
+                <Setter Property="RowSpacing" Value="20" />
+                <Setter Property="ColumnSpacing" Value="10" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+        </StackPanel.Resources>
+
+        <!--#region AutoCompleteTextBox Demo-->
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RowDefinitions="Auto,Auto">
+
+            <TextBlock
+                Grid.Row="0"
+                FontWeight="Bold"
+                Text="AutoCompleteTextBox" />
+
+            <Grid Grid.Row="1" ColumnDefinitions="*,2*">
+
+                <toolkit:AutoCompleteTextBox
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    IsSuggestionCaseSensitive="{x:Bind (x:Boolean)IsCaseSensitive.IsChecked, Mode=OneWay}"
+                    PlaceholderText="Enter your text here..."
+                    SuggestionSuffix="{x:Bind SuggestionSuffix.Text, Mode=OneWay}"
+                    SuggestionsSource="{x:Bind DemoSuggestions, Mode=OneWay}" />
+
+                <Grid
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    RowDefinitions="Auto,Auto,Auto,Auto">
+                    <CheckBox
+                        x:Name="IsCaseSensitive"
+                        Grid.Row="0"
+                        Content="Case Sensitive"
+                        IsChecked="False" />
+                    <TextBox
+                        x:Name="SuggestionSuffix"
+                        Grid.Row="1"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        Header="Suggestion Suffix"
+                        Text=" ? [Press Right]" />
+                    <Grid
+                        Grid.Row="2"
+                        ColumnDefinitions="*,Auto"
+                        RowDefinitions="Auto,Auto">
+                        <NumberBox
+                            x:Name="DemoSuggestionsCount"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Header="Demo Suggestions Count"
+                            Maximum="100000"
+                            Minimum="0"
+                            Text="10000" />
+                        <TextBox
+                            x:Name="AdditionalSuggestions"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Header="Additional Suggestions (Separate additional suggestions with a comma.)"
+                            PlaceholderText="Enter comma separated suggestions here..."
+                            Text="" />
+                        <Button
+                            x:Name="UpdateDemoSuggestionsButton"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            VerticalAlignment="Stretch"
+                            Click="UpdateDemoSuggestionsButton_Click"
+                            Content="Update Demo Suggestions" />
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+        <!--#endregion-->
+
+    </StackPanel>
+
+</Window>
