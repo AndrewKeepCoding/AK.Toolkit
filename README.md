@@ -1,7 +1,20 @@
-# 🧰AK.Toolkit
+# 🧰 AK.Toolkit
 
-## 🛠️Utilities
-### 🧩RandomStringGenerator
+## 🔵 WinUI 3
+### 💻 AutoCompleteTextBox
+A TextBox control that show a suggestion based on input.
+The suggestion is shown inside the TextBox control by overriding the placeholder feature.
+Suggestions need to be provided by the SuggestionsSource property.
+```xaml
+<toolkit:AutoCompleteTextBox
+    IsSuggestionCaseSensitive="false"
+    PlaceholderText="Enter your text here..."
+    SuggestionSuffix=" ? [Press Right]"
+    SuggestionsSource="{x:Bind Suggestions, Mode=OneWay}" />
+```
+
+## 🛠️ Utilities
+### 🧩 RandomStringGenerator
 A static class that generates random strings.
 - Numbers: 0123456789
 - Alphabets: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
