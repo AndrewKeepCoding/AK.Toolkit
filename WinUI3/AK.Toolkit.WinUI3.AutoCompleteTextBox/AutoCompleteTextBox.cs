@@ -7,7 +7,7 @@ using Windows.System;
 namespace AK.Toolkit.WinUI3;
 
 /// <summary>
-/// A TextBox control that show a suggestion based on input.
+/// A TextBox control that shows a suggestion based on input.
 /// The suggestion is shown inside the TextBox control by overriding the placeholder feature.
 /// Suggestions need to be provided by the SuggestionsSource property.
 /// </summary>

@@ -9,11 +9,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.AutoCompl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{EDEB400F-756D-4F11-895A-4A8D2C72176A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.Samples", "Samples\AK.Toolkit.Samples\AK.Toolkit.Samples.csproj", "{6F89C435-B6CD-4CA9-8B64-B39E642D93E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.Samples", "Samples\AK.Toolkit.Samples\AK.Toolkit.Samples.csproj", "{6F89C435-B6CD-4CA9-8B64-B39E642D93E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{A07474CC-E082-4794-BC36-FADC14A0C035}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.Utilities.RandomStringGenerator", "Utilities\AK.Toolkit.Utilities.RandomStringGenerator\AK.Toolkit.Utilities.RandomStringGenerator.csproj", "{D879C412-1F09-4364-9C63-7E748C32FA5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0DFB7268-1E7E-460F-A670-8336E61A13A4}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\auto-complete-textbox-screenshot.png = Assets\auto-complete-textbox-screenshot.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9E80FA35-6512-4090-A907-90D58957C6A6}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
