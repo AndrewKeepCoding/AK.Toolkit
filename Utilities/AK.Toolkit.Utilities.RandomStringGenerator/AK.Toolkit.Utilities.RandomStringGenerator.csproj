@@ -1,9 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>AK.Toolkit.Utilities.RandomStringGenerator</PackageId>
+    <Version>0.1.0-alpha</Version>
+    <Authors>Andrew KeepCoding</Authors>
+    <Company>Andrew KeepCoding</Company>
+    <Product>AK.Toolkit.Utilities.RandomStringGenerator</Product>
+    <Description>
+      A static class that generates random strings.
+      - Numbers: 0123456789
+      - Alphabets: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+      - LowerCaseAlphabets: abcdefghijklmnopqrstuvwxyz
+      - UpperCaseAlphabets: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      - AlphaNumerics: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+      - LowerCaseAlphaNumerics: abcdefghijklmnopqrstuvwxyz0123456789
+      - UpperCaseAlphaNumerics: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+    </Description>
+    <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
+    <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>stringgenerator;random;string</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
 </Project>

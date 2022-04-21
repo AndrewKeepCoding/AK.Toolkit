@@ -6,6 +6,24 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
     <Nullable>enable</Nullable>
+    <Version>0.1.0-alpha</Version>
+    <Authors>Andrew KeepCoding</Authors>
+    <Company>Andrew KeepCoding</Company>
+    <PackageId>AK.Toolkit.WinUI3.AutoCompleteTextBox</PackageId>
+    <Product>AK.Toolkit.WinUI3.AutoCompleteTextBox</Product>
+    <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
+    <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>winui3;autocomplete;autosuggest;textbox;</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Title>AK.Toolkit.WinUI3 - AutoCompleteTextBox</Title>
+    <Description>
+      A TextBox control that show a suggestion based on input. The suggestion is shown inside the TextBox control by overriding the placeholder feature.
+Suggestions need to be provided by the SuggestionsSource property.
+    </Description>
   </PropertyGroup>
 
   <ItemGroup>
