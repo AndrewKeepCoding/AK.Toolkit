@@ -33,3 +33,5 @@ string randomString = RandomStringGenerator.GenerateString(
     minLength: 3,
     maxLength: 10);
 ```
+## 🎬 YouTube
+- [AutoCompleteTextBox and RandomStringGenerator](https://youtu.be/G17jbGSXLnk)
