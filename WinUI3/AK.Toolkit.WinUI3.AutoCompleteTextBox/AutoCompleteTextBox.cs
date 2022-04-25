@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.System;
@@ -7,13 +8,9 @@ using Windows.System;
 namespace AK.Toolkit.WinUI3;
 
 /// <summary>
-/// A TextBox control that shows a suggestion based on input.
-/// The suggestion is shown inside the TextBox control by overriding the placeholder feature.
+/// A TextBox control that shows a suggestion "inside it self".
 /// Suggestions need to be provided by the SuggestionsSource property.
 /// </summary>
-/// <remarks>
-/// If you need to change the "FontFamily", use a "Monospaced" font. Otherwise the suggestion might show up misaligned.
-/// </remarks>
 [TemplatePart(Name = PlaceholderControlName, Type = typeof(TextBlock))]
 public sealed class AutoCompleteTextBox : TextBox
 {
@@ -26,6 +23,16 @@ public sealed class AutoCompleteTextBox : TextBox
             typeof(bool),
             typeof(AutoCompleteTextBox),
             new PropertyMetadata(false));
+
+    /// <summary>
+    /// Identifies the <see cref="SuggestionForeground"/> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty SuggestionForegroundProperty =
+        DependencyProperty.Register(
+            nameof(SuggestionForeground),
+            typeof(Brush),
+            typeof(AutoCompleteTextBox),
+            new PropertyMetadata(null));
 
     /// <summary>
     /// Identifies the <see cref="SuggestionsSource"/> dependency property.
@@ -67,6 +74,15 @@ public sealed class AutoCompleteTextBox : TextBox
     }
 
     /// <summary>
+    /// Gets or sets a brush that describes the suggestion foreground color.
+    /// </summary>
+    public Brush SuggestionForeground
+    {
+        get => (Brush)GetValue(SuggestionForegroundProperty);
+        set => SetValue(SuggestionForegroundProperty, value);
+    }
+
+    /// <summary>
     /// Gets or sets a collection of strings as a source of suggestions.
     /// </summary>
     public IEnumerable<string> SuggestionsSource
@@ -86,45 +102,55 @@ public sealed class AutoCompleteTextBox : TextBox
 
     private string LastAcceptedSuggestion { get; set; } = string.Empty;
 
-    private string OriginalPlaceholderText { get; set; } = string.Empty;
-
-    private TextBlock? PlaceholderControl { get; set; }
+    private TextBox SuggestionTextBox { get; } = new TextBox();
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        PlaceholderControl = GetTemplateChild(PlaceholderControlName) as TextBlock;
-
-        if (PlaceholderControl is not null)
+        if (GetTemplateChild(PlaceholderControlName) is TextBlock placeHolder)
         {
-            OriginalPlaceholderText = PlaceholderControl.Text;
+            SuggestionTextBox.FontFamily = FontFamily;
+            SuggestionTextBox.FontSize = FontSize;
+            SuggestionTextBox.FontStyle = FontStyle;
+            SuggestionTextBox.FontWeight = FontWeight;
+            SuggestionTextBox.FontStretch = FontStretch;
 
-            TextChanged += (s, e) => UpdateSuggestion(acceptSuggestion: false);
+            SuggestionTextBox.Foreground = SuggestionForeground;
+            SuggestionTextBox.IsHitTestVisible = false;
+            SuggestionTextBox.Text = string.Empty;
+
+            Grid.SetColumn(SuggestionTextBox, Grid.GetColumn(placeHolder));
+            Grid.SetColumnSpan(SuggestionTextBox, Grid.GetColumnSpan(placeHolder));
+            Grid.SetRow(SuggestionTextBox, Grid.GetRow(placeHolder));
+            Grid.SetRowSpan(SuggestionTextBox, Grid.GetRowSpan(placeHolder));
+
+            if (VisualTreeHelper.GetParent(placeHolder) is Grid parentGrid)
+            {
+                parentGrid.Children.Insert(0, SuggestionTextBox);
+            }
+
+            TextChanged += (s, e) => UpdateSuggestion();
+
+            LostFocus += (s, e) => HideSuggestionControl();
+
+            GotFocus += (s, e) => UpdateSuggestion();
 
             KeyDown += (s, e) =>
             {
                 if (e.Key is VirtualKey.Right)
                 {
-                    UpdateSuggestion(acceptSuggestion: true);
+                    AcceptSuggestion();
                 }
             };
 
-            LostFocus += (s, e) =>
-            {
-                if (Text.Length > 0)
-                {
-                    PlaceholderControl.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    UpdatePlaceholderControl(OriginalPlaceholderText, Visibility.Visible);
-                }
-            };
-
-            GettingFocus += (s, e) => UpdateSuggestion(acceptSuggestion: false);
+            UpdateSuggestion();
         }
     }
+
+    private void HideSuggestionControl() => SuggestionTextBox.Visibility = Visibility.Collapsed;
+
+    private void ShowSuggestionControl() => SuggestionTextBox.Visibility = Visibility.Visible;
 
     private static string GetSuggestion(string input, bool ignoreCase, IEnumerable<string> suggestionsSource)
     {
@@ -134,7 +160,7 @@ public sealed class AutoCompleteTextBox : TextBox
         {
             string? result = suggestionsSource.FirstOrDefault(x => x.StartsWith(input, ignoreCase, culture: null));
 
-            if (result is not null)
+            if (result is not null && result.Equals(input) is not true)
             {
                 suggestion = result;
             }
@@ -143,48 +169,46 @@ public sealed class AutoCompleteTextBox : TextBox
         return suggestion;
     }
 
-    private void UpdatePlaceholderControl(string text, Visibility visibility)
+    private void AcceptSuggestion()
     {
-        if (PlaceholderControl is not null)
+        ClearSuggestion();
+
+        bool ignoreCase = (IsSuggestionCaseSensitive is false);
+        string suggestion = GetSuggestion(Text, ignoreCase, SuggestionsSource);
+        if (suggestion.Length > 0)
         {
-            PlaceholderControl.Text = text;
-            PlaceholderControl.Visibility = visibility;
+            Text = suggestion;
+            LastAcceptedSuggestion = Text;
+            SelectionStart = Text.Length;
         }
     }
 
-    private void UpdateSuggestion(bool acceptSuggestion)
+    private void ClearSuggestion()
     {
-        if (Text.Length == 0 || LastAcceptedSuggestion.Equals(Text) is not true)
+        SuggestionTextBox.Text = string.Empty;
+        LastAcceptedSuggestion = string.Empty;
+    }
+
+    private void UpdateSuggestion()
+    {
+        ShowSuggestionControl();
+
+        string suggestion = string.Empty;
+
+        if (LastAcceptedSuggestion.Equals(Text) is not true)
         {
             bool ignoreCase = (IsSuggestionCaseSensitive is false);
-            string suggestion = GetSuggestion(Text, ignoreCase, SuggestionsSource);
+            suggestion = GetSuggestion(Text, ignoreCase, SuggestionsSource);
 
             if (suggestion.Length > 0)
             {
-                string text = suggestion[Text.Length..].PadLeft(suggestion.Length);
-                text += SuggestionSuffix;
-                UpdatePlaceholderControl(text, Visibility.Visible);
+                SuggestionTextBox.Text = $"{Text}{suggestion[Text.Length..]}{SuggestionSuffix}";
             }
-            else if (Text.Length == 0)
-            {
-                UpdatePlaceholderControl(OriginalPlaceholderText, Visibility.Visible);
-            }
-            else
-            {
-                UpdatePlaceholderControl(OriginalPlaceholderText, Visibility.Collapsed);
-            }
+        }
 
-            if (acceptSuggestion is true && suggestion.Length > 0)
-            {
-                UpdatePlaceholderControl(OriginalPlaceholderText, Visibility.Collapsed);
-                Text = suggestion;
-                LastAcceptedSuggestion = suggestion;
-                SelectionStart = Text.Length;
-            }
-            else
-            {
-                LastAcceptedSuggestion = string.Empty;
-            }
+        if (suggestion.Length == 0)
+        {
+            ClearSuggestion();
         }
     }
 }
