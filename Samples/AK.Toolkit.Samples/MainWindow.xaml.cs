@@ -11,6 +11,7 @@ public sealed partial class MainWindow : Window
     public MainWindow()
     {
         this.InitializeComponent();
+        UpdateDemoSuggestions();
     }
 
     private List<string> DemoSuggestions { get; } = new();
@@ -19,7 +20,7 @@ public sealed partial class MainWindow : Window
     {
         DemoSuggestions.Clear();
 
-        if (int.TryParse(DemoSuggestionsCount.Text, out int suggestionsCount) is true)
+        if (int.TryParse(RandomDemoSuggestionsCount.Text, out int suggestionsCount) is true)
         {
             for (int i = 0; i < suggestionsCount; i++)
             {
