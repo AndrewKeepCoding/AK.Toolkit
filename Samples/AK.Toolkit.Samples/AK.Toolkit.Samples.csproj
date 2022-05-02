@@ -12,6 +12,9 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="SamplesPage.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -38,5 +41,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Utilities\AK.Toolkit.Utilities.RandomStringGenerator\AK.Toolkit.Utilities.RandomStringGenerator.csproj" />
     <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.AutoCompleteTextBox\AK.Toolkit.WinUI3.AutoCompleteTextBox.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SamplesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

@@ -34,7 +34,13 @@ public sealed class AutoCompleteTextBox : TextBox
             nameof(SuggestionForeground),
             typeof(Brush),
             typeof(AutoCompleteTextBox),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, (d, e) =>
+            {
+                if (d is AutoCompleteTextBox control && e.NewValue is Brush foreground)
+                {
+                    control.SuggestionControl.Foreground = foreground;
+                }
+            }));
 
     /// <summary>
     /// Identifies the <see cref="SuggestionsSource"/> dependency property.
@@ -130,11 +136,21 @@ public sealed class AutoCompleteTextBox : TextBox
 
     private string LastAcceptedSuggestion { get; set; } = string.Empty;
 
+    private Brush? SuggestionForegroundDefaultBrush { get; set; }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
+
+        if (Resources.TryGetValue("extControlPlaceholderForeground", out var value) is true)
+        {
+            if (value is Brush defaultBrush)
+            {
+                SuggestionForegroundDefaultBrush = defaultBrush;
+            }
+        }
+
         CustomizeInnerControls();
-        //ShowSuggestion();
     }
 
     private void CustomizeInnerControls()
@@ -166,12 +182,12 @@ public sealed class AutoCompleteTextBox : TextBox
         SuggestionControl.VerticalScrollMode = ScrollViewer.GetVerticalScrollMode(this);
         SuggestionControl.ZoomMode = ZoomMode.Disabled;
         SuggestionControl.Margin = new Thickness(0, 0, 0, 0);
-        if (SuggestionForeground is null && this.Resources["TextControlPlaceholderForeground"] is Brush suggestionForeground)
+
+        if (SuggestionForeground is null && SuggestionForegroundDefaultBrush is not null)
         {
-            SuggestionForeground = suggestionForeground;
+            SuggestionForeground = SuggestionForegroundDefaultBrush;
+            SuggestionControl.Foreground = SuggestionForeground;
         }
-        SuggestionControl.Foreground = SuggestionForeground;
-        return;
     }
 
     /// <summary>
@@ -252,6 +268,7 @@ public sealed class AutoCompleteTextBox : TextBox
         DismissSuggestion();
 
         string suggestion = GetSuggestion();
+
         if (suggestion.Length > 0)
         {
             Text = suggestion;
@@ -270,6 +287,7 @@ public sealed class AutoCompleteTextBox : TextBox
     private void ShowSuggestion()
     {
         string suggestion = string.Empty;
+
         if (LastAcceptedSuggestion.Equals(Text) is not true)
         {
             suggestion = GetSuggestion();
