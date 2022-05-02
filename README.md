@@ -7,18 +7,18 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 ### 💻 AutoCompleteTextBox
 
 A TextBox control that shows a suggestion based on input.
-The suggestion is shown inside the TextBox control by overriding the placeholder feature.
-Suggestions need to be provided by the SuggestionsSource property.
+AutoCompleteTextBox shows a suggestion **inside** the TextBox control.
 
 ```xaml
 <toolkit:AutoCompleteTextBox
     IsSuggestionCaseSensitive="false"
-    PlaceholderText="Enter your text here..."
+    SuggestionForeground="HotPink"
+    SuggestionPrefix="..."
     SuggestionSuffix=" ? [Press Right]"
     SuggestionsSource="{x:Bind Suggestions, Mode=OneWay}" />
 ```
 
-![AutoCompleteTextBox Screenshot](Assets/auto-complete-textbox-screenshot.png)
+![AutoCompleteTextBox Screenshot](Assets/auto-complete-textbox-sample-screenshot.png)
 
 ## 🛠️ Utilities
 
