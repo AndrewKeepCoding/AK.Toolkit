@@ -183,7 +183,7 @@ public sealed class AutoCompleteTextBox : TextBox
         SuggestionControl.VerticalScrollBarVisibility = ScrollViewer.GetVerticalScrollBarVisibility(this);
         SuggestionControl.VerticalScrollMode = ScrollViewer.GetVerticalScrollMode(this);
         SuggestionControl.ZoomMode = ZoomMode.Disabled;
-        SuggestionControl.Margin = new Thickness(0, 0, 0, 0);
+        SuggestionControl.Margin = new Thickness(0, -1, 0, 0);
 
         if (SuggestionForeground is null && SuggestionForegroundDefaultBrush is not null)
         {
