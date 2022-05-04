@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.System;
+using Windows.UI;
 
 namespace AK.Toolkit.WinUI3;
 
@@ -142,10 +143,11 @@ public sealed class AutoCompleteTextBox : TextBox
     {
         base.OnApplyTemplate();
 
-        if (Resources.TryGetValue("extControlPlaceholderForeground", out var value) is true)
+        if (Resources.TryGetValue("SystemColorGrayTextColor", out var value) is true)
         {
-            if (value is Brush defaultBrush)
+            if (value is Color defaultColor)
             {
+                var defaultBrush = new SolidColorBrush(defaultColor);
                 SuggestionForegroundDefaultBrush = defaultBrush;
             }
         }
@@ -181,7 +183,7 @@ public sealed class AutoCompleteTextBox : TextBox
         SuggestionControl.VerticalScrollBarVisibility = ScrollViewer.GetVerticalScrollBarVisibility(this);
         SuggestionControl.VerticalScrollMode = ScrollViewer.GetVerticalScrollMode(this);
         SuggestionControl.ZoomMode = ZoomMode.Disabled;
-        SuggestionControl.Margin = new Thickness(0, 0, 0, 0);
+        SuggestionControl.Margin = new Thickness(0, -1, 0, 0);
 
         if (SuggestionForeground is null && SuggestionForegroundDefaultBrush is not null)
         {
