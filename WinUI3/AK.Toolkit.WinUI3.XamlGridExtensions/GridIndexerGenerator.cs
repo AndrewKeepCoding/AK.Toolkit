@@ -49,6 +49,10 @@ internal class GridIndexerGenerator : IIncrementalGenerator
             string fileName = CreateUniqueFileName(xamlClassName);
             string filePath = $@"{fileName}.{GeneratedFileExtension}";
             string sourceString = CreatePartialClassSourceString(xamlClassName);
+
+            sourceProductionContext.AddSource(filePath, SourceText.From(sourceString, Encoding.UTF8));
+
+            GeneratedFileNames.Add(xamlClassName);
         }
     }
 
