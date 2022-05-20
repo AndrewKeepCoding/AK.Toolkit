@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.Samples.XamlGridExtensions (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.Samples.XamlGridExtensions (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
