@@ -18,7 +18,9 @@
     <Title>AK.Toolkit.WinUI3 - AutoCompleteTextBox</Title>
     <Description>A TextBox control that shows a suggestion inside the TextBox.</Description>
     <Version>0.3.1-beta</Version>
-    <PackageReleaseNotes>Fix suggestion foreground visibility issue and</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      - Fix suggestion foreground visibility issue
+      - Fix vertical alignment issue between the Text and Placeholder</PackageReleaseNotes>
     <PackageTags>winui3;autocomplete;autosuggest;textbox;</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
