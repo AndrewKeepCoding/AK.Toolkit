@@ -12,6 +12,10 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="GridIndexerPage.xaml" />
+    <None Remove="UsualGridPage.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -37,9 +41,20 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.XamlGridExtensions\AK.Toolkit.WinUI3.XamlGridExtensions.csproj"
-                      OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
-    <CompilerVisibleProperty Include="ProjectDir"/>
+    <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.XamlGridExtensions\AK.Toolkit.WinUI3.XamlGridExtensions.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <CompilerVisibleProperty Include="ProjectDir" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="UsualGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="GridIndexerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   
 </Project>
