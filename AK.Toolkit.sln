@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.WinUI3.XamlGridExtensions", "WinUI3\AK.Toolkit.WinUI3.XamlGridExtensions\AK.Toolkit.WinUI3.XamlGridExtensions.csproj", "{2505A289-2D65-418C-81F6-3278D2D3876A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,22 @@ Global
 		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x64.Build.0 = Release|Any CPU
 		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x86.ActiveCfg = Release|Any CPU
 		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x86.Build.0 = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|arm64.Build.0 = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|x64.Build.0 = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Debug|x86.Build.0 = Debug|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|arm64.ActiveCfg = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|arm64.Build.0 = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|x64.ActiveCfg = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|x64.Build.0 = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|x86.ActiveCfg = Release|Any CPU
+		{2505A289-2D65-418C-81F6-3278D2D3876A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +120,7 @@ Global
 		{767D27DB-A5F2-4F5E-8DDA-E08C253966BE} = {7F954F26-CA57-40C7-9268-51868AAE52D7}
 		{6F89C435-B6CD-4CA9-8B64-B39E642D93E2} = {EDEB400F-756D-4F11-895A-4A8D2C72176A}
 		{D879C412-1F09-4364-9C63-7E748C32FA5B} = {A07474CC-E082-4794-BC36-FADC14A0C035}
+		{2505A289-2D65-418C-81F6-3278D2D3876A} = {7F954F26-CA57-40C7-9268-51868AAE52D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5291613D-E375-45A4-ACBB-E655A7307CCC}
