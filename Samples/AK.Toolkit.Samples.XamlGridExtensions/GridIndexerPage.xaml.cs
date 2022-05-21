@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
-namespace AK.Toolkit.Samples.XamlGridExtensions;
+namespace AK.Toolkit.Samples.GridExtensions;
 
 public sealed partial class GridIndexerPage : Page
 {
