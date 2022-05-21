@@ -31,4 +31,28 @@
     </ItemGroup>
   </Target>
 
+  <PropertyGroup>
+    <Title>AK.Toolkit.WinUI3 - Grid Extensions</Title>
+    <Description>Source generator created XAML Grid extensions.
+- GridIndexer: An attached property that makes rows and columns indexing easier.</Description>
+    <Version>0.0.2-beta</Version>
+    <PackageReleaseNotes>- GridIndexer</PackageReleaseNotes>
+    <PackageTags>aktoolkit;winui3;grid;indexer;xaml;sourcegenerator;incrementalgenerator</PackageTags>
+    <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <!--
+    TODO: Fix this error when snupkg output is enabled.
+    "Cannot create a package that has no dependencies nor content."
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    -->
+    <PackageId>AK.Toolkit.WinUI3.GridExtensions</PackageId>
+    <Product>AK.Toolkit.WinUI3.GridExtensions</Product>
+    <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
+    <Authors>Andrew KeepCoding</Authors>
+    <Company>Andrew KeepCoding</Company>
+  </PropertyGroup>
+  
 </Project>
