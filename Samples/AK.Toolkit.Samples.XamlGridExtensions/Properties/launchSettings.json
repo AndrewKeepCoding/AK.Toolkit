@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.Samples.GridExtensions (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.Samples.GridExtensions (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
