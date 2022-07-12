@@ -40,4 +40,13 @@
   <ItemGroup>
     <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.Localization\AK.Toolkit.WinUI3.Localization.csproj" />
   </ItemGroup>
+
+  <!-- Copy the String folder to output directory -->
+  <Target Name="CopyStringResources" AfterTargets="Build">
+    <ItemGroup>
+      <StringResources Include="$(ProjectDir)Strings\**\*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(StringResources)" DestinationFiles="$(OutDir)Strings\%(RecursiveDir)%(Filename)%(Extension)" />
+  </Target>
+  
 </Project>
