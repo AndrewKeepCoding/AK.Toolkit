@@ -8,7 +8,7 @@ namespace AK.Toolkit.WinUI3.GridExtensions;
 [Generator(LanguageNames.CSharp)]
 internal class GridIndexerGenerator : IIncrementalGenerator
 {
-    private static string GridIndexerClassName { get; } = nameof(GridIndexerGenerator).Replace("Generator", "");
+    private static string GridIndexerClassName { get; } = nameof(GridIndexerGenerator).Replace("ridIndexerGenerator", "I");
 
     private static string GeneratedFileExtension { get; } = "xaml.g.cs";
 

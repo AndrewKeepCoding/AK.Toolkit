@@ -21,13 +21,13 @@
                     <Setter Property="FontSize" Value="30"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock>GridIndexer.Row="0" GridIndexer.Column="0"</TextBlock>
-            <TextBlock>GridIndexer.Row="+1" GridIndexer.Column="+1"</TextBlock>
-            <TextBlock>GridIndexer.Row="+1" GridIndexer.Column="+1"</TextBlock>
-            <TextBlock>GridIndexer.Row="+1" GridIndexer.Column="+1"</TextBlock>
-            <TextBlock>GridIndexer.Row="+1" GridIndexer.Column="+1"</TextBlock>
+            <TextBlock>GI.Row="0" GI.Column="0"</TextBlock>
+            <TextBlock>GI.Row="+1" GI.Column="+1"</TextBlock>
+            <TextBlock>GI.Row="+1" GI.Column="+1"</TextBlock>
+            <TextBlock>GI.Row="+1" GI.Column="+1"</TextBlock>
+            <TextBlock>GI.Row="+1" GI.Column="+1"</TextBlock>
         </StackPanel>
-        
+
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
@@ -39,83 +39,83 @@
 
             <StackPanel
                 x:Name="A"
-                ex:GridIndexer.Column="0"
-                ex:GridIndexer.Row="0"
+                ex:GI.Column="0"
+                ex:GI.Row="0"
                 Background="HotPink">
                 <TextBlock Text="{x:Bind A.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind A.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind A.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind A.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind A.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="B"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="LightGreen">
                 <TextBlock Text="{x:Bind B.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind B.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind B.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind B.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind B.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="C"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="SkyBlue">
                 <TextBlock Text="{x:Bind C.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind C.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind C.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind C.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind C.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="D"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="HotPink">
                 <TextBlock Text="{x:Bind D.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind D.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind D.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind D.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind D.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="E"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="LightGreen">
                 <TextBlock Text="{x:Bind E.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind E.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind E.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind E.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind E.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="F"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="SkyBlue">
                 <TextBlock Text="{x:Bind F.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind F.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind F.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind F.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind F.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="G"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="HotPink">
                 <TextBlock Text="{x:Bind G.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind G.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind G.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind G.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind G.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="H"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="LightGreen">
                 <TextBlock Text="{x:Bind H.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind H.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind H.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind H.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind H.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="I"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="SkyBlue">
                 <TextBlock Text="{x:Bind I.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind I.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind I.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind I.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind I.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
             <StackPanel
                 x:Name="J"
-                ex:GridIndexer.Column="+1"
-                ex:GridIndexer.Row="+1"
+                ex:GI.Column="+1"
+                ex:GI.Row="+1"
                 Background="HotPink">
                 <TextBlock Text="{x:Bind J.Name}" />
-                <TextBlock><Run Text="[" /><Run Text="{x:Bind J.(ex:GridIndexer.Row)}" /><Run Text="," /><Run Text="{x:Bind J.(ex:GridIndexer.Column)}" /><Run Text="]" /></TextBlock>
+                <TextBlock><Run Text="[" /><Run Text="{x:Bind J.(ex:GI.Row)}" /><Run Text="," /><Run Text="{x:Bind J.(ex:GI.Column)}" /><Run Text="]" /></TextBlock>
             </StackPanel>
 
         </Grid>
