@@ -26,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -44,7 +46,7 @@
   <!-- Copy the String folder to output directory -->
   <Target Name="CopyStringResources" AfterTargets="Build">
     <ItemGroup>
-      <StringResources Include="$(ProjectDir)Strings\**\*.*"/>
+      <StringResources Include="$(ProjectDir)Strings\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(StringResources)" DestinationFiles="$(OutDir)Strings\%(RecursiveDir)%(Filename)%(Extension)" />
   </Target>

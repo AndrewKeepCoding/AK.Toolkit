@@ -3,9 +3,72 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:AK.Toolkit.WinUI3.Localization"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid />
+    <NavigationView l:Localizer.Uid="NavigationView">
+        <NavigationView.MenuItems>
+            <NavigationViewItem
+                l:Localizer.Uid="NavigationViewItem.MainPage"
+                Content="Main default text"
+                Icon="AllApps">
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem
+                        l:Localizer.Uid="NavigationViewItem.SubPage"
+                        Content="Sub default text"
+                        Icon="Document" />
+                </NavigationViewItem.MenuItems>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+
+        <StackPanel>
+            <RadioButtons
+                l:Localizer.Uid="AvailableLanguagesRadioButtons"
+                Header="Default header"
+                ItemsSource="{x:Bind AvailableLanguages}"
+                MaxColumns="3"
+                SelectedIndex="0"
+                SelectionChanged="RadioButtons_SelectionChanged">
+                <RadioButtons.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Item1}" />
+                    </DataTemplate>
+                </RadioButtons.ItemTemplate>
+            </RadioButtons>
+            <Button l:Localizer.Uid="TestButton" Content="Default content" />
+            <TextBlock l:Localizer.Uid="TestTextBlock" Text="Default text" />
+            <ListView ItemsSource="{x:Bind AvailableLanguages}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="default" l:Localizer.Uid="ListViewItemTextBlock" />
+                            <TextBlock Text="{Binding Item1}" />
+                            <TextBlock Text="{Binding Item2}" />
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <!--
+        <Frame x:Name="ContentFrame" />
+        -->
+    </NavigationView>
+
+    <!--<RadioButtons
+            l:Localizer.Uid="AvailableLanguagesRadioButtons"
+            Header="Default header"
+            ItemsSource="{x:Bind AvailableLanguages}"
+            MaxColumns="3"
+            SelectedIndex="0"
+            SelectionChanged="RadioButtons_SelectionChanged">
+            <RadioButtons.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Item1}" />
+                </DataTemplate>
+            </RadioButtons.ItemTemplate>
+        </RadioButtons>
+        <TextBlock l:Localizer.Uid="TestTextBlock" Text="Default text" />-->
 
 </Window>
