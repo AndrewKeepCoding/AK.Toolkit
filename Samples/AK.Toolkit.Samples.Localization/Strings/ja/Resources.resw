@@ -117,20 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppTitleBarTextBlock.Text" xml:space="preserve">
+    <value>Localizerサンプルアプリ😎</value>
+  </data>
   <data name="AvailableLanguagesRadioButtons.Header" xml:space="preserve">
-    <value>対応言語</value>
+    <value>Stringsフォルダーで検出された言語</value>
+  </data>
+  <data name="Button.Content" xml:space="preserve">
+    <value>日本語Button</value>
+  </data>
+  <data name="ButtonHeader.Header" xml:space="preserve">
+    <value>Button</value>
+  </data>
+  <data name="CheckBox.Content" xml:space="preserve">
+    <value>日本語CheckBox</value>
+  </data>
+  <data name="CheckBoxHeader.Header" xml:space="preserve">
+    <value>CheckBox</value>
+  </data>
+  <data name="ComboBox.Header" xml:space="preserve">
+    <value>ComboBox</value>
+  </data>
+  <data name="ComboBoxItem.Text" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="DropDownButtoDropDownButton.Content" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="DropDownButtonHeader.Header" xml:space="preserve">
+    <value>DropDownButton</value>
+  </data>
+  <data name="DropDownButtonItem.Text" xml:space="preserve">
+    <value>日本語</value>
   </data>
   <data name="en-US" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="es-ES" xml:space="preserve">
-    <value>Espanol</value>
+    <value>Español</value>
+  </data>
+  <data name="FirstNameHeader.Header" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="HyperlinkButton.Content" xml:space="preserve">
+    <value>日本語HyperlinkButton</value>
+  </data>
+  <data name="HyperLinkButtonHeader.Header" xml:space="preserve">
+    <value>HyperlinkButton</value>
   </data>
   <data name="ja" xml:space="preserve">
     <value>日本語</value>
   </data>
+  <data name="LastNameHeader.Header" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="ListViewHeader.Header" xml:space="preserve">
+    <value>ListView</value>
+  </data>
+  <data name="MainPageTitleTextBlock.Text" xml:space="preserve">
+    <value>メインページ</value>
+  </data>
   <data name="NavigationView.PaneTitle" xml:space="preserve">
-    <value>ペインタイトル</value>
+    <value>ペーンタイトル</value>
   </data>
   <data name="NavigationViewItem.MainPage.Content" xml:space="preserve">
     <value>メイン</value>
@@ -138,7 +186,37 @@
   <data name="NavigationViewItem.SubPage.Content" xml:space="preserve">
     <value>サブ</value>
   </data>
-  <data name="TestTextBlock.Text" xml:space="preserve">
-    <value>ローカライズ済みテキスト</value>
+  <data name="RadioButton.Content" xml:space="preserve">
+    <value>日本語RadioButton</value>
+  </data>
+  <data name="RadioButtonHeader.Header" xml:space="preserve">
+    <value>RadioButton</value>
+  </data>
+  <data name="RatingControl.Caption" xml:space="preserve">
+    <value>日本語RatingControl</value>
+  </data>
+  <data name="RatingControlHeader.Header" xml:space="preserve">
+    <value>RatingControl</value>
+  </data>
+  <data name="SettingsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SubPageTitleTextBlock.Text" xml:space="preserve">
+    <value>サブページ</value>
+  </data>
+  <data name="TextBox.PlaceholderText" xml:space="preserve">
+    <value>日本語TextBox</value>
+  </data>
+  <data name="TextBoxHeader.Header" xml:space="preserve">
+    <value>TextBox</value>
+  </data>
+  <data name="ToggleSwitch.OffContent" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="ToggleSwitch.OnContent" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="ToggleSwitchHeader.Header" xml:space="preserve">
+    <value>ToggleSwitch</value>
   </data>
 </root>

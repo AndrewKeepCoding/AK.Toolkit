@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="AK.Toolkit.Samples.Localization.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:AK.Toolkit.WinUI3.Localization"
+    xmlns:local="using:AK.Toolkit.Samples.Localization"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <StackPanel x:Name="Root">
+
+        <TextBlock
+            l:Localizer.Uid="SettingsPageTitleTextBlock"
+            FontSize="20"
+            FontWeight="Bold" />
+
+        <RadioButtons
+            x:Name="LanguageRadioButtons"
+            l:Localizer.Uid="AvailableLanguagesRadioButtons"
+            ItemsSource="{x:Bind AvailableLanguages}"
+            SelectionChanged="RadioButtons_SelectionChanged">
+            <RadioButtons.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Item1}" />
+                </DataTemplate>
+            </RadioButtons.ItemTemplate>
+        </RadioButtons>
+        
+    </StackPanel>
+</Page>

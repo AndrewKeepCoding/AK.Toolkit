@@ -117,34 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppTitleBarTextBlock.Text" xml:space="preserve">
+    <value>Aplicación de muestra del Localizer😎</value>
+  </data>
   <data name="AvailableLanguagesRadioButtons.Header" xml:space="preserve">
-    <value>Lenguajes disponibles</value>
+    <value>Lenguajes encontrados en el Strings folder</value>
+  </data>
+  <data name="Button.Content" xml:space="preserve">
+    <value>Botón en Español</value>
+  </data>
+  <data name="ButtonHeader.Header" xml:space="preserve">
+    <value>Botón</value>
+  </data>
+  <data name="CheckBox.Content" xml:space="preserve">
+    <value>CheckBox en Español</value>
+  </data>
+  <data name="CheckBoxHeader.Header" xml:space="preserve">
+    <value>CheckBox</value>
+  </data>
+  <data name="ComboBox.Header" xml:space="preserve">
+    <value>ComboBox</value>
+  </data>
+  <data name="ComboBoxItem.Text" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="DropDownButtoDropDownButton.Content" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="DropDownButtonHeader.Header" xml:space="preserve">
+    <value>DropDownButton</value>
+  </data>
+  <data name="DropDownButtonItem.Text" xml:space="preserve">
+    <value>Español</value>
   </data>
   <data name="en-US" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="es-ES" xml:space="preserve">
-    <value>Espanol</value>
+    <value>Español</value>
   </data>
-  <data name="HEADER.Text" xml:space="preserve">
-    <value>h?</value>
+  <data name="FirstNameHeader.Header" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="HyperlinkButton.Content" xml:space="preserve">
+    <value>HyperlinkButton en Español</value>
+  </data>
+  <data name="HyperLinkButtonHeader.Header" xml:space="preserve">
+    <value>HyperlinkButton</value>
   </data>
   <data name="ja" xml:space="preserve">
     <value>日本語</value>
   </data>
-  <data name="ListViewItemTextBlock.Text" xml:space="preserve">
-    <value>funcciona!</value>
+  <data name="LastNameHeader.Header" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="ListViewHeader.Header" xml:space="preserve">
+    <value>ListView</value>
+  </data>
+  <data name="MainPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Página principal</value>
   </data>
   <data name="NavigationView.PaneTitle" xml:space="preserve">
-    <value>Pane Titulo</value>
+    <value>Título del panel</value>
   </data>
   <data name="NavigationViewItem.MainPage.Content" xml:space="preserve">
-    <value>Pricipal</value>
+    <value>Principal</value>
   </data>
   <data name="NavigationViewItem.SubPage.Content" xml:space="preserve">
-    <value>Sub</value>
+    <value>Sub principal</value>
   </data>
-  <data name="TestTextBlock.Text" xml:space="preserve">
-    <value>Text localizado</value>
+  <data name="RadioButton.Content" xml:space="preserve">
+    <value>RadioButton en Español</value>
+  </data>
+  <data name="RadioButtonHeader.Header" xml:space="preserve">
+    <value>RadioButton</value>
+  </data>
+  <data name="RatingControl.Caption" xml:space="preserve">
+    <value>RatingControl en Español</value>
+  </data>
+  <data name="RatingControlHeader.Header" xml:space="preserve">
+    <value>RatingControl</value>
+  </data>
+  <data name="SettingsPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SubPageTitleTextBlock.Text" xml:space="preserve">
+    <value>Página sub principal</value>
+  </data>
+  <data name="TextBox.PlaceholderText" xml:space="preserve">
+    <value>TextBox en Español</value>
+  </data>
+  <data name="TextBoxHeader.Header" xml:space="preserve">
+    <value>TextBox</value>
+  </data>
+  <data name="ToggleSwitch.OffContent" xml:space="preserve">
+    <value>Apagado</value>
+  </data>
+  <data name="ToggleSwitch.OnContent" xml:space="preserve">
+    <value>Prendido</value>
+  </data>
+  <data name="ToggleSwitchHeader.Header" xml:space="preserve">
+    <value>ToggleSwitch</value>
   </data>
 </root>
