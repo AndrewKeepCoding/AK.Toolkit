@@ -48,9 +48,9 @@ public partial class Localizer
         return null;
     }
 
-    private static StringResources LoadLanguageResources(string filePath)
+    private static StringResourceListDictionary LoadLanguageResources(string filePath)
     {
-        Dictionary<string, StringResource> resources = new();
+        Dictionary<string, StringResourceList> resourceDictionary = new();
         XmlDocument xmlDoc = new();
         xmlDoc.Load(filePath);
 
@@ -60,11 +60,16 @@ public partial class Localizer
             {
                 if (CreateStringResource(node) is StringResource resource)
                 {
-                    resources[resource.Key] = resource;
+                    if (resourceDictionary.ContainsKey(resource.Key) is false)
+                    {
+                        resourceDictionary[resource.Key] = new StringResourceList();
+                    }
+
+                    resourceDictionary[resource.Key].Add(resource);
                 }
             }
         }
 
-        return new StringResources(resources);
+        return new StringResourceListDictionary(resourceDictionary);
     }
 }

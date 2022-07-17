@@ -5,9 +5,13 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public record StringResource(string Key, string DependencyPropertyName, string Value);
 
-public class StringResources : ReadOnlyDictionary<string, StringResource>
+public class StringResourceList : List<StringResource>
 {
-    public StringResources(IDictionary<string, StringResource> dictionary) : base(dictionary)
+}
+
+public class StringResourceListDictionary : ReadOnlyDictionary<string, StringResourceList>
+{
+    public StringResourceListDictionary(IDictionary<string, StringResourceList> dictionary) : base(dictionary)
     {
     }
 }

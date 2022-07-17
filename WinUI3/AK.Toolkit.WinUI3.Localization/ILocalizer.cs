@@ -5,7 +5,7 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public interface ILocalizer
 {
-    StringResources? GetLanguageResources(string language);
+    StringResourceListDictionary? GetLanguageResources(string language);
 
     IEnumerable<string> GetAvailableLanguages();
 
