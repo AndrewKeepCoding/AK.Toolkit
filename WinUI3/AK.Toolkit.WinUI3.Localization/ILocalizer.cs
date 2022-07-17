@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 
 namespace AK.Toolkit.WinUI3.Localization;
@@ -22,4 +23,6 @@ public interface ILocalizer
     void RunLocalization(FrameworkElement rootElement, string? language = null);
 
     string? GetLocalizedString(string key, string? language = null);
+
+    bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func);
 }

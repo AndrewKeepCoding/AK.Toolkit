@@ -25,10 +25,10 @@ public partial class Localizer : DependencyObject, ILocalizer
         {
             string resourceFilePath = Path.Combine(folder, resourcesFileName);
 
-            if (LoadLanguageResources(resourceFilePath) is StringResourceListDictionary resources &&
+            if (LoadLanguageResources(resourceFilePath) is StringResourceListDictionary resourceListDictionary &&
                 new DirectoryInfo(resourceFilePath).Parent?.Name is string languageCode)
             {
-                _languageResources.Add(languageCode, resources);
+                _languageResources.Add(languageCode, resourceListDictionary);
             }
         }
 
@@ -62,17 +62,17 @@ public partial class Localizer : DependencyObject, ILocalizer
     {
         language ??= CurrentLanguage;
 
-        if (GetLanguageResources(language) is StringResourceListDictionary resources)
+        if (GetLanguageResources(language) is StringResourceListDictionary resourceListDictionary)
         {
-            Localize(rootElement, resources);
+            Localize(rootElement, resourceListDictionary);
         }
     }
 
     public StringResourceListDictionary? GetLanguageResources(string language)
     {
-        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resources) is true)
+        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true)
         {
-            return resources;
+            return resourceListDictionary;
         }
 
         return null;
@@ -82,19 +82,19 @@ public partial class Localizer : DependencyObject, ILocalizer
     {
         language ??= CurrentLanguage;
 
-        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resources) is true &&
-            resources.TryGetValue(key, out StringResourceList? resource) is true)
+        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true &&
+            resourceListDictionary.TryGetValue(key, out StringResourceList? resourceList) is true)
         {
-            return resource[0].Value;
+            return resourceList.FirstOrDefault()?.Value;
         }
 
         return null;
     }
 
-    private void Localize(UIElement element, StringResourceListDictionary resources)
+    private void Localize(UIElement element, StringResourceListDictionary resourceListDictionary)
     {
         if (GetUid(element) is string uid &&
-            resources.TryGetValue(uid, out StringResourceList? resourceList) is true)
+            resourceListDictionary.TryGetValue(uid, out StringResourceList? resourceList) is true)
         {
             foreach (StringResource resource in resourceList)
             {
@@ -108,9 +108,9 @@ public partial class Localizer : DependencyObject, ILocalizer
         if (_childrenGetters.TryGetValue(element.GetType(), out var childrenGetter) is true &&
             childrenGetter is not null)
         {
-            foreach (UIElement child in childrenGetter(element))
+            foreach (UIElement child in childrenGetter(element).Union(element.GetChildren()))
             {
-                Localize(child, resources);
+                Localize(child, resourceListDictionary);
             }
         }
     }

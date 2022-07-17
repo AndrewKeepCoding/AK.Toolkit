@@ -10,20 +10,16 @@ public partial class Localizer
 {
     private readonly UIElementChildrenGetters _childrenGetters = new();
 
+    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func)
+    {
+        return _childrenGetters.TryAdd(type, func);
+    }
+
     private void RegisterDefaultUIElementChildrenGetters()
     {
-        static void AddChildren(UIElement parent, HashSet<UIElement> children)
-        {
-            foreach (UIElement child in parent.GetChildren())
-            {
-                children.Add(child);
-            }
-        }
-
         _childrenGetters.TryAdd(typeof(Panel), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is Panel panel)
             {
@@ -39,7 +35,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(ItemsControl), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is ItemsControl itemsControl)
             {
@@ -55,7 +50,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(ContentControl), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if ((parent as ContentControl)?.Content is UIElement element)
             {
@@ -68,7 +62,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(Border), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if ((parent as Border)?.Child is UIElement element)
             {
@@ -81,7 +74,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(ContentPresenter), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if ((parent as ContentPresenter)?.Content is UIElement element)
             {
@@ -94,15 +86,12 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(ItemsPresenter), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
-
             return children;
         });
 
         _childrenGetters.TryAdd(typeof(Viewbox), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if ((parent as Viewbox)?.Child is UIElement element)
             {
@@ -115,7 +104,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(UserControl), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if ((parent as UserControl)?.Content is UIElement element)
             {
@@ -128,7 +116,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(MenuBar), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is MenuBar menuBar)
             {
@@ -144,7 +131,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(MenuBarItem), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is MenuBarItem menuBarItem)
             {
@@ -160,7 +146,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(CommandBar), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is CommandBar commandBar)
             {
@@ -186,7 +171,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(NavigationView), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is NavigationView navigationView)
             {
@@ -227,7 +211,6 @@ public partial class Localizer
         _childrenGetters.TryAdd(typeof(NavigationViewItem), (parent) =>
         {
             HashSet<UIElement> children = new();
-            AddChildren(parent, children);
 
             if (parent is NavigationViewItem navigationViewItem)
             {
