@@ -11,6 +11,10 @@ public interface ILocalizer
 
     void Initalize(string resourcesFolderPath, string resourcesFileName, string defaultLanguage);
 
+    string GetCurrentLanguage();
+
+    bool TrySetCurrentLanguage(string language);
+
     void RegisterRootElement(FrameworkElement rootElement);
 
     void RunLocalizationOnRegisteredRootElements(string? language = null);

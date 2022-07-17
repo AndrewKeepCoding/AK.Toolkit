@@ -1,8 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
+using System.Linq;
 
 namespace AK.Toolkit.WinUI3.Localization;
 
@@ -12,13 +11,13 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     private readonly HashSet<UIElement> _rootElements = new();
 
-    private string DefaultLanguage { get; set; } = "en-US";
+    private string CurrentLanguage { get; set; } = "en-US";
 
     public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
 
     public void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
     {
-        DefaultLanguage = defaultLanguage;
+        CurrentLanguage = defaultLanguage;
 
         _languageResources.Clear();
 
@@ -36,6 +35,19 @@ public partial class Localizer : DependencyObject, ILocalizer
         RegisterDefaultUIElementChildrenGetters();
     }
 
+    public string GetCurrentLanguage() => CurrentLanguage;
+
+    public bool TrySetCurrentLanguage(string language)
+    {
+        if (GetAvailableLanguages().Contains(language) is true)
+        {
+            CurrentLanguage = language;
+            return true;
+        }
+
+        return false;
+    }
+
     public void RegisterRootElement(FrameworkElement rootElement) => _rootElements.Add(rootElement);
 
     public void RunLocalizationOnRegisteredRootElements(string? language = null)
@@ -48,7 +60,7 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     public void RunLocalization(FrameworkElement rootElement, string? language = null)
     {
-        language ??= DefaultLanguage;
+        language ??= CurrentLanguage;
 
         if (GetLanguageResources(language) is StringResources resources)
         {
@@ -68,7 +80,7 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     public string? GetLocalizedString(string key, string? language = null)
     {
-        language ??= DefaultLanguage;
+        language ??= CurrentLanguage;
 
         if (_languageResources.TryGetValue(language, out StringResources? resources) is true &&
             resources.TryGetValue(key, out StringResource? resource) is true)
@@ -83,8 +95,7 @@ public partial class Localizer : DependencyObject, ILocalizer
     {
         if (GetUid(element) is string uid &&
             resources.TryGetValue(uid, out StringResource? resource) is true &&
-            GetDependencyPropertyInfo(element, resource.DependencyPropertyName) is PropertyInfo propertyInfo &&
-            propertyInfo.GetValue(null) is DependencyProperty dependencyProperty)
+            GetDependencyProperty(element, resource.DependencyPropertyName) is DependencyProperty dependencyProperty)
         {
             element.SetValue(dependencyProperty, resource.Value);
         }

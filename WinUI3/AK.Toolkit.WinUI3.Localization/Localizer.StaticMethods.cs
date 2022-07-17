@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Xml;
@@ -7,11 +8,25 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public partial class Localizer
 {
-    private static PropertyInfo? GetDependencyPropertyInfo(UIElement element, string dependencyPropertyName)
+    private static DependencyProperty? GetDependencyProperty(UIElement element, string dependencyPropertyName)
     {
-        return element
-            .GetType()
-            .GetProperty(dependencyPropertyName, BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+        Type type = element.GetType();
+        if (type.GetProperty(
+            dependencyPropertyName,
+            BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) is PropertyInfo propertyInfo &&
+            propertyInfo.GetValue(null) is DependencyProperty property)
+        {
+            return property;
+        }
+        else if (type.GetField(
+            dependencyPropertyName,
+            BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) is FieldInfo fieldInfo &&
+            fieldInfo.GetValue(null) is DependencyProperty field)
+        {
+            return field;
+        }
+
+        return null;
     }
 
     private static (string Key, string Property) GetKeyAndDependencyPropertyName(string name)
