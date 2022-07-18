@@ -4,6 +4,15 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 
 ## 🔵 WinUI 3
 
+### 🌏 Localizer
+[🎬 YouTube](https://youtu.be/6Y5saLQ9bcs)
+
+The Localizer helps you to localize your app.
+- Switch languages **without restarting** the app
+- You (users) can **edit** localized strings even after deployment
+- You (users) can **add** new languages even after deployment
+- Use the starndard **Resources.resw**
+
 ### 🏁 Grid Extensions - GridIndexer (GI)
 [🎬 YouTube](https://youtu.be/akqjnqsy-ME)
 
