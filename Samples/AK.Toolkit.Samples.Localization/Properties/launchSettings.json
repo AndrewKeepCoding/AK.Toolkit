@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.Samples.Localization (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.Samples.Localization (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

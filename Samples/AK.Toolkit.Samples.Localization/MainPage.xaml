@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="AK.Toolkit.Samples.Localization.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:l="using:AK.Toolkit.WinUI3.Localization"
+    xmlns:local="using:AK.Toolkit.Samples.Localization"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <StackPanel
+        x:Name="Root"
+        Orientation="Vertical"
+        Spacing="20">
+
+        <TextBlock
+            l:Localizer.Uid="MainPageTitleTextBlock"
+            FontSize="20"
+            FontWeight="Bold" />
+
+        <controls:HeaderedContentControl l:Localizer.Uid="TextBoxHeader">
+            <TextBox l:Localizer.Uid="TextBox" />
+        </controls:HeaderedContentControl>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="ButtonHeader">
+            <Button l:Localizer.Uid="Button" />
+        </controls:HeaderedContentControl>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="CheckBoxHeader">
+            <CheckBox l:Localizer.Uid="CheckBox" />
+        </controls:HeaderedContentControl>
+
+        <ComboBox l:Localizer.Uid="ComboBox" SelectedIndex="0">
+            <TextBlock l:Localizer.Uid="ComboBoxItem" />
+        </ComboBox>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="DropDownButtonHeader">
+            <DropDownButton l:Localizer.Uid="DropDownButton">
+                <TextBlock l:Localizer.Uid="DropDownButtonItem" />
+            </DropDownButton>
+        </controls:HeaderedContentControl>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="HyperLinkButtonHeader">
+            <HyperlinkButton l:Localizer.Uid="HyperlinkButton" />
+        </controls:HeaderedContentControl>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="RadioButtonHeader">
+            <RadioButton l:Localizer.Uid="RadioButton" />
+        </controls:HeaderedContentControl>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="RatingControlHeader">
+            <RatingControl l:Localizer.Uid="RatingControl" />
+        </controls:HeaderedContentControl>
+
+        <controls:HeaderedContentControl l:Localizer.Uid="ToggleSwitchHeader">
+            <ToggleSwitch l:Localizer.Uid="ToggleSwitch" />
+        </controls:HeaderedContentControl>
+    </StackPanel>
+</Page>
