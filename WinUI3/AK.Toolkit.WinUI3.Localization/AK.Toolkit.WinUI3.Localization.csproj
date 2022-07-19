@@ -12,4 +12,23 @@
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
       <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
   </ItemGroup>
+  
+  <PropertyGroup>
+    <Title>AK.Toolkit.WinUI3 - Localizer</Title>
+    <Description>WinUI 3 Localization (Dynamic/User extensible/User editable)</Description>
+    <Version>0.0.2-beta</Version>
+    <PackageReleaseNotes>1st release</PackageReleaseNotes>
+    <PackageTags>winui3;winappsdk;localization;multilanguage</PackageTags>
+    <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageId>AK.Toolkit.WinUI3.Localizer</PackageId>
+    <Product>AK.Toolkit.WinUI3.Localizer</Product>
+    <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
+    <Authors>Andrew KeepCoding</Authors>
+    <Company>Andrew KeepCoding</Company>
+  </PropertyGroup>
 </Project>
