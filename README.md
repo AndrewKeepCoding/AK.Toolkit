@@ -1,6 +1,6 @@
 # 🧰 AK.Toolkit
 
-The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I needed to use but couldn't find somewhere else.
+The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I need but couldn't find somewhere else.
 
 ## 🔵 WinUI 3
 
