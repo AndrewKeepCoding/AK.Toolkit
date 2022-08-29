@@ -29,8 +29,8 @@ public partial class Localizer : DependencyObject, ILocalizer
         if (Instance == null)
         {
             Instance = new Localizer();
-            Instance.RunLocalizationOnRegisteredRootElements();
             Instance.Initalize(resourcesFolderPath, resourcesFileName, defaultLanguage);
+            Instance.RunLocalizationOnRegisteredRootElements();
         }
 
         return Instance;
