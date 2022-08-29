@@ -9,6 +9,34 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public static class Extensions
 {
+    /// <summary>
+    /// You need to Initialize Window with 2 parameters
+    /// </summary>
+    /// <param name="Localizer"></param>
+    /// <param name="Root">Grid/StackPanel or any FrameworkElement that hosts elements</param>
+    /// <param name="Content">Windows `Content` Properties</param>
+    public static void InitializeWindowEx(this Localizer Localizer, FrameworkElement Root, UIElement Content)
+    {
+        Localizer.RunLocalization(Root);
+        if (Content is FrameworkElement content)
+        {
+            Localizer.RegisterRootElement(content);
+        }
+    }
+
+    /// <summary>
+    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again. 
+    /// </summary>
+    /// <param name="localizer"></param>
+    /// <param name="language">en-US</param>
+    /// <returns></returns>
+    public static bool SetCurrentLanguageEx(this Localizer localizer, string language)
+    {
+        var result = localizer.TrySetCurrentLanguage(language);
+        localizer.RunLocalizationOnRegisteredRootElements();
+        return result;
+    }
+
     public static IEnumerable<UIElement> GetChildren(this UIElement parent, params Func<UIElement, bool>[] filters)
     {
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
