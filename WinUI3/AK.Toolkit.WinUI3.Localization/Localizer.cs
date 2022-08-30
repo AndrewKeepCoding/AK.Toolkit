@@ -15,6 +15,53 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
 
+    private static Localizer Instance { get; set; } = null;
+
+    /// <summary>
+    /// Create a Instance of Localizer only once with Auto Register Elements
+    /// </summary>
+    /// <param name="resourcesFolderPath"></param>
+    /// <param name="resourcesFileName">Resources.resw</param>
+    /// <param name="defaultLanguage">en-US</param>
+    /// <returns></returns>
+    public static Localizer GetCurrent(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
+    {
+        if (Instance == null)
+        {
+            Instance = new Localizer();
+            Instance.Initalize(resourcesFolderPath, resourcesFileName, defaultLanguage);
+            Instance.RunLocalizationOnRegisteredRootElements();
+        }
+
+        return Instance;
+    }
+
+    /// <summary>
+    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again. 
+    /// </summary>
+    /// <param name="language">en-US</param>
+    /// <returns></returns>
+    public bool SetCurrentLanguage(string language)
+    {
+        var result = Instance.TrySetCurrentLanguage(language);
+        Instance.RunLocalizationOnRegisteredRootElements();
+        return result;
+    }
+
+    /// <summary>
+    /// You need to Initialize Window with 2 parameters
+    /// </summary>
+    /// <param name="Root">Grid/StackPanel or any FrameworkElement that hosts elements</param>
+    /// <param name="Content">Windows `Content` Properties</param>
+    public void InitializeWindow(FrameworkElement Root, UIElement Content)
+    {
+        Instance.RunLocalization(Root);
+        if (Content is FrameworkElement content)
+        {
+            Instance.RegisterRootElement(content);
+        }
+    }
+
     public void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
     {
         CurrentLanguage = defaultLanguage;
