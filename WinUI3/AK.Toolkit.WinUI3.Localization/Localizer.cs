@@ -37,7 +37,7 @@ public partial class Localizer : DependencyObject, ILocalizer
     }
 
     /// <summary>
-    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again. 
+    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again.
     /// </summary>
     /// <param name="language">en-US</param>
     /// <returns></returns>
@@ -89,6 +89,7 @@ public partial class Localizer : DependencyObject, ILocalizer
         if (GetAvailableLanguages().Contains(language) is true)
         {
             CurrentLanguage = language;
+            RunLocalizationOnRegisteredRootElements();
             return true;
         }
 

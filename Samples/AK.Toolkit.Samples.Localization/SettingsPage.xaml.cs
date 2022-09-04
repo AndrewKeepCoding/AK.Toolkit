@@ -45,10 +45,9 @@ public sealed partial class SettingsPage : Page
     private void RadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.AddedItems.Count > 0 &&
-            (e.AddedItems[0] as Tuple<string, string>)?.Item2 is string language &&
-            _localizer.TrySetCurrentLanguage(language) is true)
+            (e.AddedItems[0] as Tuple<string, string>)?.Item2 is string language)
         {
-            _localizer.RunLocalizationOnRegisteredRootElements();
+            _ = _localizer.TrySetCurrentLanguage(language);
         }
     }
 }
