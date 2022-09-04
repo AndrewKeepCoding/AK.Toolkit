@@ -24,19 +24,6 @@ public static class Extensions
         }
     }
 
-    /// <summary>
-    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again. 
-    /// </summary>
-    /// <param name="localizer"></param>
-    /// <param name="language">en-US</param>
-    /// <returns></returns>
-    public static bool SetCurrentLanguageEx(this Localizer localizer, string language)
-    {
-        var result = localizer.TrySetCurrentLanguage(language);
-        localizer.RunLocalizationOnRegisteredRootElements();
-        return result;
-    }
-
     public static IEnumerable<UIElement> GetChildren(this UIElement parent, params Func<UIElement, bool>[] filters)
     {
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
