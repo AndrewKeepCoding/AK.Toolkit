@@ -18,6 +18,13 @@ public partial class App : Application
         InitializeComponent();
         _host = BuildHost();
         Ioc.Default.ConfigureServices(_host.Services);
+        // For non-packaged app:
+        //string resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
+
+        // For packaged app:
+        string resourcesFolderPath = @"C:\\Projects\\Strings";
+
+        _ = Localizer.Create(resourcesFolderPath);
     }
 
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -25,8 +32,9 @@ public partial class App : Application
         _window = Ioc.Default.GetRequiredService<MainWindow>();
         _window.Activate();
 
-        ILocalizer localizer = Ioc.Default.GetRequiredService<ILocalizer>();
-        localizer.RunLocalizationOnRegisteredRootElements();
+        //ILocalizer localizer = Ioc.Default.GetRequiredService<ILocalizer>();
+        //localizer.RunLocalizationOnRegisteredRootElements();
+        Localizer.Get().RunLocalizationOnRegisteredRootElements();
     }
 
     private static IHost BuildHost() => Host.CreateDefaultBuilder()
@@ -34,13 +42,14 @@ public partial class App : Application
         {
             _ = services
                 .AddSingleton<MainWindow>()
-                .AddSingleton<ILocalizer, Localizer>((serviceProvider) =>
-                {
-                    string resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
-                    Localizer localizer = new();
-                    localizer.Initalize(resourcesFolderPath);
-                    return localizer;
-                });
+                //.AddSingleton<ILocalizer, Localizer>((serviceProvider) =>
+                //{
+                //    string resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
+                //    Localizer localizer = new();
+                //    localizer.Initalize(resourcesFolderPath);
+                //    return localizer;
+                //})
+                ;
         })
         .Build();
 }

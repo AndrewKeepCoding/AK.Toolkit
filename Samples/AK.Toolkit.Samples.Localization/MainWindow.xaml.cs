@@ -1,16 +1,13 @@
 ﻿using AK.Toolkit.WinUI3.Localization;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AK.Toolkit.Samples.Localization;
 
 public sealed partial class MainWindow : Window
 {
-    private readonly ILocalizer _localizer;
+    //private readonly ILocalizer _localizer;
 
     public MainWindow()
     {
@@ -18,11 +15,12 @@ public sealed partial class MainWindow : Window
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
 
-        _localizer = Ioc.Default.GetRequiredService<ILocalizer>();
+        //_localizer = Ioc.Default.GetRequiredService<ILocalizer>();
 
         if (Content is FrameworkElement content)
         {
-            _localizer.RegisterRootElement(content);
+            //_localizer.RegisterRootElement(content);
+            Localizer.Get().RegisterRootElement(content);
         }
     }
 

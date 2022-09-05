@@ -9,7 +9,7 @@ namespace AK.Toolkit.Samples.Localization;
 
 public sealed partial class SettingsPage : Page
 {
-    private readonly ILocalizer _localizer;
+    //private readonly ILocalizer _localizer;
 
     public IEnumerable<Tuple<string, string>> AvailableLanguages { get; set; }
 
@@ -18,15 +18,17 @@ public sealed partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
-        _localizer = Ioc.Default.GetRequiredService<ILocalizer>();
-        _localizer.RegisterRootElement(Root);
+        //_localizer = Ioc.Default.GetRequiredService<ILocalizer>();
+        //_localizer.RegisterRootElement(Root);
+        Localizer.Get().RegisterRootElement(Root);
 
-        AvailableLanguages = _localizer.GetAvailableLanguages()
+        //AvailableLanguages = _localizer.GetAvailableLanguages()
+        AvailableLanguages = Localizer.Get().GetAvailableLanguages()
             .Select(x =>
             {
                 string displayName = x;
 
-                if (_localizer.GetLocalizedString(x) is string localizedDisplayName)
+                if (Localizer.Get().GetLocalizedString(x) is string localizedDisplayName)
                 {
                     displayName = localizedDisplayName;
                 }
@@ -34,7 +36,7 @@ public sealed partial class SettingsPage : Page
                 return new Tuple<string, string>(displayName, x);
             });
 
-        var currentLanguage = AvailableLanguages.Where(x => x.Item2 == _localizer.GetCurrentLanguage()).FirstOrDefault();
+        var currentLanguage = AvailableLanguages.Where(x => x.Item2 == Localizer.Get().GetCurrentLanguage()).FirstOrDefault();
 
         if (currentLanguage is not null)
         {
@@ -47,7 +49,7 @@ public sealed partial class SettingsPage : Page
         if (e.AddedItems.Count > 0 &&
             (e.AddedItems[0] as Tuple<string, string>)?.Item2 is string language)
         {
-            _ = _localizer.TrySetCurrentLanguage(language);
+            _ = Localizer.Get().TrySetCurrentLanguage(language);
         }
     }
 }
