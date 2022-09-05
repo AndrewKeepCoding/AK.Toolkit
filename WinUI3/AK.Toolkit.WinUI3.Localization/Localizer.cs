@@ -37,18 +37,6 @@ public partial class Localizer : DependencyObject, ILocalizer
     }
 
     /// <summary>
-    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again.
-    /// </summary>
-    /// <param name="language">en-US</param>
-    /// <returns></returns>
-    public bool SetCurrentLanguage(string language)
-    {
-        var result = Instance.TrySetCurrentLanguage(language);
-        Instance.RunLocalizationOnRegisteredRootElements();
-        return result;
-    }
-
-    /// <summary>
     /// You need to Initialize Window with 2 parameters
     /// </summary>
     /// <param name="Root">Grid/StackPanel or any FrameworkElement that hosts elements</param>
