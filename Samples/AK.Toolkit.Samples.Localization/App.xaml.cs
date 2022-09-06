@@ -30,8 +30,6 @@ public partial class App : Application
     {
         _window = Ioc.Default.GetRequiredService<MainWindow>();
         _window.Activate();
-
-        Localizer.Get().RunLocalizationOnRegisteredRootElements();
     }
 
     private static IHost BuildHost() => Host.CreateDefaultBuilder()
