@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using System.IO;
 
 namespace AK.Toolkit.Samples.Localization;
 
@@ -32,8 +31,6 @@ public partial class App : Application
         _window = Ioc.Default.GetRequiredService<MainWindow>();
         _window.Activate();
 
-        //ILocalizer localizer = Ioc.Default.GetRequiredService<ILocalizer>();
-        //localizer.RunLocalizationOnRegisteredRootElements();
         Localizer.Get().RunLocalizationOnRegisteredRootElements();
     }
 

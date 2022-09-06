@@ -15,37 +15,7 @@ public partial class Localizer : DependencyObject, ILocalizer
     {
     }
 
-    private static ILocalizer Instance { get; set; } = EmptyLocalizer.Instance;
-
     private string CurrentLanguage { get; set; } = "en-US";
-
-    public static ILocalizer Create(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
-    {
-        Localizer localizer = new();
-        localizer.Initalize(resourcesFolderPath, resourcesFileName, defaultLanguage);
-        Instance = localizer;
-        return Instance;
-    }
-
-    /// <summary>
-    /// Get an instance of Localizer
-    /// </summary>
-    /// <returns></returns>
-    public static ILocalizer Get() => Instance;
-
-    /// <summary>
-    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again.
-    /// </summary>
-    /// <param name="language">en-US</param>
-    /// <returns></returns>
-    public static bool SetCurrentLanguage(string language)
-    {
-        bool result = Instance.TrySetCurrentLanguage(language);
-        Instance.RunLocalizationOnRegisteredRootElements();
-        return result;
-    }
-
-    public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
 
     /// <summary>
     /// You need to Initialize Window with 2 parameters
@@ -61,7 +31,32 @@ public partial class Localizer : DependencyObject, ILocalizer
         }
     }
 
+    public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
+
     public string GetCurrentLanguage() => CurrentLanguage;
+
+    public string? GetLocalizedString(string key, string? language = null)
+    {
+        language ??= CurrentLanguage;
+
+        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true &&
+            resourceListDictionary.TryGetValue(key, out StringResourceList? resourceList) is true)
+        {
+            return resourceList.FirstOrDefault()?.Value;
+        }
+
+        return null;
+    }
+
+    public StringResourceListDictionary? GetLanguageResources(string language)
+    {
+        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true)
+        {
+            return resourceListDictionary;
+        }
+
+        return null;
+    }
 
     public bool TrySetCurrentLanguage(string language)
     {
@@ -93,29 +88,6 @@ public partial class Localizer : DependencyObject, ILocalizer
         {
             Localize(rootElement, resourceListDictionary);
         }
-    }
-
-    public StringResourceListDictionary? GetLanguageResources(string language)
-    {
-        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true)
-        {
-            return resourceListDictionary;
-        }
-
-        return null;
-    }
-
-    public string? GetLocalizedString(string key, string? language = null)
-    {
-        language ??= CurrentLanguage;
-
-        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true &&
-            resourceListDictionary.TryGetValue(key, out StringResourceList? resourceList) is true)
-        {
-            return resourceList.FirstOrDefault()?.Value;
-        }
-
-        return null;
     }
 
     private void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")

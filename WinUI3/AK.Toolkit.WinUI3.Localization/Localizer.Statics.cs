@@ -8,6 +8,22 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public partial class Localizer
 {
+    private static ILocalizer Instance { get; set; } = EmptyLocalizer.Instance;
+
+    public static ILocalizer Create(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
+    {
+        Localizer localizer = new();
+        localizer.Initalize(resourcesFolderPath, resourcesFileName, defaultLanguage);
+        Instance = localizer;
+        return Instance;
+    }
+
+    /// <summary>
+    /// Get an instance of Localizer
+    /// </summary>
+    /// <returns></returns>
+    public static ILocalizer Get() => Instance;
+
     private static DependencyProperty? GetDependencyProperty(UIElement element, string dependencyPropertyName)
     {
         Type type = element.GetType();

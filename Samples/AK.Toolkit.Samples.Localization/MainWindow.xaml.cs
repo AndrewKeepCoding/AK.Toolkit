@@ -7,19 +7,14 @@ namespace AK.Toolkit.Samples.Localization;
 
 public sealed partial class MainWindow : Window
 {
-    //private readonly ILocalizer _localizer;
-
     public MainWindow()
     {
         InitializeComponent();
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
 
-        //_localizer = Ioc.Default.GetRequiredService<ILocalizer>();
-
         if (Content is FrameworkElement content)
         {
-            //_localizer.RegisterRootElement(content);
             Localizer.Get().RegisterRootElement(content);
         }
     }

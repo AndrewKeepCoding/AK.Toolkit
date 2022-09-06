@@ -9,14 +9,11 @@ public record Person(string FirstName, string LastName);
 
 public sealed partial class SubPage : Page
 {
-    //private readonly ILocalizer _localizer;
-
     public List<Person> People = new();
 
     public SubPage()
     {
         InitializeComponent();
-        //_localizer = Ioc.Default.GetRequiredService<ILocalizer>();
         Loaded += SubPage_Loaded;
 
         People.Add(new Person(FirstName: "Ted", LastName: "Mosby"));
@@ -29,7 +26,6 @@ public sealed partial class SubPage : Page
 
     private void SubPage_Loaded(object sender, RoutedEventArgs e)
     {
-        //_localizer.RunLocalization(Root);
         Localizer.Get().RunLocalization(Root);
     }
 }

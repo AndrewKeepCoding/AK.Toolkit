@@ -9,19 +9,21 @@ public class EmptyLocalizer : ILocalizer
 {
     public static readonly ILocalizer Instance = new EmptyLocalizer();
 
-    public IEnumerable<string> GetAvailableLanguages() => Enumerable.Empty<string>();
-
-    public string GetCurrentLanguage() => string.Empty;
-
-    public StringResourceListDictionary? GetLanguageResources(string language) => null;
-
-    public string? GetLocalizedString(string key, string? language = null) => null;
-
-    public void RegisterRootElement(FrameworkElement rootElement)
+    public void InitializeWindow(FrameworkElement Root, UIElement Content)
     {
     }
 
-    public void RunLocalization(FrameworkElement rootElement, string? language = null)
+    public IEnumerable<string> GetAvailableLanguages() => Enumerable.Empty<string>();
+
+    public string GetCurrentLanguage() => string.Empty;
+    
+    public string? GetLocalizedString(string key, string? language = null) => null;
+
+    public StringResourceListDictionary? GetLanguageResources(string language) => null;
+
+    public bool TrySetCurrentLanguage(string language) => false;
+
+    public void RegisterRootElement(FrameworkElement rootElement)
     {
     }
 
@@ -29,7 +31,9 @@ public class EmptyLocalizer : ILocalizer
     {
     }
 
-    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func) => false;
+    public void RunLocalization(FrameworkElement rootElement, string? language = null)
+    {
+    }
 
-    public bool TrySetCurrentLanguage(string language) => false;
+    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func) => false;
 }
