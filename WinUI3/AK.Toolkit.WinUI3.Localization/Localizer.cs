@@ -11,42 +11,11 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     private readonly HashSet<UIElement> _rootElements = new();
 
+    private Localizer()
+    {
+    }
+
     private string CurrentLanguage { get; set; } = "en-US";
-
-    public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
-
-    private static Localizer Instance { get; set; } = null;
-
-    /// <summary>
-    /// Create a Instance of Localizer only once with Auto Register Elements
-    /// </summary>
-    /// <param name="resourcesFolderPath"></param>
-    /// <param name="resourcesFileName">Resources.resw</param>
-    /// <param name="defaultLanguage">en-US</param>
-    /// <returns></returns>
-    public static Localizer GetCurrent(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
-    {
-        if (Instance == null)
-        {
-            Instance = new Localizer();
-            Instance.Initalize(resourcesFolderPath, resourcesFileName, defaultLanguage);
-            Instance.RunLocalizationOnRegisteredRootElements();
-        }
-
-        return Instance;
-    }
-
-    /// <summary>
-    /// Change Language at Runtitme without need to run `RunLocalizationOnRegisteredRootElements` method again.
-    /// </summary>
-    /// <param name="language">en-US</param>
-    /// <returns></returns>
-    public bool SetCurrentLanguage(string language)
-    {
-        var result = Instance.TrySetCurrentLanguage(language);
-        Instance.RunLocalizationOnRegisteredRootElements();
-        return result;
-    }
 
     /// <summary>
     /// You need to Initialize Window with 2 parameters
@@ -62,27 +31,32 @@ public partial class Localizer : DependencyObject, ILocalizer
         }
     }
 
-    public void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
-    {
-        CurrentLanguage = defaultLanguage;
-
-        _languageResources.Clear();
-
-        foreach (string folder in Directory.GetDirectories(resourcesFolderPath))
-        {
-            string resourceFilePath = Path.Combine(folder, resourcesFileName);
-
-            if (LoadLanguageResources(resourceFilePath) is StringResourceListDictionary resourceListDictionary &&
-                new DirectoryInfo(resourceFilePath).Parent?.Name is string languageCode)
-            {
-                _languageResources.Add(languageCode, resourceListDictionary);
-            }
-        }
-
-        RegisterDefaultUIElementChildrenGetters();
-    }
+    public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
 
     public string GetCurrentLanguage() => CurrentLanguage;
+
+    public string? GetLocalizedString(string key, string? language = null)
+    {
+        language ??= CurrentLanguage;
+
+        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true &&
+            resourceListDictionary.TryGetValue(key, out StringResourceList? resourceList) is true)
+        {
+            return resourceList.FirstOrDefault()?.Value;
+        }
+
+        return null;
+    }
+
+    public StringResourceListDictionary? GetLanguageResources(string language)
+    {
+        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true)
+        {
+            return resourceListDictionary;
+        }
+
+        return null;
+    }
 
     public bool TrySetCurrentLanguage(string language)
     {
@@ -116,27 +90,24 @@ public partial class Localizer : DependencyObject, ILocalizer
         }
     }
 
-    public StringResourceListDictionary? GetLanguageResources(string language)
+    private void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
     {
-        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true)
+        CurrentLanguage = defaultLanguage;
+
+        _languageResources.Clear();
+
+        foreach (string folder in Directory.GetDirectories(resourcesFolderPath))
         {
-            return resourceListDictionary;
+            string resourceFilePath = Path.Combine(folder, resourcesFileName);
+
+            if (LoadLanguageResources(resourceFilePath) is StringResourceListDictionary resourceListDictionary &&
+                new DirectoryInfo(resourceFilePath).Parent?.Name is string languageCode)
+            {
+                _languageResources.Add(languageCode, resourceListDictionary);
+            }
         }
 
-        return null;
-    }
-
-    public string? GetLocalizedString(string key, string? language = null)
-    {
-        language ??= CurrentLanguage;
-
-        if (_languageResources.TryGetValue(language, out StringResourceListDictionary? resourceListDictionary) is true &&
-            resourceListDictionary.TryGetValue(key, out StringResourceList? resourceList) is true)
-        {
-            return resourceList.FirstOrDefault()?.Value;
-        }
-
-        return null;
+        RegisterDefaultUIElementChildrenGetters();
     }
 
     private void Localize(UIElement element, StringResourceListDictionary resourceListDictionary)
