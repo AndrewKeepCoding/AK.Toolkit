@@ -24,10 +24,11 @@ public partial class Localizer : DependencyObject, ILocalizer
     /// <param name="Content">Windows `Content` Properties</param>
     public void InitializeWindow(FrameworkElement Root, UIElement Content)
     {
-        Instance.RunLocalization(Root);
+        RunLocalizationOnRegisteredRootElements();
+        RunLocalization(Root);
         if (Content is FrameworkElement content)
         {
-            Instance.RegisterRootElement(content);
+            RegisterRootElement(content);
         }
     }
 
