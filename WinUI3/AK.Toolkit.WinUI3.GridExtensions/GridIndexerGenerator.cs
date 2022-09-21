@@ -119,6 +119,11 @@ public partial class {className}
                 UpdateRelativeRows(child);
             }}
         }}
+        else if (parent is ContentControl contentControl &&
+            contentControl.Content is UIElement content)
+        {{
+            UpdateRelativeRows(content);
+        }}
     }}
 
     private void UpdateRelativeColumns(UIElement parent)
@@ -160,6 +165,11 @@ public partial class {className}
             {{
                 UpdateRelativeColumns(child);
             }}
+        }}
+        else if (parent is ContentControl contentControl &&
+            contentControl.Content is UIElement content)
+        {{
+            UpdateRelativeColumns(content);
         }}
     }}
 }}
