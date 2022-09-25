@@ -27,5 +27,30 @@ namespace AK.Toolkit.Samples.GridExtensions
         {
             this.InitializeComponent();
         }
+
+        private string SampleCode { get; } =
+@"
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width=""*"" />
+        <ColumnDefinition Width=""*"" />
+        <ColumnDefinition Width=""*"" />
+        <ColumnDefinition Width=""*"" />
+        <ColumnDefinition Width=""*"" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height=""*"" />
+        <RowDefinition Height=""*"" />
+        <RowDefinition Height=""*"" />
+        <RowDefinition Height=""*"" />
+        <RowDefinition Height=""*"" />
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row=""0"" Grid.Column=""0"" />
+    <TextBlock Grid.Row=""1"" Grid.Column=""1"" />
+    <TextBlock Grid.Row=""2"" Grid.Column=""2"" />
+    <TextBlock Grid.Row=""3"" Grid.Column=""3"" />
+    <TextBlock Grid.Row=""4"" Grid.Column=""4"" />
+</Grid>
+";
     }
 }
