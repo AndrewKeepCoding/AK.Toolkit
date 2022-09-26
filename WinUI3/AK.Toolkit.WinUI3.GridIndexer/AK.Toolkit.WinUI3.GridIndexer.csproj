@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>AK.Toolkit.WinUI3.GridIndexer</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.5" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Title>AK.Toolkit.WinUI3 - GridIndexer</Title>
+    <Description>GridIndexer: An attached property that makes columns/rows indexing easier.</Description>
+    <Version>1.0.0</Version>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageTags>aktoolkit;winui3;winappsdk;grid;indexer;xaml</PackageTags>
+    <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <!--
+    TODO: Fix this error when snupkg output is enabled.
+    "Cannot create a package that has no dependencies nor content."
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    -->
+    <PackageId>AK.Toolkit.WinUI3.GridIndexer</PackageId>
+    <Product>AK.Toolkit.WinUI3.GridIndexer</Product>
+    <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
+    <Authors>Andrew KeepCoding</Authors>
+    <Company>Andrew KeepCoding</Company>
+  </PropertyGroup>
+</Project>
