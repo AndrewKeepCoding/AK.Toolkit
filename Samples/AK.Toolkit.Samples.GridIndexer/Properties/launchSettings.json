@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.Samples.GridIndexer (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.Samples.GridIndexer (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
