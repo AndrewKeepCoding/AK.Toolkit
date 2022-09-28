@@ -35,8 +35,8 @@
     <Title>AK.Toolkit.WinUI3 - Grid Extensions</Title>
     <Description>Source generator created XAML Grid extensions.
 - GridIndexer: An attached property that makes rows and columns indexing easier.</Description>
-    <Version>0.0.2-beta</Version>
-    <PackageReleaseNotes>- GridIndexer</PackageReleaseNotes>
+    <Version>0.1.0-beta</Version>
+    <PackageReleaseNotes>- Fixed ScrollViewer bug.</PackageReleaseNotes>
     <PackageTags>aktoolkit;winui3;grid;indexer;xaml;sourcegenerator;incrementalgenerator</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>

@@ -1,18 +1,20 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
-namespace AK.Toolkit.Samples.GridExtensions;
+namespace AK.Toolkit.Samples.GridIndexer;
 
 public sealed partial class GridIndexerPage : Page
 {
     public GridIndexerPage()
     {
         this.InitializeComponent();
-        this.RunGridIndexer();
+        WinUI3.GridIndexer.GridIndexer.RunGridIndexer(this.Content);
     }
 
     private string SampleCode { get; } =
 @"
-<Grid>
+<Grid
+    ColumnDefinitions=""*""
+    RowDefinitions=""*"">
     <TextBlock GI.Row=""0"" GI.Column=""0"" />
     <TextBlock GI.Row=""+1"" GI.Column=""+1"" />
     <TextBlock GI.Row=""+1"" GI.Column=""+1"" />

@@ -1,12 +1,12 @@
 ﻿using Microsoft.UI.Xaml;
 
-namespace AK.Toolkit.Samples.GridExtensions;
+namespace AK.Toolkit.Samples.GridIndexer;
 
 public sealed partial class MainWindow : Window
 {
     public MainWindow()
     {
         this.InitializeComponent();
-        this.RunGridIndexer();
+        WinUI3.GridIndexer.GridIndexer.RunGridIndexer(this.Content);
     }
 }
