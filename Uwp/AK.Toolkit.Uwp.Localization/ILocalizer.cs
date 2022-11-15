@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
 
@@ -6,23 +6,21 @@ namespace AK.Toolkit.Uwp.Localization
 {
     public interface ILocalizer
     {
-        StringResourceListDictionary GetLanguageResources(string language);
-
         IEnumerable<string> GetAvailableLanguages();
-
-        void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US");
 
         string GetCurrentLanguage();
 
-        bool TrySetCurrentLanguage(string language);
+        IEnumerable<string> GetLocalizedStrings(string key);
 
-        void RegisterRootElement(FrameworkElement rootElement);
+        void SetLanguage(string language);
 
-        void RunLocalizationOnRegisteredRootElements(string language = null);
+        void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = true);
 
-        void RunLocalization(FrameworkElement rootElement, string language = null);
+        void RunLocalizationOnRegisteredRootElements();
 
-        string GetLocalizedString(string key, string language = null);
+        void RunLocalization(FrameworkElement rootElement);
+
+        bool TryGetLanguageDictionary(string language, out LanguageDictionary languageDictionary);
 
         bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func);
     }
