@@ -1,4 +1,4 @@
-﻿using AK.Toolkit.Uwp.Localization;
+using AK.Toolkit.Uwp.Localization;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using System;
 using Windows.ApplicationModel.Core;
@@ -9,42 +9,42 @@ namespace AK.Toolkit.Samples.Uwp.Localization
 {
     public sealed partial class ShellPage : Page
     {
-        private readonly ILocalizer _localizer;
+        private readonly ILocalizer localizer;
 
         public ShellPage()
         {
-            this.InitializeComponent();
-            this.Loaded += ShellPage_Loaded;
+            InitializeComponent();
+            Loaded += ShellPage_Loaded;
 
-            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-            Window.Current.SetTitleBar(AppTitleBar);
+            Window.Current.SetTitleBar(this.AppTitleBar);
 
-            _localizer = Ioc.Default.GetRequiredService<ILocalizer>();
+            this.localizer = Ioc.Default.GetRequiredService<ILocalizer>();
 
-             if (Content is FrameworkElement content)
+            if (Content is FrameworkElement content)
             {
-                _localizer.RegisterRootElement(content);
+                this.localizer.RegisterRootElement(content);
             }
 
-            NavigationView.SelectedItem = NavigationView.MenuItems[0];
+            this.NavigationView.SelectedItem = this.NavigationView.MenuItems[0];
         }
 
         private void ShellPage_Loaded(object sender, RoutedEventArgs e)
         {
-            _localizer.RunLocalization(NavigationView);
+            this.localizer.RunLocalization(this.NavigationView);
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected is true)
             {
-                ContentFrame.Navigate(typeof(SettingsPage));
+                _ = this.ContentFrame.Navigate(typeof(SettingsPage));
             }
             else if (args.SelectedItem is NavigationViewItem item &&
                      Type.GetType("AK.Toolkit.Samples.Uwp.Localization." + (string)item.Tag) is Type pageType)
             {
-                ContentFrame.Navigate(pageType);
+                _ = this.ContentFrame.Navigate(pageType);
             }
         }
     }

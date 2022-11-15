@@ -1,122 +1,150 @@
-﻿using System.Collections.Generic;
-using System.IO;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Windows.UI.Xaml;
 
 namespace AK.Toolkit.Uwp.Localization
 {
     public partial class Localizer : DependencyObject, ILocalizer
     {
-        private readonly Dictionary<string, StringResourceListDictionary> _languageResources = new Dictionary<string, StringResourceListDictionary>();
+        private readonly HashSet<UIElement> rootElements = new HashSet<UIElement>();
 
-        private readonly HashSet<UIElement> _rootElements = new HashSet<UIElement>();
+        internal Localizer()
+        {
+        }
+
+        internal static ILocalizer Instance { get; set; } = EmptyLocalizer.Instance;
+
+        private LanguageDictionaries LanguageDictionaries { get; set; } = new LanguageDictionaries();
 
         private string CurrentLanguage { get; set; } = "en-US";
 
-        public IEnumerable<string> GetAvailableLanguages() => _languageResources.Keys;
+        public static ILocalizer Get() => Instance;
 
-        public void Initalize(string resourcesFolderPath, string resourcesFileName = "Resources.resw", string defaultLanguage = "en-US")
-        {
-            CurrentLanguage = defaultLanguage;
+        public static void Set(ILocalizer localizer) => Instance = localizer;
 
-            _languageResources.Clear();
-
-            foreach (string folder in Directory.GetDirectories(resourcesFolderPath))
-            {
-                string resourceFilePath = Path.Combine(folder, resourcesFileName);
-
-                if (LoadLanguageResources(resourceFilePath) is StringResourceListDictionary resourceListDictionary &&
-                    new DirectoryInfo(resourceFilePath).Parent?.Name is string languageCode)
-                {
-                    _languageResources.Add(languageCode, resourceListDictionary);
-                }
-            }
-
-            RegisterDefaultUIElementChildrenGetters();
-        }
+        public IEnumerable<string> GetAvailableLanguages() => LanguageDictionaries.AvailableLanguages;
 
         public string GetCurrentLanguage() => CurrentLanguage;
 
-        public bool TrySetCurrentLanguage(string language)
+        public IEnumerable<string> GetLocalizedStrings(string key)
+        {
+            if (LanguageDictionaries.TryGetDictionary(
+                CurrentLanguage,
+                out LanguageDictionary languageDictionary) is true &&
+                languageDictionary != null)
+            {
+                return languageDictionary
+                    .Where(x => x.Key == key)
+                    .Select(x => x.Value);
+            }
+
+            return Enumerable.Empty<string>();
+        }
+
+        public void SetLanguage(string language)
         {
             if (GetAvailableLanguages().Contains(language) is true)
             {
                 CurrentLanguage = language;
-                return true;
+                RunLocalizationOnRegisteredRootElements();
+                return;
             }
 
-            return false;
+            throw new NotImplementedException($"{language} is not available.");
         }
 
-        public void RegisterRootElement(FrameworkElement rootElement) => _rootElements.Add(rootElement);
-
-        public void RunLocalizationOnRegisteredRootElements(string language = null)
+        public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = true)
         {
-            foreach (FrameworkElement rootElement in _rootElements)
-            {
-                RunLocalization(rootElement, language);
-            }
-        }
+            _ = this.rootElements.Add(rootElement);
 
-        public void RunLocalization(FrameworkElement rootElement, string language = null)
-        {
-            if (language is null)
+            if (runLocalization is true)
             {
-                language = CurrentLanguage;
-            }
-
-            if (GetLanguageResources(language) is StringResourceListDictionary resourceListDictionary)
-            {
-                Localize(rootElement, resourceListDictionary);
+                RunLocalization(rootElement);
             }
         }
 
-        public StringResourceListDictionary GetLanguageResources(string language)
+        public void RunLocalizationOnRegisteredRootElements()
         {
-            if (_languageResources.TryGetValue(language, out StringResourceListDictionary resourceListDictionary) is true)
+            foreach (FrameworkElement rootElement in this.rootElements.OfType<FrameworkElement>())
             {
-                return resourceListDictionary;
+                RunLocalization(rootElement);
+            }
+        }
+
+        public void RunLocalization(FrameworkElement rootElement)
+        {
+            if (TryGetLanguageDictionary(
+                CurrentLanguage,
+                out LanguageDictionary languageDictionary) is true &&
+                languageDictionary != null)
+            {
+                Localize(rootElement, languageDictionary);
+            }
+        }
+
+        public bool TryGetLanguageDictionary(string language, out LanguageDictionary languageDictionary)
+        {
+            return LanguageDictionaries.TryGetDictionary(language, out languageDictionary);
+        }
+
+        public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func)
+        {
+            return this.childrenGetters.TryAdd(type, func);
+        }
+
+        internal void Initialize(LanguageDictionaries languageDictionaries)
+        {
+            LanguageDictionaries = languageDictionaries;
+            RegisterDefaultUIElementChildrenGetters();
+        }
+
+        private static DependencyProperty GetDependencyProperty(UIElement element, string dependencyPropertyName)
+        {
+            Type type = element.GetType();
+
+            if (type.GetProperty(
+                dependencyPropertyName,
+                BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) is PropertyInfo propertyInfo &&
+                propertyInfo.GetValue(null) is DependencyProperty property)
+            {
+                return property;
+            }
+            else if (type.GetField(
+                dependencyPropertyName,
+                BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) is FieldInfo fieldInfo &&
+                fieldInfo.GetValue(null) is DependencyProperty field)
+            {
+                return field;
             }
 
             return null;
         }
 
-        public string GetLocalizedString(string key, string language = null)
+        private void Localize(UIElement element, LanguageDictionary languageDictionary)
         {
-            if (language is null)
+            if (GetUid(element) is string uid)
             {
-                language = CurrentLanguage;
-            }
-
-            if (_languageResources.TryGetValue(language, out StringResourceListDictionary resourceListDictionary) is true &&
-                resourceListDictionary.TryGetValue(key, out StringResourceList resourceList) is true)
-            {
-                return resourceList.FirstOrDefault()?.Value;
-            }
-
-            return null;
-        }
-
-        private void Localize(UIElement element, StringResourceListDictionary resourceListDictionary)
-        {
-            if (GetUid(element) is string uid &&
-                resourceListDictionary.TryGetValue(uid, out StringResourceList resourceList) is true)
-            {
-                foreach (StringResource resource in resourceList)
+                foreach (StringResource resource in languageDictionary.Where(x => x.Key == uid))
                 {
-                    if (GetDependencyProperty(element, resource.DependencyPropertyName) is DependencyProperty dependencyProperty)
+                    if (GetDependencyProperty(
+                        element,
+                        resource.DependencyPropertyName) is DependencyProperty dependencyProperty)
                     {
                         element.SetValue(dependencyProperty, resource.Value);
                     }
                 }
             }
 
-            if (_childrenGetters.TryGetValue(element.GetType(), out var childrenGetter) is true &&
+            if (this.childrenGetters.TryGetValue(
+                element.GetType(),
+                out Func<UIElement, IEnumerable<UIElement>> childrenGetter) is true &&
                 childrenGetter != null)
             {
                 foreach (UIElement child in childrenGetter(element).Union(element.GetChildren()))
                 {
-                    Localize(child, resourceListDictionary);
+                    Localize(child, languageDictionary);
                 }
             }
         }
