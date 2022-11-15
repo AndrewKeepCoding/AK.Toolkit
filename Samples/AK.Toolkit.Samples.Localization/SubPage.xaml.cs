@@ -1,4 +1,4 @@
-﻿using AK.Toolkit.WinUI3.Localization;
+using AK.Toolkit.WinUI3.Localization;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
@@ -26,6 +26,6 @@ public sealed partial class SubPage : Page
 
     private void SubPage_Loaded(object sender, RoutedEventArgs e)
     {
-        Localizer.Get().RunLocalization(Root);
+        Localizer.Get().RunLocalization(this.Root);
     }
 }

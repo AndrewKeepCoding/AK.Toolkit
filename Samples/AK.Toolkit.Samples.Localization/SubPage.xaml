@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="AK.Toolkit.Samples.Localization.SubPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -35,7 +35,6 @@
                                     Text="{Binding LastName}" />
                             </controls:HeaderedContentControl>
                         </Grid>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

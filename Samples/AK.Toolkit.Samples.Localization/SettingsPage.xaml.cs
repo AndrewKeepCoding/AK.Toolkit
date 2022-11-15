@@ -1,4 +1,4 @@
-﻿using AK.Toolkit.WinUI3.Localization;
+using AK.Toolkit.WinUI3.Localization;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
@@ -15,14 +15,14 @@ public sealed partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
-        Localizer.Get().RegisterRootElement(Root);
+        Localizer.Get().RegisterRootElement(this.Root);
 
         AvailableLanguages = Localizer.Get().GetAvailableLanguages()
             .Select(x =>
             {
                 string displayName = x;
 
-                if (Localizer.Get().GetLocalizedString(x) is string localizedDisplayName)
+                if (Localizer.Get().GetLocalizedStrings(x).FirstOrDefault() is string localizedDisplayName)
                 {
                     displayName = localizedDisplayName;
                 }
@@ -30,11 +30,14 @@ public sealed partial class SettingsPage : Page
                 return new Tuple<string, string>(displayName, x);
             });
 
-        Tuple<string, string>? currentLanguage = AvailableLanguages.FirstOrDefault(x => x.Item2 == Localizer.Get().GetCurrentLanguage());
+        Tuple<string, string>? currentLanguage = AvailableLanguages
+            .FirstOrDefault(x => x.Item2 == Localizer.Get().GetCurrentLanguage());
 
         if (currentLanguage is not null)
         {
-            LanguageRadioButtons.SelectedIndex = AvailableLanguages.ToList().IndexOf(currentLanguage);
+            this.LanguageRadioButtons.SelectedIndex = AvailableLanguages
+                .ToList()
+                .IndexOf(currentLanguage);
         }
     }
 
@@ -43,7 +46,7 @@ public sealed partial class SettingsPage : Page
         if (e.AddedItems.Count > 0 &&
             (e.AddedItems[0] as Tuple<string, string>)?.Item2 is string language)
         {
-            _ = Localizer.Get().TrySetCurrentLanguage(language);
+            Localizer.Get().SetLanguage(language);
         }
     }
 }

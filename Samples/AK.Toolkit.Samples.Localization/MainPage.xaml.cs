@@ -1,4 +1,4 @@
-﻿using AK.Toolkit.WinUI3.Localization;
+using AK.Toolkit.WinUI3.Localization;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -14,6 +14,6 @@ public sealed partial class MainPage : Page
 
     private void MainPage_Loaded(object sender, RoutedEventArgs e)
     {
-        Localizer.Get().RunLocalization(Root);
+        Localizer.Get().RunLocalization(this.Root);
     }
 }
