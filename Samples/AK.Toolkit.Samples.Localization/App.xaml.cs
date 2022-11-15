@@ -1,52 +1,78 @@
-﻿using AK.Toolkit.WinUI3.Localization;
+using AK.Toolkit.WinUI3.Localization;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using System.Collections.Generic;
 
 namespace AK.Toolkit.Samples.Localization;
 
 public partial class App : Application
 {
-    private readonly IHost _host;
+    private readonly IHost host;
 
-    private Window? _window;
+    private Window? window;
 
     public App()
     {
         InitializeComponent();
-        _host = BuildHost();
-        Ioc.Default.ConfigureServices(_host.Services);
+        this.host = BuildHost();
+        Ioc.Default.ConfigureServices(this.host.Services);
+
         // For non-packaged app:
         //string resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
 
         // For packaged app:
-        string resourcesFolderPath = @"C:\\Projects\\Strings";
+        //string resourcesFolderPath = @"C:\\Projects\\Strings";
 
-        _ = Localizer.Create(resourcesFolderPath);
+        //_ = Localizer.Create(resourcesFolderPath);
+        //var localizer = Ioc.Default.GetRequiredService<ILocalizer>();
+        InitializeLocalizer();
     }
 
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
-        _window = Ioc.Default.GetRequiredService<MainWindow>();
-        _window.Activate();
-
-        Localizer.Get().RunLocalizationOnRegisteredRootElements();
+        this.window = Ioc.Default.GetRequiredService<MainWindow>();
+        this.window.Activate();
     }
 
-    private static IHost BuildHost() => Host.CreateDefaultBuilder()
-        .ConfigureServices((context, services) =>
-        {
-            _ = services
-                .AddSingleton<MainWindow>()
-                //.AddSingleton<ILocalizer, Localizer>((serviceProvider) =>
-                //{
-                //    string resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
-                //    Localizer localizer = new();
-                //    localizer.Initalize(resourcesFolderPath);
-                //    return localizer;
-                //})
-                ;
-        })
-        .Build();
+    private static void InitializeLocalizer()
+    {
+        ILocalizer localizer = new LocalizerBuilder()
+            // For a packaged app:
+            //.AddResourcesStringsFolder(new LocalizerResourcesStringsFolder(@"C:/Projects/Strings"))
+            // For a non-packaged app:
+            .AddDefaultResourcesStringsFolder()
+            .AddLanguageDictionaries(
+                new List<LanguageDictionary>()
+                {
+                    new LanguageDictionary("ja")
+                    {
+                        new StringResource("ToggleSwitchHeader", "HeaderProperty", "トグルスイッチ"),
+                    }
+                })
+            .Build();
+        Localizer.Set(localizer);
+    }
+
+    private static IHost BuildHost()
+    {
+        return Host.CreateDefaultBuilder()
+            //.UseLocalizer(options =>
+            //{
+            //    options.AddDefaultResourcesStringsFolder = false;
+
+            //    options.AdditionalResourcesStringsFolders.Add(
+            //        new LocalizerResourcesStringsFolder(
+            //            StringsFolderPath: @"C:\Projects\Strings",
+            //            ResourcesFileName: @"Resources.resw"));
+
+            //    options.DefaultLanguage = "ja";
+            //})
+            .ConfigureServices((context, services) =>
+            {
+                _ = services.AddSingleton<MainWindow>();
+            })
+            .Build();
+    }
 }

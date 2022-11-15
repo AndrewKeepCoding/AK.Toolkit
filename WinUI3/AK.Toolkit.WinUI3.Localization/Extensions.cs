@@ -1,44 +1,48 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace AK.Toolkit.WinUI3.Localization;
 
 public static class Extensions
 {
-    /// <summary>
-    /// You need to Initialize Window with 2 parameters
-    /// </summary>
-    /// <param name="Localizer"></param>
-    /// <param name="Root">Grid/StackPanel or any FrameworkElement that hosts elements</param>
-    /// <param name="Content">Windows `Content` Properties</param>
-    public static void InitializeWindowEx(this Localizer Localizer, FrameworkElement Root, UIElement Content)
+    public static IHostBuilder UseLocalizer(this IHostBuilder hostBuilder, Action<LocalizerOptions>? options = null)
     {
-        Localizer.RunLocalization(Root);
-        if (Content is FrameworkElement content)
-        {
-            Localizer.RegisterRootElement(content);
-        }
+        return hostBuilder
+            .ConfigureServices((_, collection) =>
+            {
+                IServiceCollection c = collection
+                    .AddSingleton(services =>
+                    {
+                        LocalizerOptions localizerOptions = new();
+                        options?.Invoke(localizerOptions);
+
+                        return new LocalizerBuilder()
+                            .AddDefaultResourcesStringsFolder()
+                                .When(() => localizerOptions.AddDefaultResourcesStringsFolder is true)
+                            .AddResourcesStringsFolders(localizerOptions.AdditionalResourcesStringsFolders)
+                            .SetDefaultLanguage(localizerOptions.DefaultLanguage)
+                            .Build();
+                    });
+            });
     }
 
-    public static IEnumerable<UIElement> GetChildren(this UIElement parent, params Func<UIElement, bool>[] filters)
+    internal static IEnumerable<UIElement> GetChildren(this UIElement parent)
     {
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
         {
             if (VisualTreeHelper.GetChild(parent, i) is UIElement child)
             {
-                if (filters.All(filter => filter(child) is true))
-                {
-                    yield return child;
-                }
+                yield return child;
             }
         }
     }
 
-    public static IEnumerable<Type> GetHierarchyFromUIElement(this Type element)
+    internal static IEnumerable<Type> GetHierarchyFromUIElement(this Type element)
     {
         if (element.GetTypeInfo().IsSubclassOf(typeof(UIElement)) is not true)
         {

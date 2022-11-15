@@ -1,4 +1,4 @@
-﻿using AK.Toolkit.WinUI3.Localization;
+using AK.Toolkit.WinUI3.Localization;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -11,7 +11,7 @@ public sealed partial class MainWindow : Window
     {
         InitializeComponent();
         ExtendsContentIntoTitleBar = true;
-        SetTitleBar(AppTitleBar);
+        SetTitleBar(this.AppTitleBar);
 
         if (Content is FrameworkElement content)
         {
@@ -23,12 +23,12 @@ public sealed partial class MainWindow : Window
     {
         if (args.IsSettingsSelected is true)
         {
-            ContentFrame.Navigate(typeof(SettingsPage));
+            _ = this.ContentFrame.Navigate(typeof(SettingsPage));
         }
         else if (args.SelectedItem is NavigationViewItem item &&
             Type.GetType("AK.Toolkit.Samples.Localization." + (string)item.Tag) is Type pageType)
         {
-            ContentFrame.Navigate(pageType);
+            _ = this.ContentFrame.Navigate(pageType);
         }
     }
 }

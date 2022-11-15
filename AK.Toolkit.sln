@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0DFB72
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9E80FA35-6512-4090-A907-90D58957C6A6}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -40,9 +41,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.Uwp.Localization
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.Samples.Uwp.Localization", "Samples\AK.Toolkit.Samples.Uwp.Localization\AK.Toolkit.Samples.Uwp.Localization.csproj", "{264074EF-3394-4632-90E0-FF7F9DB9BFCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.WinUI3.GridIndexer", "WinUI3\AK.Toolkit.WinUI3.GridIndexer\AK.Toolkit.WinUI3.GridIndexer.csproj", "{51388E06-C181-4961-9E84-4EABBFA1559A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.GridIndexer", "WinUI3\AK.Toolkit.WinUI3.GridIndexer\AK.Toolkit.WinUI3.GridIndexer.csproj", "{51388E06-C181-4961-9E84-4EABBFA1559A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.Samples.GridIndexer", "Samples\AK.Toolkit.Samples.GridIndexer\AK.Toolkit.Samples.GridIndexer.csproj", "{3A1F0565-30BE-4085-9B83-333D306D9F5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.Samples.GridIndexer", "Samples\AK.Toolkit.Samples.GridIndexer\AK.Toolkit.Samples.GridIndexer.csproj", "{3A1F0565-30BE-4085-9B83-333D306D9F5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

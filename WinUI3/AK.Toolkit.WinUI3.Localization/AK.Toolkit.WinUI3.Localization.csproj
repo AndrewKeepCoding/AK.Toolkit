@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFrameworks>net6.0-windows10.0.19041.0;net7.0-windows10.0.19041.0</TargetFrameworks>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>AK.Toolkit.WinUI3.Localization</RootNamespace>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
@@ -9,16 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
   </ItemGroup>
-  
+
   <PropertyGroup>
     <Title>AK.Toolkit.WinUI3 - Localizer</Title>
-    <Description>WinUI 3 Localization (Dynamic/User extensible/User editable)</Description>
-    <Version>0.0.2-beta</Version>
+    <Description>
+      WinUI 3 Localization
+      - Users can switch languages without restarting your app
+      - Users can edit localized strings even after deployment
+      - Users can add new languages even after deployment
+      - Works with the standard Resources.resw
+    </Description>
+    <Version>1.0.0</Version>
     <PackageReleaseNotes>1st release</PackageReleaseNotes>
-    <PackageTags>winui3;winappsdk;localization;multilanguage</PackageTags>
+    <PackageTags>winui3;winappsdk;localization;localize;language;multilanguage</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -29,6 +37,5 @@
     <Product>AK.Toolkit.WinUI3.Localizer</Product>
     <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
     <Authors>Andrew KeepCoding</Authors>
-    <Company>Andrew KeepCoding</Company>
   </PropertyGroup>
 </Project>

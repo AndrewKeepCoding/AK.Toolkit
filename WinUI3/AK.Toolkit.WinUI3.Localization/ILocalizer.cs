@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
 
@@ -6,23 +6,21 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public interface ILocalizer
 {
-    void InitializeWindow(FrameworkElement Root, UIElement Content);
-
     IEnumerable<string> GetAvailableLanguages();
 
     string GetCurrentLanguage();
 
-    string? GetLocalizedString(string key, string? language = null);
+    IEnumerable<string> GetLocalizedStrings(string key);
 
-    StringResourceListDictionary? GetLanguageResources(string language);
+    void SetLanguage(string language);
 
-    bool TrySetCurrentLanguage(string language);
+    void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = true);
 
-    void RegisterRootElement(FrameworkElement rootElement);
+    void RunLocalizationOnRegisteredRootElements();
 
-    void RunLocalizationOnRegisteredRootElements(string? language = null);
+    void RunLocalization(FrameworkElement rootElement);
 
-    void RunLocalization(FrameworkElement rootElement, string? language = null);
+    bool TryGetLanguageDictionary(string language, out LanguageDictionary? languageDictionary);
 
     bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func);
 }

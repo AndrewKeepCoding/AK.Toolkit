@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
@@ -8,16 +8,11 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public partial class Localizer
 {
-    private readonly UIElementChildrenGetters _childrenGetters = new();
-
-    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func)
-    {
-        return _childrenGetters.TryAdd(type, func);
-    }
+    private readonly UIElementChildrenGetters childrenGetters = new();
 
     private void RegisterDefaultUIElementChildrenGetters()
     {
-        _childrenGetters.TryAdd(typeof(Panel), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(Panel), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -25,14 +20,14 @@ public partial class Localizer
             {
                 foreach (UIElement element in panel.Children.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(ItemsControl), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(ItemsControl), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -40,80 +35,80 @@ public partial class Localizer
             {
                 foreach (UIElement element in itemsControl.Items.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(ContentControl), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(ContentControl), (parent) =>
         {
             HashSet<UIElement> children = new();
 
             if ((parent as ContentControl)?.Content is UIElement element)
             {
-                children.Add(element);
+                _ = children.Add(element);
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(Border), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(Border), (parent) =>
         {
             HashSet<UIElement> children = new();
 
             if ((parent as Border)?.Child is UIElement element)
             {
-                children.Add(element);
+                _ = children.Add(element);
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(ContentPresenter), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(ContentPresenter), (parent) =>
         {
             HashSet<UIElement> children = new();
 
             if ((parent as ContentPresenter)?.Content is UIElement element)
             {
-                children.Add(element);
+                _ = children.Add(element);
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(ItemsPresenter), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(ItemsPresenter), (parent) =>
         {
             HashSet<UIElement> children = new();
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(Viewbox), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(Viewbox), (parent) =>
         {
             HashSet<UIElement> children = new();
 
             if ((parent as Viewbox)?.Child is UIElement element)
             {
-                children.Add(element);
+                _ = children.Add(element);
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(UserControl), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(UserControl), (parent) =>
         {
             HashSet<UIElement> children = new();
 
             if ((parent as UserControl)?.Content is UIElement element)
             {
-                children.Add(element);
+                _ = children.Add(element);
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(MenuBar), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(MenuBar), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -121,14 +116,14 @@ public partial class Localizer
             {
                 foreach (UIElement element in menuBar.Items.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(MenuBarItem), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(MenuBarItem), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -136,14 +131,14 @@ public partial class Localizer
             {
                 foreach (UIElement element in menuBarItem.Items.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(CommandBar), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(CommandBar), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -151,24 +146,24 @@ public partial class Localizer
             {
                 foreach (UIElement element in commandBar.PrimaryCommands.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
 
                 foreach (UIElement element in commandBar.SecondaryCommands.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
 
                 if (commandBar.Content is UIElement content)
                 {
-                    children.Add(content);
+                    _ = children.Add(content);
                 }
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(NavigationView), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(NavigationView), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -176,39 +171,39 @@ public partial class Localizer
             {
                 foreach (UIElement element in navigationView.MenuItems.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
 
                 if (navigationView.Header is UIElement header)
                 {
-                    children.Add(header);
+                    _ = children.Add(header);
                 }
 
                 if (navigationView.PaneHeader is UIElement paneHeader)
                 {
-                    children.Add(paneHeader);
+                    _ = children.Add(paneHeader);
                 }
 
                 if (navigationView.PaneFooter is UIElement paneFooter)
                 {
-                    children.Add(paneFooter);
+                    _ = children.Add(paneFooter);
                 }
 
                 if (navigationView.SettingsItem is UIElement settingsItem)
                 {
-                    children.Add(settingsItem);
+                    _ = children.Add(settingsItem);
                 }
 
                 if (navigationView.Content is UIElement content)
                 {
-                    children.Add(content);
+                    _ = children.Add(content);
                 }
             }
 
             return children;
         });
 
-        _childrenGetters.TryAdd(typeof(NavigationViewItem), (parent) =>
+        _ = this.childrenGetters.TryAdd(typeof(NavigationViewItem), (parent) =>
         {
             HashSet<UIElement> children = new();
 
@@ -216,12 +211,12 @@ public partial class Localizer
             {
                 foreach (UIElement element in navigationViewItem.MenuItems.OfType<UIElement>())
                 {
-                    children.Add(element);
+                    _ = children.Add(element);
                 }
 
                 if (navigationViewItem.Content is UIElement content)
                 {
-                    children.Add(content);
+                    _ = children.Add(content);
                 }
             }
 
@@ -231,13 +226,13 @@ public partial class Localizer
 
     private class UIElementChildrenGetters
     {
-        private Dictionary<Type, Func<UIElement, IEnumerable<UIElement>>> _dictionary = new();
+        private Dictionary<Type, Func<UIElement, IEnumerable<UIElement>>> dictionary = new();
 
         public bool TryAdd(Type type, Func<UIElement, IEnumerable<UIElement>> func)
         {
-            if (_dictionary.TryAdd(type, func) is true)
+            if (this.dictionary.TryAdd(type, func) is true)
             {
-                _dictionary = _dictionary
+                this.dictionary = this.dictionary
                     .OrderByDescending(x => x.Key.GetHierarchyFromUIElement().Count())
                     .ToDictionary(pair => pair.Key, pair => pair.Value);
                 return true;
@@ -248,16 +243,16 @@ public partial class Localizer
 
         public bool TryGetValue(Type type, out Func<UIElement, IEnumerable<UIElement>>? func)
         {
-            foreach (Type key in _dictionary.Keys)
+            foreach (Type key in this.dictionary.Keys)
             {
                 if (key.IsAssignableFrom(type) is true)
                 {
-                    func = _dictionary[key];
+                    func = this.dictionary[key];
                     return true;
                 }
             }
 
-            if (_dictionary.TryGetValue(type, out Func<UIElement, IEnumerable<UIElement>>? value) is true)
+            if (this.dictionary.TryGetValue(type, out Func<UIElement, IEnumerable<UIElement>>? value) is true)
             {
                 func = value;
                 return true;
