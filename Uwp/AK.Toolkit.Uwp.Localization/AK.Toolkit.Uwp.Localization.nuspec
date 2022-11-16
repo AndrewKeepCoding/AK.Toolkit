@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package >
-  <metadata>
-    <id>AK.Toolkit.Uwp.Localizer</id>
-    <version>0.0.2-beta</version>
-    <title>AK.Toolkit.UWP - Localizer</title>
-    <authors>Andrew KeepCoding</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
-    <!-- <icon>icon.png</icon> -->
-    <projectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</projectUrl>
-    <description>UWP Localization (Dynamic/User extensible/User editable)</description>
-    <releaseNotes>1st release</releaseNotes>
-    <copyright>Copyright (c) Andrew KeepCoding 2022</copyright>
-    <tags>uwp localization multilanguage</tags>
-  </metadata>
-  <files>
-    <file src="bin\Release\AK.Toolkit.Uwp.Localization.dll" target="lib\netcore50" />
-    <file src="bin\Release\AK.Toolkit.Uwp.Localization.pdb" target="lib\netcore50" />
-    <file src="bin\Release\AK.Toolkit.Uwp.Localization.pri" target="lib\netcore50" />
-  </files>
+<package>
+    <metadata>
+        <id>AK.Toolkit.Uwp.Localizer</id>
+        <version>1.0.0</version>
+        <title>AK.Toolkit.UWP - Localizer</title>
+        <authors>Andrew KeepCoding</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <license type="expression">MIT</license>
+        <!-- <icon>icon.png</icon> -->
+        <projectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</projectUrl>
+        <description>UWP Localization (Dynamic/User extensible/User editable)</description>
+        <releaseNotes>1st release</releaseNotes>
+        <copyright>Copyright (c) Andrew KeepCoding 2022</copyright>
+        <tags>uwp localization localize language multilanguage</tags>
+    </metadata>
+    <files>
+        <file src="bin\Release\AK.Toolkit.Uwp.Localization.dll" target="lib\netcore50" />
+        <file src="bin\Release\AK.Toolkit.Uwp.Localization.pdb" target="lib\netcore50" />
+        <file src="bin\Release\AK.Toolkit.Uwp.Localization.pri" target="lib\netcore50" />
+    </files>
 </package>
