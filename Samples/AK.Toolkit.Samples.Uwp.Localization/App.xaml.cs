@@ -40,7 +40,11 @@ namespace AK.Toolkit.Samples.Uwp.Localization
             // Initialize localizer by registering as a service.
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
-                    .UseLocalizer()
+                    .UseLocalizer(async options =>
+                    {
+                        StorageFolder stringsFolder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Strings");
+                        options.AdditionalResourcesStringsFolders.Add(new LocalizerResourcesStringsFolder(stringsFolder.Path));
+                    })
                     .BuildServiceProvider());
             // Initialize Localizer using the LocalizerBuilder.
             //StorageFolder stringsFolder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Strings");
