@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using System;
@@ -10,25 +9,20 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public static class Extensions
 {
-    public static IHostBuilder UseLocalizer(this IHostBuilder hostBuilder, Action<LocalizerOptions>? options = null)
+    public static IServiceCollection UseLocalizer(this IServiceCollection services, Action<LocalizerOptions>? options = null)
     {
-        return hostBuilder
-            .ConfigureServices((_, collection) =>
-            {
-                IServiceCollection c = collection
-                    .AddSingleton(services =>
-                    {
-                        LocalizerOptions localizerOptions = new();
-                        options?.Invoke(localizerOptions);
+        return services.AddSingleton(factory =>
+        {
+            LocalizerOptions localizerOptions = new();
+            options?.Invoke(localizerOptions);
 
-                        return new LocalizerBuilder()
-                            .AddDefaultResourcesStringsFolder()
-                                .When(() => localizerOptions.AddDefaultResourcesStringsFolder is true)
-                            .AddResourcesStringsFolders(localizerOptions.AdditionalResourcesStringsFolders)
-                            .SetDefaultLanguage(localizerOptions.DefaultLanguage)
-                            .Build();
-                    });
-            });
+            return new LocalizerBuilder()
+                .AddDefaultResourcesStringsFolder()
+                    .When(() => localizerOptions.AddDefaultResourcesStringsFolder is true)
+                .AddResourcesStringsFolders(localizerOptions.AdditionalResourcesStringsFolders)
+                .SetDefaultLanguage(localizerOptions.DefaultLanguage)
+                .Build();
+        });
     }
 
     internal static IEnumerable<UIElement> GetChildren(this UIElement parent)
