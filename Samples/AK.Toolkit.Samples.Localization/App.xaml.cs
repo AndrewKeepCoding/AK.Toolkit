@@ -18,19 +18,10 @@ public partial class App : Application
         InitializeComponent();
         this.host = BuildHost();
         Ioc.Default.ConfigureServices(this.host.Services);
-
-        // For non-packaged app:
-        //string resourcesFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Strings");
-
-        // For packaged app:
-        //string resourcesFolderPath = @"C:\\Projects\\Strings";
-
-        //_ = Localizer.Create(resourcesFolderPath);
-        //var localizer = Ioc.Default.GetRequiredService<ILocalizer>();
-        InitializeLocalizer();
+        Localizer.Set(this.host.Services.GetRequiredService<ILocalizer>());
     }
 
-    protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         this.window = Ioc.Default.GetRequiredService<MainWindow>();
         this.window.Activate();
@@ -58,20 +49,21 @@ public partial class App : Application
     private static IHost BuildHost()
     {
         return Host.CreateDefaultBuilder()
-            //.UseLocalizer(options =>
-            //{
-            //    options.AddDefaultResourcesStringsFolder = false;
-
-            //    options.AdditionalResourcesStringsFolders.Add(
-            //        new LocalizerResourcesStringsFolder(
-            //            StringsFolderPath: @"C:\Projects\Strings",
-            //            ResourcesFileName: @"Resources.resw"));
-
-            //    options.DefaultLanguage = "ja";
-            //})
             .ConfigureServices((context, services) =>
             {
-                _ = services.AddSingleton<MainWindow>();
+                _ = services
+                    .AddSingleton<MainWindow>()
+                    .UseLocalizer(options =>
+                    {
+                        options.AddDefaultResourcesStringsFolder = false;
+
+                        options.AdditionalResourcesStringsFolders.Add(
+                            new LocalizerResourcesStringsFolder(
+                                StringsFolderPath: @"C:\Projects\Strings",
+                                ResourcesFileName: @"Resources.resw"));
+
+                        options.DefaultLanguage = "ja";
+                    });
             })
             .Build();
     }
