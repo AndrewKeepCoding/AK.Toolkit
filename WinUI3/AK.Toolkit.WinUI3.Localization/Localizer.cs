@@ -55,13 +55,33 @@ public partial class Localizer : DependencyObject, ILocalizer
         throw new NotImplementedException($"{language} is not available.");
     }
 
-    public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = true)
+    public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = false)
     {
-        _ = this.rootElements.Add(rootElement);
+        rootElement.Loaded += RootElement_Loaded;
+        rootElement.Unloaded += RootElement_Unloaded;
 
         if (runLocalization is true)
         {
             RunLocalization(rootElement);
+        }
+    }
+
+    private void RootElement_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement element)
+        {
+            _ = this.rootElements.Add(element);
+            RunLocalization(element);
+        }
+    }
+
+    private void RootElement_Unloaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement element)
+        {
+            element.Loaded -= RootElement_Loaded;
+            element.Unloaded -= RootElement_Unloaded;
+            _ = this.rootElements.Remove(element);
         }
     }
 
