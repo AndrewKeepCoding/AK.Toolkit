@@ -24,8 +24,7 @@
       - Users can add new languages even after deployment
       - Works with the standard Resources.resw
     </Description>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>1st release</PackageReleaseNotes>
+    <Version>1.0.1</Version>
     <PackageTags>winui3;winappsdk;localization;localize;language;multilanguage</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
