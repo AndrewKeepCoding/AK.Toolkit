@@ -20,6 +20,7 @@ public static class Extensions
                 .AddDefaultResourcesStringsFolder()
                     .When(() => localizerOptions.AddDefaultResourcesStringsFolder is true)
                 .AddResourcesStringsFolders(localizerOptions.AdditionalResourcesStringsFolders)
+                .AddLanguageDictionaries(localizerOptions.AdditionalLanguageDictionaries)
                 .SetDefaultLanguage(localizerOptions.DefaultLanguage)
                 .Build();
         });
