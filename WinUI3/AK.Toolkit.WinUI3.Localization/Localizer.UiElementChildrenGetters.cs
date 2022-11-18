@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace AK.Toolkit.WinUI3.Localization;
 
@@ -172,6 +173,11 @@ public partial class Localizer
                 foreach (UIElement element in navigationView.MenuItems.OfType<UIElement>())
                 {
                     _ = children.Add(element);
+                }
+
+                if (navigationView.AutoSuggestBox is UIElement autoSuggestBox)
+                {
+                    _ = children.Add(autoSuggestBox);
                 }
 
                 if (navigationView.Header is UIElement header)
