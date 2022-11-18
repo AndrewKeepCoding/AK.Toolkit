@@ -13,9 +13,19 @@ public sealed partial class MainWindow : Window
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(this.AppTitleBar);
 
+        this.NavigationViewControl.Loaded += NavigationViewControl_Loaded;
+
         if (Content is FrameworkElement content)
         {
             Localizer.Get().RegisterRootElement(content);
+        }
+    }
+
+    private void NavigationViewControl_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (this.NavigationViewControl.SettingsItem is NavigationViewItem settingsItem)
+        {
+            Localizer.SetUid(settingsItem, "Settings");
         }
     }
 

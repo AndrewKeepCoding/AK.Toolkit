@@ -15,7 +15,7 @@ namespace AK.Toolkit.Samples.Uwp.Localization
         {
             InitializeComponent();
             this.localizer = Ioc.Default.GetRequiredService<ILocalizer>();
-            this.localizer.RegisterRootElement(this.Root);
+            this.localizer.RegisterRootElement(this);
 
             AvailableLanguages = this.localizer.GetAvailableLanguages()
                 .Select(x =>

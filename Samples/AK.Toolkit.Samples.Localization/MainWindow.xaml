@@ -33,8 +33,12 @@
         <!--  Navigation menu  -->
         <NavigationView
             Grid.Row="1"
+            x:Name="NavigationViewControl"
             l:Localizer.Uid="NavigationView"
             SelectionChanged="NavigationView_SelectionChanged">
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox l:Localizer.Uid="NavigationView.AutoSuggestBox" />
+            </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 <NavigationViewItem
                     l:Localizer.Uid="NavigationViewItem.MainPage"

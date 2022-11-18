@@ -40,6 +40,7 @@ public partial class App : Application
                     new LanguageDictionary("ja")
                     {
                         new StringResource("ToggleSwitchHeader", "HeaderProperty", "トグルスイッチ"),
+                        new StringResource("NavigationViewAutoSuggestBox", "PlaceholderProperty", "検索"),
                     }
                 })
             .Build();
@@ -61,6 +62,21 @@ public partial class App : Application
                             new LocalizerResourcesStringsFolder(
                                 StringsFolderPath: @"C:\Projects\Strings",
                                 ResourcesFileName: @"Resources.resw"));
+
+                        options.AdditionalLanguageDictionaries.Add(
+                            new LanguageDictionary("en-US")
+                            {
+                                new StringResource("ToggleSwitchHeader", "HeaderProperty", "ToggleSwitch?"),
+                                new StringResource("NavigationView.AutoSuggestBox", "PlaceholderTextProperty", "Search"),
+                                new StringResource("Settings", "ContentProperty", "Settings"),
+                            });
+                        options.AdditionalLanguageDictionaries.Add(
+                            new LanguageDictionary("ja")
+                            {
+                                new StringResource("ToggleSwitchHeader", "HeaderProperty", "トグルスイッチ"),
+                                new StringResource("NavigationView.AutoSuggestBox", "PlaceholderTextProperty", "検索"),
+                                new StringResource("Settings", "ContentProperty", "設定"),
+                            });
 
                         options.DefaultLanguage = "ja";
                     });

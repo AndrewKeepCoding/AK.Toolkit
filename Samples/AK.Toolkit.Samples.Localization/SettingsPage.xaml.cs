@@ -15,6 +15,7 @@ public sealed partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
+
         Localizer.Get().RegisterRootElement(this.Root);
 
         AvailableLanguages = Localizer.Get().GetAvailableLanguages()
