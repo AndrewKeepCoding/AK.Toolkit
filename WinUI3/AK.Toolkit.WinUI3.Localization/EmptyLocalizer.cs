@@ -19,7 +19,7 @@ public class EmptyLocalizer : ILocalizer
     {
     }
 
-    public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = true)
+    public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = false)
     {
     }
 
