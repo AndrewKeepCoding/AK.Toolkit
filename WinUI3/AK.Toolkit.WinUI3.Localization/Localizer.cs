@@ -60,6 +60,8 @@ public partial class Localizer : DependencyObject, ILocalizer
         rootElement.Loaded += RootElement_Loaded;
         rootElement.Unloaded += RootElement_Unloaded;
 
+        _ = this.rootElements.Add(rootElement);
+
         if (runLocalization is true)
         {
             RunLocalization(rootElement);
@@ -68,20 +70,19 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     private void RootElement_Loaded(object sender, RoutedEventArgs e)
     {
-        if (sender is FrameworkElement element)
+        if (sender is FrameworkElement rootElement)
         {
-            _ = this.rootElements.Add(element);
-            RunLocalization(element);
+            RunLocalization(rootElement);
         }
     }
 
     private void RootElement_Unloaded(object sender, RoutedEventArgs e)
     {
-        if (sender is FrameworkElement element)
+        if (sender is FrameworkElement rootElement)
         {
-            element.Loaded -= RootElement_Loaded;
-            element.Unloaded -= RootElement_Unloaded;
-            _ = this.rootElements.Remove(element);
+            rootElement.Loaded -= RootElement_Loaded;
+            rootElement.Unloaded -= RootElement_Unloaded;
+            _ = this.rootElements.Remove(rootElement);
         }
     }
 
