@@ -37,5 +37,5 @@ public class EmptyLocalizer : ILocalizer
         return false;
     }
 
-    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func) => false;
+    public bool TryRegisterUIElementChildrenGetters(Type type, Func<DependencyObject, IEnumerable<DependencyObject>> func) => false;
 }

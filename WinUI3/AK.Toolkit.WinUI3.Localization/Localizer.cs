@@ -1,8 +1,10 @@
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Documents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace AK.Toolkit.WinUI3.Localization;
 
@@ -110,7 +112,7 @@ public partial class Localizer : DependencyObject, ILocalizer
         return LanguageDictionaries.TryGetDictionary(language, out languageDictionary);
     }
 
-    public bool TryRegisterUIElementChildrenGetters(Type type, Func<UIElement, IEnumerable<UIElement>> func)
+    public bool TryRegisterUIElementChildrenGetters(Type type, Func<DependencyObject, IEnumerable<DependencyObject>> func)
     {
         return this.childrenGetters.TryAdd(type, func);
     }
@@ -121,7 +123,7 @@ public partial class Localizer : DependencyObject, ILocalizer
         RegisterDefaultUIElementChildrenGetters();
     }
 
-    private static DependencyProperty? GetDependencyProperty(UIElement element, string dependencyPropertyName)
+    private static DependencyProperty? GetDependencyProperty(DependencyObject element, string dependencyPropertyName)
     {
         Type type = element.GetType();
 
@@ -143,7 +145,7 @@ public partial class Localizer : DependencyObject, ILocalizer
         return null;
     }
 
-    private void Localize(UIElement element, LanguageDictionary languageDictionary)
+    private void Localize(DependencyObject element, LanguageDictionary languageDictionary)
     {
         if (GetUid(element) is string uid)
         {
@@ -155,18 +157,39 @@ public partial class Localizer : DependencyObject, ILocalizer
                 {
                     element.SetValue(dependencyProperty, resource.Value);
                 }
+                else
+                {
+                    _ = TryLocalizeELementsWithoutDependencyProperty(element, resource.Value);
+                }
             }
         }
 
         if (this.childrenGetters.TryGetValue(
             element.GetType(),
-            out Func<UIElement, IEnumerable<UIElement>>? childrenGetter) is true &&
+            out Func<DependencyObject, IEnumerable<DependencyObject>>? childrenGetter) is true &&
             childrenGetter is not null)
         {
-            foreach (UIElement child in childrenGetter(element).Union(element.GetChildren()))
+            foreach (DependencyObject child in childrenGetter(element)
+                .Union((element as UIElement)?.GetChildren() ?? Enumerable.Empty<DependencyObject>()))
             {
                 Localize(child, languageDictionary);
             }
         }
+    }
+
+    private bool TryLocalizeELementsWithoutDependencyProperty(DependencyObject element, string value)
+    {
+        if (element is Run run)
+        {
+            run.Text = value;
+            return true;
+        }
+        else if (element is Hyperlink hyperlink && hyperlink.Inlines.Count is 0)
+        {
+            hyperlink.Inlines.Add(new Run() { Text = value });
+            return true;
+        }
+
+        return false;
     }
 }
