@@ -276,6 +276,21 @@ public partial class Localizer
 
             return children;
         });
+
+        _ = this.childrenGetters.TryAdd(typeof(Hyperlink), (parent) =>
+        {
+            HashSet<DependencyObject> children = new();
+
+            if (parent is Hyperlink hyperlink)
+            {
+                foreach (Inline inline in hyperlink.Inlines)
+                {
+                    _ = children.Add(inline);
+                }
+            }
+
+            return children;
+        });
     }
 
     private class UIElementChildrenGetters
