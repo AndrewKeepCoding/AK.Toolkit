@@ -15,6 +15,8 @@ public partial class Localizer : DependencyObject, ILocalizer
     {
     }
 
+    public event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
+
     internal static ILocalizer Instance { get; set; } = EmptyLocalizer.Instance;
 
     private LanguageDictionaries LanguageDictionaries { get; set; } = new();
@@ -50,6 +52,9 @@ public partial class Localizer : DependencyObject, ILocalizer
         {
             CurrentLanguage = language;
             RunLocalizationOnRegisteredRootElements();
+
+            LanguageChanged?.Invoke(this, new LanguageChangedEventArgs(CurrentLanguage));
+
             return;
         }
 
@@ -58,6 +63,8 @@ public partial class Localizer : DependencyObject, ILocalizer
 
     public void RegisterRootElement(FrameworkElement rootElement, bool runLocalization = false)
     {
+        rootElement.Loaded -= RootElement_Loaded;
+        rootElement.Unloaded -= RootElement_Unloaded;
         rootElement.Loaded += RootElement_Loaded;
         rootElement.Unloaded += RootElement_Unloaded;
 
@@ -66,24 +73,6 @@ public partial class Localizer : DependencyObject, ILocalizer
         if (runLocalization is true)
         {
             RunLocalization(rootElement);
-        }
-    }
-
-    private void RootElement_Loaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is FrameworkElement rootElement)
-        {
-            RunLocalization(rootElement);
-        }
-    }
-
-    private void RootElement_Unloaded(object sender, RoutedEventArgs e)
-    {
-        if (sender is FrameworkElement rootElement)
-        {
-            rootElement.Loaded -= RootElement_Loaded;
-            rootElement.Unloaded -= RootElement_Unloaded;
-            _ = this.rootElements.Remove(rootElement);
         }
     }
 
@@ -142,6 +131,22 @@ public partial class Localizer : DependencyObject, ILocalizer
         }
 
         return null;
+    }
+
+    private void RootElement_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement rootElement)
+        {
+            RunLocalization(rootElement);
+        }
+    }
+
+    private void RootElement_Unloaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement rootElement)
+        {
+            _ = this.rootElements.Remove(rootElement);
+        }
     }
 
     private void Localize(DependencyObject element, LanguageDictionary languageDictionary)

@@ -6,6 +6,8 @@ namespace AK.Toolkit.WinUI3.Localization;
 
 public interface ILocalizer
 {
+    event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
+
     IEnumerable<string> GetAvailableLanguages();
 
     string GetCurrentLanguage();

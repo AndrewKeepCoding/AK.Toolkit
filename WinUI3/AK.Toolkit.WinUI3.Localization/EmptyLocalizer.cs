@@ -9,6 +9,8 @@ public class EmptyLocalizer : ILocalizer
 {
     public static readonly ILocalizer Instance = new EmptyLocalizer();
 
+    public event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
+
     public IEnumerable<string> GetAvailableLanguages() => Enumerable.Empty<string>();
 
     public string GetCurrentLanguage() => string.Empty;
