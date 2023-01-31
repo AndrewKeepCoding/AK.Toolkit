@@ -13,7 +13,7 @@ In addition to the built-in `NumberBox`:
 - **NumberHorizontalAlignment** DependencyProperty
 - **IsDeleteButtonVisible** DependencyProperty
 
-Comming soon:
+Coming soon:
 
 - Thousand separators
   - Comma
