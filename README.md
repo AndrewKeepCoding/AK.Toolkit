@@ -5,15 +5,20 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 ## 🔵 WinUI 3
 
 ### 🌏 Localizer
+
+> **Note**: Localizer has been replaced with [WinUI3Localizer](https://github.com/AndrewKeepCoding/WinUI3Localizer).
+
 [🎬 YouTube](https://youtu.be/6Y5saLQ9bcs)
 
-The Localizer helps you to localize your app.
+Localizer helps you to localize your app.
+
 - Switch languages **without restarting** the app
 - You (users) can **edit** localized strings even after deployment
 - You (users) can **add** new languages even after deployment
 - Use the starndard **Resources.resw**
 
 ### 🏁 Grid Extensions - GridIndexer (GI)
+
 [🎬 YouTube](https://youtu.be/akqjnqsy-ME)
 
 An extensions that makes it easier to define rows and columns in `Grid`.
@@ -46,6 +51,7 @@ You can use **GridIndexer (GI)** and define your columns and rows like below.
 ```
 
 ### 💻 AutoCompleteTextBox
+
 [🎬 YouTube](https://youtu.be/G17jbGSXLnk)
 
 A TextBox control that shows a suggestion based on input.
@@ -65,6 +71,7 @@ AutoCompleteTextBox shows a suggestion **inside** the TextBox control.
 ## 🛠️ Utilities
 
 ### 🧩 RandomStringGenerator
+
 [🎬 YouTube](https://youtu.be/G17jbGSXLnk)
 
 A static class that generates random strings.
