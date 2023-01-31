@@ -4,6 +4,21 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 
 ## 🔵 WinUI 3
 
+### 🔢NumberBoxEx
+
+[🎬 YouTube](https://youtu.be/ai-koyvgbWY)
+
+In addition to the built-in `NumberBox`:
+
+- **NumberHorizontalAlignment** DependencyProperty
+- **IsDeleteButtonVisible** DependencyProperty
+
+Comming soon:
+
+- Thousand separators
+  - Comma
+  - Space
+
 ### 🌏 Localizer
 
 > **Note**: Localizer has been replaced with [WinUI3Localizer](https://github.com/AndrewKeepCoding/WinUI3Localizer).

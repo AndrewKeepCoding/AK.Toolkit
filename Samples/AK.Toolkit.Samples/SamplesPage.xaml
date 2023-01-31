@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="AK.Toolkit.Samples.SamplesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,30 +10,60 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <samples:NullableBooleanToBooleanConverter x:Key="NullableBooleanToBooleanConverter" />
         <samples:ControlBackgroundGetter x:Key="ControlBackgroundGetter" />
     </Page.Resources>
 
-    <StackPanel Margin="10" Orientation="Vertical">
-
+    <StackPanel
+        Margin="10"
+        Orientation="Vertical">
         <StackPanel.Resources>
             <Style TargetType="Grid">
                 <Setter Property="RowSpacing" Value="20" />
                 <Setter Property="ColumnSpacing" Value="10" />
                 <Setter Property="Padding" Value="10" />
             </Style>
-
         </StackPanel.Resources>
+        <!--  NumberBoxEx  -->
+        <Grid
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            RowDefinitions="Auto,Auto">
+            <TextBlock
+                Grid.Row="0"
+                FontWeight="Bold"
+                Text="NumberBoxEx" />
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,2*">
+                <toolkit:NumberBoxEx
+                    IsDeleteButtonVisible="{x:Bind IsDeleteButtonVisibleCheckBox.IsChecked, Mode=OneWay, Converter={StaticResource NullableBooleanToBooleanConverter}}"
+                    SpinButtonPlacementMode="Inline"
+                    Value="12345" />
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Orientation="Vertical"
+                    Spacing="10">
+                    <CheckBox
+                        x:Name="IsDeleteButtonVisibleCheckBox"
+                        VerticalAlignment="Top"
+                        Content="IsDeleteButtonVisible"
+                        IsChecked="True" />
+                </StackPanel>
+            </Grid>
+        </Grid>
 
-        <!--#region AutoCompleteTextBox Demo-->
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RowDefinitions="Auto,Auto">
-
+        <!--  AutoCompleteTextBox  -->
+        <Grid
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            RowDefinitions="Auto,Auto">
             <TextBlock
                 Grid.Row="0"
                 FontWeight="Bold"
                 Text="AutoCompleteTextBox" />
-
-            <Grid Grid.Row="1" ColumnDefinitions="*,2*">
-
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,2*">
                 <toolkit:AutoCompleteTextBox
                     x:Name="AutoCompleteTextBox"
                     Grid.Column="0"
@@ -44,7 +74,6 @@
                     SuggestionPrefix="{x:Bind SuggestionPrefix.Text, Mode=OneWay}"
                     SuggestionSuffix="{x:Bind SuggestionSuffix.Text, Mode=OneWay}"
                     SuggestionsSource="{x:Bind DemoSuggestions, Mode=OneWay}" />
-
                 <StackPanel
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
@@ -67,13 +96,11 @@
                         HorizontalAlignment="Left"
                         Header="Suggestion Suffix"
                         Text=" ? [Press Right]" />
-
                     <RadioButtons
                         x:Name="SuggestionForeground"
                         Header="Suggestion Foreground"
                         MaxColumns="5"
                         SelectedIndex="0">
-
                         <RadioButtons.Resources>
                             <Style TargetType="Rectangle">
                                 <Setter Property="Width" Value="10" />
@@ -86,17 +113,20 @@
                                 <Setter Property="Spacing" Value="5" />
                             </Style>
                         </RadioButtons.Resources>
-
                         <RadioButton
                             Background="Blue"
                             Content="Default"
                             Tag="Default" />
-                        <RadioButton Background="HotPink" Content="HotPink" />
-                        <RadioButton Background="LightGreen" Content="LightGreen" />
-                        <RadioButton Background="SkyBlue" Content="SkyBlue" />
-
+                        <RadioButton
+                            Background="HotPink"
+                            Content="HotPink" />
+                        <RadioButton
+                            Background="LightGreen"
+                            Content="LightGreen" />
+                        <RadioButton
+                            Background="SkyBlue"
+                            Content="SkyBlue" />
                     </RadioButtons>
-
                     <NumberBox
                         x:Name="RandomDemoSuggestionsCount"
                         Width="300"
@@ -115,12 +145,8 @@
                         Click="UpdateDemoSuggestionsButton_Click"
                         Content="Update Demo Suggestions" />
                 </StackPanel>
-
             </Grid>
-
         </Grid>
-        <!--#endregion-->
-
     </StackPanel>
 
 </Page>

@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -41,6 +41,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Utilities\AK.Toolkit.Utilities.RandomStringGenerator\AK.Toolkit.Utilities.RandomStringGenerator.csproj" />
     <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.AutoCompleteTextBox\AK.Toolkit.WinUI3.AutoCompleteTextBox.csproj" />
+    <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.NumberBoxEx\AK.Toolkit.WinUI3.NumberBoxEx.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="SamplesPage.xaml">
