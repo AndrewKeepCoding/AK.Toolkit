@@ -4,19 +4,6 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 
 ## 🔵 WinUI 3
 
-### 🌏 Localizer
-
-> **Note**: Localizer has been replaced with [WinUI3Localizer](https://github.com/AndrewKeepCoding/WinUI3Localizer).
-
-[🎬 YouTube](https://youtu.be/6Y5saLQ9bcs)
-
-Localizer helps you to localize your app.
-
-- Switch languages **without restarting** the app
-- You (users) can **edit** localized strings even after deployment
-- You (users) can **add** new languages even after deployment
-- Use the starndard **Resources.resw**
-
 ### 💻 AutoCompleteTextBox
 
 [🎬 YouTube](https://youtu.be/G17jbGSXLnk)
@@ -35,7 +22,7 @@ AutoCompleteTextBox shows a suggestion **inside** the TextBox control.
 
 ![AutoCompleteTextBox Screenshot](Assets/auto-complete-textbox-sample-screenshot.png)
 
-### 🔢NumberBoxEx
+### 🔢 NumberBoxEx
 
 [🎬 YouTube](https://youtu.be/ai-koyvgbWY)
 
@@ -109,3 +96,18 @@ string randomString = RandomStringGenerator.GenerateString(
     minLength: 3,
     maxLength: 10);
 ```
+
+## 🗑️ Deprecated
+
+### 🌏 Localizer
+
+> **Note**: Localizer has been replaced with [WinUI3Localizer](https://github.com/AndrewKeepCoding/WinUI3Localizer).
+
+[🎬 YouTube](https://youtu.be/6Y5saLQ9bcs)
+
+Localizer helps you to localize your app.
+
+- Switch languages **without restarting** the app
+- You (users) can **edit** localized strings even after deployment
+- You (users) can **add** new languages even after deployment
+- Use the starndard **Resources.resw**
