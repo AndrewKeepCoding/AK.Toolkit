@@ -145,11 +145,11 @@ public sealed class AutoCompleteTextBox : TextBox
     {
         base.OnApplyTemplate();
 
-        if (Resources.TryGetValue("SystemColorGrayTextColor", out var value) is true)
+        if (Resources.TryGetValue("SystemColorGrayTextColor", out object value) is true)
         {
             if (value is Color defaultColor)
             {
-                var defaultBrush = new SolidColorBrush(defaultColor);
+                SolidColorBrush defaultBrush = new(defaultColor);
                 SuggestionForegroundDefaultBrush = defaultBrush;
             }
         }
@@ -211,7 +211,7 @@ public sealed class AutoCompleteTextBox : TextBox
         Grid.SetColumn(SuggestionGrid, Grid.GetColumn(inputControl));
 
         int rowIndex = rootGrid.Children.IndexOf(inputControl);
-        rootGrid.Children.Remove(inputControl);
+        _ = rootGrid.Children.Remove(inputControl);
         rootGrid.Children.Insert(rowIndex, SuggestionGrid);
 
         SuggestionGrid.Children.Add(inputControl);
