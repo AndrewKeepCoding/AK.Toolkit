@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
@@ -139,15 +139,17 @@ public sealed class AutoCompleteTextBox : TextBox
 
     private Brush? SuggestionForegroundDefaultBrush { get; set; }
 
+    private string CurrentSuggestion { get; set; } = string.Empty;
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        if (Resources.TryGetValue("SystemColorGrayTextColor", out var value) is true)
+        if (Resources.TryGetValue("SystemColorGrayTextColor", out object value) is true)
         {
             if (value is Color defaultColor)
             {
-                var defaultBrush = new SolidColorBrush(defaultColor);
+                SolidColorBrush defaultBrush = new(defaultColor);
                 SuggestionForegroundDefaultBrush = defaultBrush;
             }
         }
@@ -209,7 +211,7 @@ public sealed class AutoCompleteTextBox : TextBox
         Grid.SetColumn(SuggestionGrid, Grid.GetColumn(inputControl));
 
         int rowIndex = rootGrid.Children.IndexOf(inputControl);
-        rootGrid.Children.Remove(inputControl);
+        _ = rootGrid.Children.Remove(inputControl);
         rootGrid.Children.Insert(rowIndex, SuggestionGrid);
 
         SuggestionGrid.Children.Add(inputControl);
@@ -239,9 +241,11 @@ public sealed class AutoCompleteTextBox : TextBox
         GotFocus += (s, e) => ShowSuggestion();
         KeyDown += (s, e) =>
         {
-            if (e.Key is VirtualKey.Right)
+            if (e.Key is VirtualKey.Right ||
+            (e.Key is VirtualKey.Tab && CurrentSuggestion.Count() > 0))
             {
                 AcceptSuggestion();
+                e.Handled = true;
             }
         };
     }
@@ -288,20 +292,20 @@ public sealed class AutoCompleteTextBox : TextBox
 
     private void ShowSuggestion()
     {
-        string suggestion = string.Empty;
+        CurrentSuggestion = string.Empty;
 
         if (LastAcceptedSuggestion.Equals(Text) is not true)
         {
-            suggestion = GetSuggestion();
+            CurrentSuggestion = GetSuggestion();
 
-            if (suggestion.Length > 0)
+            if (CurrentSuggestion.Length > 0)
             {
-                SuggestionControl.Content = $"{SuggestionPrefix}{suggestion[Text.Length..]}{SuggestionSuffix}";
+                SuggestionControl.Content = $"{SuggestionPrefix}{CurrentSuggestion[Text.Length..]}{SuggestionSuffix}";
                 SuggestionControl.Visibility = Visibility.Visible;
             }
         }
 
-        if (suggestion.Length == 0)
+        if (CurrentSuggestion.Length == 0)
         {
             DismissSuggestion();
         }

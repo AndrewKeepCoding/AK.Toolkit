@@ -1,7 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFrameworks>net6.0-windows10.0.19041.0;net7.0-windows10.0.19041.0</TargetFrameworks>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>AK.Toolkit.WinUI3</RootNamespace>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
@@ -9,19 +8,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
-  </ItemGroup>
-
   <PropertyGroup>
-    <Title>AK.Toolkit.WinUI3 - AutoCompleteTextBox</Title>
+    <Title>AK.Toolkit.WinUI3.AutoCompleteTextBox</Title>
     <Description>A TextBox control that shows a suggestion inside the TextBox.</Description>
-    <Version>0.3.1-beta</Version>
-    <PackageReleaseNotes>
-      - Fix suggestion foreground visibility issue
-      - Fix vertical alignment issue between the Text and Placeholder</PackageReleaseNotes>
-    <PackageTags>winui3;autocomplete;autosuggest;textbox;</PackageTags>
+    <Version>1.0.0</Version>
+    <PackageTags>winui3;winappsdk;autocomplete;autosuggest;textbox;control;customcontrol</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -30,9 +21,19 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageId>AK.Toolkit.WinUI3.AutoCompleteTextBox</PackageId>
     <Product>AK.Toolkit.WinUI3.AutoCompleteTextBox</Product>
-    <Copyright>Copyright (c) Andrew KeepCoding 2022</Copyright>
+    <Copyright>Copyright (c) Andrew KeepCoding 2023</Copyright>
     <Authors>Andrew KeepCoding</Authors>
-    <Company>Andrew KeepCoding</Company>
+    <PackageReadMeFile>README.md</PackageReadMeFile>
+    <PackageIcon>winui.png</PackageIcon>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\winui.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+  </ItemGroup>
 </Project>
