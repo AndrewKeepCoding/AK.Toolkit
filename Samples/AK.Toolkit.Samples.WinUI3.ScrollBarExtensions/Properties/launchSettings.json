@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.Samples.WinUI3.ScrollBarExtensions (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.Samples.WinUI3.ScrollBarExtensions (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

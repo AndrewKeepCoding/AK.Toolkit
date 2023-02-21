@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.Samples.ScrollBarExtensions (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.Samples.ScrollBarExtensions (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
