@@ -37,6 +37,35 @@ Coming soon:
   - Comma
   - Space
 
+### ⚒️ ScrollBarExtensions.KeepExpanded
+
+[🎬 YouTube]()
+
+An attached property that keeps `ScrollBars` expanded.
+
+```xaml
+<!--  ScrollBar  -->
+<ScrollBar toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" />
+<!-- ScrollViewer  -->
+<ScrollViewer
+    toolkit:ScrollBarExtensions.KeepHorizontalExpanded="True"
+    toolkit:ScrollBarExtensions.KeepVerticalExpanded="True">
+    <ItemsRepeater />
+</ScrollViewer>
+<!--  ListView  -->
+<ListView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" />
+<!--  GridView  -->
+<GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" />
+<!-- NavigationView  -->
+<NavigationView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" />
+```
+
+### ⚒️ UI.ScrollBarExtensions.Annotations (Work in progress...)
+
+[🎬 YouTube]()
+
+An attached property that adds annotations to `ScrollBars`.
+
 ### 🏁 Grid Extensions - GridIndexer (GI)
 
 [🎬 YouTube](https://youtu.be/akqjnqsy-ME)
