@@ -97,15 +97,20 @@ public partial class ScrollBarExtensions : DependencyObject
     {
         return frameworkElement switch
         {
-            ScrollBar scrollBar => ApplyKeepExpandedToScrollBar(scrollBar, keepExpanded),
+            ScrollBar scrollBar => ApplyKeepExpandedToScrollBar(scrollBar, targetScrollBarOrientation, keepExpanded),
             ScrollViewer scrollViewer => ApplyKeepExpandedToScrollViewer(scrollViewer, targetScrollBarOrientation, keepExpanded),
             NavigationView navigationView => ApplyKeepExpandedToNavigationView(navigationView, targetScrollBarOrientation, keepExpanded),
             _ => ApplyKeepExpandedToUnknownTarget(frameworkElement, targetScrollBarOrientation, keepExpanded),
         };
     }
 
-    private static bool ApplyKeepExpandedToScrollBar(ScrollBar scrollBar, bool keepExpanded)
+    private static bool ApplyKeepExpandedToScrollBar(ScrollBar scrollBar, Orientation targetScrollBarOrientation, bool keepExpanded)
     {
+        if (scrollBar.Orientation != targetScrollBarOrientation)
+        {
+            return true;
+        }
+
         if (keepExpanded is true)
         {
             _ = VisualStateManager.GoToState(scrollBar, "Expanded", true);
@@ -127,7 +132,7 @@ public partial class ScrollBarExtensions : DependencyObject
             : "HorizontalScrollBar";
 
         if (scrollViewer.FindChildOfName(targetScrollBarName) is ScrollBar scrollBar &&
-            ApplyKeepExpandedToScrollBar(scrollBar, keepExpanded) is true)
+            ApplyKeepExpandedToScrollBar(scrollBar, targetScrollBarOrientation, keepExpanded) is true)
         {
             if (keepExpanded is true)
             {
