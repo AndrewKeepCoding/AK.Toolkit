@@ -15,7 +15,7 @@
       WinUI 3 ScrollBar Extensions:
       - KeepExpanded: An attached property that keeps ScrollBars expanded.
     </Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageTags>winui3;winappsdk;extensions;helpers;scrollbar;scrollviewer</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
