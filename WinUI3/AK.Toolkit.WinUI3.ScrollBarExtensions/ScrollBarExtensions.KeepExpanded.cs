@@ -144,10 +144,13 @@ public partial class ScrollBarExtensions : DependencyObject
 
     private static bool ApplyKeepExpandedToScrollBar(ScrollBar scrollBar, Orientation orientation, bool keepExpanded)
     {
-        DebugLog.Log($"ApplyKeepExpandedToScrollBar ScrollBar ({scrollBar.GetHashCode()}) Orientation: {orientation} / KeepExpanded: {keepExpanded}");
+        DebugLog.Log($"ApplyKeepExpandedToScrollBar {scrollBar.Orientation}ScrollBar ({scrollBar.GetHashCode()}) Orientation: {orientation} / KeepExpanded: {keepExpanded}");
 
         if (scrollBar.Orientation == orientation)
         {
+            scrollBar.EffectiveViewportChanged -= EffectiveViewportChanged;
+            scrollBar.EffectiveViewportChanged += EffectiveViewportChanged;
+
             UpdateScrollBarVisualStates(scrollBar, keepExpanded);
         }
 
@@ -158,6 +161,7 @@ public partial class ScrollBarExtensions : DependencyObject
     {
         if (keepExpanded is true)
         {
+            ChangeVisualState(scrollBar, "MouseIndicator");
             ChangeVisualState(scrollBar, "Expanded");
             RemoveVisualStatesFromScrollBar(scrollBar);
         }
@@ -165,6 +169,7 @@ public partial class ScrollBarExtensions : DependencyObject
         {
             RestoreVisualStates(scrollBar);
             ChangeVisualState(scrollBar, "Collapsed");
+            ChangeVisualState(scrollBar, "NoIndicator");
         }
     }
 
@@ -172,8 +177,8 @@ public partial class ScrollBarExtensions : DependencyObject
     {
         DebugLog.Log($"ApplyKeepExpandedToScrollViewer ScrollViewer ({scrollViewer.GetHashCode()}) Orientation: {orientation} / KeepExpanded: {keepExpanded}");
 
-        scrollViewer.EffectiveViewportChanged -= ScrollViewer_EffectiveViewportChanged;
-        scrollViewer.EffectiveViewportChanged += ScrollViewer_EffectiveViewportChanged;
+        scrollViewer.EffectiveViewportChanged -= EffectiveViewportChanged;
+        scrollViewer.EffectiveViewportChanged += EffectiveViewportChanged;
 
         if (keepExpanded is true)
         {
@@ -256,9 +261,9 @@ public partial class ScrollBarExtensions : DependencyObject
         }
     }
 
-    private static void ScrollViewer_EffectiveViewportChanged(FrameworkElement sender, EffectiveViewportChangedEventArgs args)
+    private static void EffectiveViewportChanged(FrameworkElement sender, EffectiveViewportChangedEventArgs args)
     {
-        sender.EffectiveViewportChanged -= ScrollViewer_EffectiveViewportChanged;
+        sender.EffectiveViewportChanged -= EffectiveViewportChanged;
         ApplyKeepExpanded(sender);
     }
 
@@ -277,6 +282,21 @@ public partial class ScrollBarExtensions : DependencyObject
     private static bool ApplyKeepExpandedToUnknownTarget(FrameworkElement frameworkElement, Orientation orientation, bool keepExpanded)
     {
         DebugLog.Log($"ApplyKeepExpandedToUnknownTarget FrameworkElement ({frameworkElement.GetHashCode()}) Orientation: {orientation} / KeepExpanded: {keepExpanded}");
+
+        foreach (ScrollBar scrollBar in frameworkElement
+            .FindDescendants()
+            .OfType<ScrollBar>()
+            .Where(x => x.Orientation == orientation))
+        {
+            if (orientation is Orientation.Vertical)
+            {
+                SetKeepVerticalExpanded(scrollBar, keepExpanded);
+            }
+            else
+            {
+                SetKeepHorizontalExpanded(scrollBar, keepExpanded);
+            }
+        }
 
         foreach (ScrollViewer scrollViewer in frameworkElement.FindDescendants().OfType<ScrollViewer>())
         {
