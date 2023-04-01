@@ -1,0 +1,238 @@
+<Page
+    x:Class="AK.Toolkit.Samples.WinUI3.ScrollBarExtensions.GridViewsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AK.Toolkit.Samples.WinUI3.ScrollBarExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:AK.Toolkit.WinUI3"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ItemsPanelTemplate x:Key="GridViewItemsPanelTemplate">
+            <ItemsWrapGrid
+                MaximumRowsOrColumns="2"
+                Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+        <Style TargetType="GridView">
+            <Setter Property="ItemsPanel" Value="{StaticResource GridViewItemsPanelTemplate}" />
+        </Style>
+    </Page.Resources>
+
+    <Grid
+        Grid.Row="1"
+        Margin="10"
+        ColumnDefinitions="*,Auto"
+        ColumnSpacing="30"
+        RowDefinitions="*,*,*"
+        RowSpacing="30">
+        <!--  Empty List  -->
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="*,*,*"
+            ColumnSpacing="30"
+            RowDefinitions="Auto,*">
+            <!--  Title  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Style="{StaticResource TitleTextBlockStyle}"
+                Text="Empty List" />
+            <!--  False  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="0"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: False" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        Grid.Row="1"
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
+                        ItemsSource="{x:Bind EmptyList}" />
+                </Grid>
+            </Grid>
+            <!--  True  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: True" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
+                        ItemsSource="{x:Bind EmptyList}" />
+                </Grid>
+            </Grid>
+            <!--  Toggle  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="2"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: Binding" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
+                        ItemsSource="{x:Bind EmptyList}" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--  Small List  -->
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,*,*"
+            ColumnSpacing="30"
+            RowDefinitions="Auto,*">
+            <!--  Title  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Style="{StaticResource TitleTextBlockStyle}"
+                Text="Small List" />
+            <!--  False  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="0"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    Text="KeepExpanded: False" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
+                        ItemsSource="{x:Bind SmallList}" />
+                </Grid>
+            </Grid>
+            <!--  True  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: True" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
+                        ItemsSource="{x:Bind SmallList}" />
+                </Grid>
+            </Grid>
+            <!--  Toggle  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="2"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: Binding" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
+                        ItemsSource="{x:Bind SmallList}" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--  Large List  -->
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*,*,*"
+            ColumnSpacing="30"
+            RowDefinitions="Auto,*">
+            <!--  Title  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Style="{StaticResource TitleTextBlockStyle}"
+                Text="Large List" />
+            <!--  False  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="0"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: False" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
+                        ItemsSource="{x:Bind LargeList}" />
+                </Grid>
+            </Grid>
+            <!--  True  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: True" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
+                        ItemsSource="{x:Bind LargeList}" />
+                </Grid>
+            </Grid>
+            <!--  Toggle  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="2"
+                RowDefinitions="Auto,*">
+                <TextBlock
+                    Grid.Row="0"
+                    Text="KeepExpanded: Binding" />
+                <Grid
+                    Grid.Row="1"
+                    Style="{StaticResource GridBoxStyle}">
+                    <GridView
+                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
+                        ItemsSource="{x:Bind LargeList}" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--  Switches  -->
+        <StackPanel
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Margin="0,50,0,0"
+            Spacing="10">
+            <ToggleSwitch
+                x:Name="VerticalScrollBarsKeepExpandedSwitch"
+                Header="Vertical ScrollBar"
+                IsOn="False"
+                OffContent="KeepExpanded"
+                OnContent="KeepExpanded" />
+            <Button
+                Click="AddItemButton_Click"
+                Content="Add item" />
+            <Button
+                Click="RemoveItemButton_Click"
+                Content="Remove item" />
+        </StackPanel>
+    </Grid>
+</Page>
