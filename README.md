@@ -60,11 +60,54 @@ An attached property that keeps `ScrollBars` expanded.
 <NavigationView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" />
 ```
 
-### ⚒️ UI.ScrollBarExtensions.Annotations (Work in progress...)
+### ⚒️ ScrollBarExtensions.Annotations
 
 [🎬 YouTube]()
 
-An attached property that adds annotations to `ScrollBars`.
+An attached property that adds annotations to vertical `ScrollBars`.
+
+First, you need to create a collection of your annotations that implements ``IAnnotation`` or just use the built-in ``BasicAnnotation``.
+
+```csharp
+public interface IAnnotation
+{
+    double Value { get; }
+
+    ValueType ValueType { get; }
+
+    Shape Shape { get; }
+
+    double LeftOffset { get; }
+}
+
+public record BasicAnnotation : IAnnotation
+{
+    public double Value { get; }
+
+    public ValueType ValueType { get; set; }
+
+    public Shape Shape { get; private set; }
+
+    public double LeftOffset { get; set; }
+
+    public BasicAnnotation(double value, Shape shape)
+    {
+        Value = value;
+        Shape = shape;
+    }
+}
+```
+
+Then bind your annotations using ``ScrollBarExtensions.VerticalAnnotations`` attached property.
+
+```xaml
+<controls:DataGrid
+    toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
+    toolkit:ScrollBarExtensions.VerticalAnnotations="{x:Bind Annotations, Mode=OneWay}"
+    ItemsSource="{x:Bind Users}">
+```
+
+![ScrollBar Extensions Annotations Screenshot](Assets/scrollbar-extensions-annotations-screenshot.png)
 
 ### 🏁 Grid Extensions - GridIndexer (GI)
 

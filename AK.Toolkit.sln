@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0DFB7268-1E7E-460F-A670-8336E61A13A4}"
 	ProjectSection(SolutionItems) = preProject
 		Assets\auto-complete-textbox-screenshot.png = Assets\auto-complete-textbox-screenshot.png
+		Assets\scrollbar-extensions-annotations-screenshot.png = Assets\scrollbar-extensions-annotations-screenshot.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9E80FA35-6512-4090-A907-90D58957C6A6}"
