@@ -71,7 +71,9 @@
                         Text="Blue annotations" />
                 </TextBox.Header>
             </TextBox>
-            <toolkit:NumberBoxEx Value="{x:Bind AnnotationsHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <toolkit:NumberBoxEx
+                Header="Annotations height"
+                Value="{x:Bind AnnotationsHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </Grid>
 
