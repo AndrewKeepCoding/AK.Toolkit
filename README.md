@@ -39,7 +39,7 @@ Coming soon:
 
 ### ⚒️ ScrollBarExtensions.KeepExpanded
 
-[🎬 YouTube]()
+[🎬 YouTube](https://youtu.be/8m82fXl0LKk)
 
 An attached property that keeps `ScrollBars` expanded.
 
@@ -62,7 +62,7 @@ An attached property that keeps `ScrollBars` expanded.
 
 ### ⚒️ ScrollBarExtensions.Annotations
 
-[🎬 YouTube]()
+[🎬 YouTube](https://youtu.be/wa6_E_HpiMg)
 
 An attached property that adds annotations to vertical `ScrollBars`.
 
