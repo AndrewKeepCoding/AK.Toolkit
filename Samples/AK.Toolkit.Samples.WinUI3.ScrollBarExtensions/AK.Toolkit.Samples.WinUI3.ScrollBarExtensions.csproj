@@ -13,8 +13,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Page1.xaml" />
-    <None Remove="Page2.xaml" />
+    <None Remove="AnnotationsPage.xaml" />
+    <None Remove="DataGridsPage.xaml" />
+    <None Remove="EmptyPage.xaml" />
+    <None Remove="GridViewsPage.xaml" />
+    <None Remove="ListViewsPage.xaml" />
+    <None Remove="ScrollBarsPage.xaml" />
+    <None Remove="ScrollViewersPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AK.Toolkit.WinUI3.ScrollBarExtensions" Version="1.0.0" />
+    <PackageReference Include="AK.Toolkit.WinUI3.NumberBoxEx" Version="1.0.0" />
+    <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -41,12 +49,40 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Page2.xaml">
+    <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.ScrollBarExtensions\AK.Toolkit.WinUI3.ScrollBarExtensions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AnnotationsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Page1.xaml">
+    <Page Update="DataGridsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="GridViewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="EmptyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ScrollViewersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ListViewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ScrollBarsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -7,20 +7,43 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid RowDefinitions="Auto,*">
-        <StackPanel
-            Grid.Row="0"
-            Orientation="Horizontal">
-            <Button
-                Click="Page1Button_Click"
-                Content="Page 1" />
-            <Button
-                Click="Page2Button_Click"
-                Content="Page 2" />
-        </StackPanel>
-        <Frame
-            x:Name="ContentFrame"
-            Grid.Row="1" />
+    <Grid>
+        <NavigationView
+            x:Name="NavigationViewControl"
+            IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            PaneDisplayMode="Top"
+            SelectionChanged="NavigationView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="ScrollBars" />
+                <NavigationViewItem Content="ScrollViewers" />
+                <NavigationViewItem Content="ListViews" />
+                <NavigationViewItem Content="GridViews" />
+                <NavigationViewItem Content="DataGrids" />
+                <NavigationViewItem Content="Empty" />
+                <NavigationViewItem Content="Annotations" />
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <ToggleSwitch
+                    x:Name="IgnoreAllKeepExpandedPropertyChangedEventsSwitch"
+                    OffContent="IgnoreAllKeepExpandedPropertyChangedEvents"
+                    OnContent="IgnoreAllKeepExpandedPropertyChangedEvents"
+                    Toggled="IgnoreAllKeepExpandedPropertyChangedEventsSwitch_Toggled" />
+                <ToggleSwitch
+                    x:Name="EnableKeepExpandedDebugLoggingSwitch"
+                    IsOn="True"
+                    OffContent="EnableKeepExpandedDebugLogging"
+                    OnContent="EnableKeepExpandedDebugLogging"
+                    Toggled="EnableKeepExpandedDebugLoggingSwitch_Toggled" />
+            </NavigationView.FooterMenuItems>
+            <NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>
+            <Frame x:Name="ContentFrame" />
+        </NavigationView>
     </Grid>
 
 </Window>
