@@ -65,7 +65,7 @@ public sealed partial class AnnotationsPage : Page
         Users = new ObservableCollection<User>(
             new Faker<User>()
                 .UseSeed(0)
-                .RuleFor(u => u.Id, f => f.UniqueIndex + 1)
+                .RuleFor(u => u.Id, f => f.IndexFaker + 1)
                 .RuleFor(user => user.FirstName, faker => faker.Name.FirstName())
                 .RuleFor(user => user.LastName, faker => faker.Name.LastName())
                 .RuleFor(user => user.Address, faker => faker.Address.State())
