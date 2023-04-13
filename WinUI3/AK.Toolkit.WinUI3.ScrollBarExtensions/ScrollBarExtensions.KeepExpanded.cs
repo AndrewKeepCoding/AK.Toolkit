@@ -19,8 +19,6 @@ public partial class ScrollBarExtensions
 
         keepExpandedTarget.Loaded -= KeepExpandedTarget_Loaded;
         keepExpandedTarget.Loaded += KeepExpandedTarget_Loaded;
-        keepExpandedTarget.Unloaded -= KeepExpandedTarget_Unloaded;
-        keepExpandedTarget.Unloaded += KeepExpandedTarget_Unloaded;
 
         ApplyKeepExpanded(keepExpandedTarget, orientation, keepExpanded);
     }
@@ -33,18 +31,6 @@ public partial class ScrollBarExtensions
         {
             target.Loaded -= KeepExpandedTarget_Loaded;
             ApplyKeepExpanded(target);
-        }
-    }
-
-    private static void KeepExpandedTarget_Unloaded(object sender, RoutedEventArgs e)
-    {
-        Log($"KeepExpandedTarget_Unloaded sender: {sender}");
-
-        if (sender is FrameworkElement target)
-        {
-            target.Unloaded -= KeepExpandedTarget_Unloaded;
-            ApplyKeepExpanded(target, Orientation.Vertical, keepExpanded: false);
-            ApplyKeepExpanded(target, Orientation.Horizontal, keepExpanded: false);
         }
     }
 
