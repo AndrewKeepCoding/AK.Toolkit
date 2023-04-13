@@ -16,7 +16,7 @@
       - KeepExpanded: An attached property that keeps ScrollBars expanded.
       - Annotations: An attached property that adds annotations to ScrollBars.
     </Description>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <PackageTags>winui3;winappsdk;extensions;helpers;scrollbar;scrollviewer</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
