@@ -39,7 +39,6 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Utilities\AK.Toolkit.Utilities.RandomStringGenerator\AK.Toolkit.Utilities.RandomStringGenerator.csproj" />
     <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.AutoCompleteTextBox\AK.Toolkit.WinUI3.AutoCompleteTextBox.csproj" />
     <ProjectReference Include="..\..\WinUI3\AK.Toolkit.WinUI3.NumberBoxEx\AK.Toolkit.WinUI3.NumberBoxEx.csproj" />
   </ItemGroup>

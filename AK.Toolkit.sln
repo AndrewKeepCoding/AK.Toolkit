@@ -11,10 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{EDEB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.Samples", "Samples\AK.Toolkit.Samples\AK.Toolkit.Samples.csproj", "{6F89C435-B6CD-4CA9-8B64-B39E642D93E2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{A07474CC-E082-4794-BC36-FADC14A0C035}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.Utilities.RandomStringGenerator", "Utilities\AK.Toolkit.Utilities.RandomStringGenerator\AK.Toolkit.Utilities.RandomStringGenerator.csproj", "{D879C412-1F09-4364-9C63-7E748C32FA5B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0DFB7268-1E7E-460F-A670-8336E61A13A4}"
 	ProjectSection(SolutionItems) = preProject
 		Assets\auto-complete-textbox-screenshot.png = Assets\auto-complete-textbox-screenshot.png
@@ -50,6 +46,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.ScrollBarExtensions", "WinUI3\AK.Toolkit.WinUI3.ScrollBarExtensions\AK.Toolkit.WinUI3.ScrollBarExtensions.csproj", "{3B156938-0A83-4B88-9FEF-52353E3D2AD9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.Samples.WinUI3.ScrollBarExtensions", "Samples\AK.Toolkit.Samples.WinUI3.ScrollBarExtensions\AK.Toolkit.Samples.WinUI3.ScrollBarExtensions.csproj", "{0B3590C2-F501-44EC-950B-4AC471AE711F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collections", "Collections", "{A1A967DE-46AB-4B10-A16F-1DE2EA267D3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,26 +113,6 @@ Global
 		{6F89C435-B6CD-4CA9-8B64-B39E642D93E2}.Release|x86.ActiveCfg = Release|x86
 		{6F89C435-B6CD-4CA9-8B64-B39E642D93E2}.Release|x86.Build.0 = Release|x86
 		{6F89C435-B6CD-4CA9-8B64-B39E642D93E2}.Release|x86.Deploy.0 = Release|x86
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|ARM.Build.0 = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|arm64.ActiveCfg = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|arm64.Build.0 = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|x64.Build.0 = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Debug|x86.Build.0 = Debug|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|ARM.ActiveCfg = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|ARM.Build.0 = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|arm64.ActiveCfg = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|arm64.Build.0 = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x64.ActiveCfg = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x64.Build.0 = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x86.ActiveCfg = Release|Any CPU
-		{D879C412-1F09-4364-9C63-7E748C32FA5B}.Release|x86.Build.0 = Release|Any CPU
 		{37CDE5D0-9D83-4ABB-B8EB-8D06682D3036}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{37CDE5D0-9D83-4ABB-B8EB-8D06682D3036}.Debug|Any CPU.Build.0 = Debug|x64
 		{37CDE5D0-9D83-4ABB-B8EB-8D06682D3036}.Debug|Any CPU.Deploy.0 = Debug|x64
@@ -412,7 +390,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{767D27DB-A5F2-4F5E-8DDA-E08C253966BE} = {7F954F26-CA57-40C7-9268-51868AAE52D7}
 		{6F89C435-B6CD-4CA9-8B64-B39E642D93E2} = {EDEB400F-756D-4F11-895A-4A8D2C72176A}
-		{D879C412-1F09-4364-9C63-7E748C32FA5B} = {A07474CC-E082-4794-BC36-FADC14A0C035}
 		{37CDE5D0-9D83-4ABB-B8EB-8D06682D3036} = {EDEB400F-756D-4F11-895A-4A8D2C72176A}
 		{C7F4A8AF-E4D0-44B5-8FF1-4FAA4E2CB83F} = {7F954F26-CA57-40C7-9268-51868AAE52D7}
 		{CCBBCF3C-400A-43DC-B5A7-6E299C78453E} = {7F954F26-CA57-40C7-9268-51868AAE52D7}

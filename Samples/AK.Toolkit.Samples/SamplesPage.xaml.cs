@@ -1,9 +1,7 @@
-﻿using AK.Toolkit.Utilities;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
-using static AK.Toolkit.Utilities.RandomStringGenerator;
 
 namespace AK.Toolkit.Samples;
 
@@ -11,7 +9,7 @@ public sealed partial class SamplesPage : Page
 {
     public SamplesPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
         UpdateDemoSuggestions();
     }
 
@@ -21,16 +19,7 @@ public sealed partial class SamplesPage : Page
     {
         DemoSuggestions.Clear();
 
-        if (int.TryParse(RandomDemoSuggestionsCount.Text, out int suggestionsCount) is true)
-        {
-            for (int i = 0; i < suggestionsCount; i++)
-            {
-                string suggestion = RandomStringGenerator.GenerateString(OutputType.AlphaNumerics, 3, 10);
-                DemoSuggestions.Add(suggestion);
-            }
-        }
-
-        string[]? additionals = AdditionalSuggestions.Text.Split('\u002C');
+        string[]? additionals = this.AdditionalSuggestions.Text.Split('\u002C');
         Random random = new();
 
         foreach (string item in additionals)
