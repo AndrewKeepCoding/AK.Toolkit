@@ -127,14 +127,6 @@
                             Background="SkyBlue"
                             Content="SkyBlue" />
                     </RadioButtons>
-                    <NumberBox
-                        x:Name="RandomDemoSuggestionsCount"
-                        Width="300"
-                        HorizontalAlignment="Left"
-                        Header="Random Demo Suggestions Count"
-                        Maximum="100000"
-                        Minimum="0"
-                        Text="10000" />
                     <TextBox
                         x:Name="AdditionalSuggestions"
                         Header="Additional Suggestions (Separate additional suggestions with a comma.)"
