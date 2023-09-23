@@ -109,39 +109,6 @@ Then bind your annotations using ``ScrollBarExtensions.VerticalAnnotations`` att
 
 ![ScrollBar Extensions Annotations Screenshot](Assets/scrollbar-extensions-annotations-screenshot.png)
 
-### 🏁 Grid Extensions - GridIndexer (GI)
-
-[🎬 YouTube](https://youtu.be/akqjnqsy-ME)
-
-An extensions that makes it easier to define rows and columns in `Grid`.
-
-For example, usually, you need to define the `ColumnDefinitions` and the `RowDefinitions` like below. You also need to set the `Grid.Row` and `Grid.Column` by **INDEX** which makes it difficult and error prone to modificate the order.
-
-```xaml
-<Grid
-    ColumnDefinitions="*,*,*,*,*"
-    RowDefinitions="*,*,*,*,*">
-    <TextBlock Grid.Row="0" Grid.Column="0"/>
-    <TextBlock Grid.Row="1" Grid.Column="1"/>
-    <TextBlock Grid.Row="2" Grid.Column="2"/>
-    <TextBlock Grid.Row="3" Grid.Column="3"/>
-    <TextBlock Grid.Row="4" Grid.Column="4"/>
-</Grid>
-
-```
-
-You can use **GridIndexer (GI)** and define your columns and rows like below.
-
-```xaml
-<Grid>
-    <TextBlock GI.Row="0" GI.Column="0"/>
-    <TextBlock GI.Row="+1" GI.Column="+1"/>
-    <TextBlock GI.Row="+1" GI.Column="+1"/>
-    <TextBlock GI.Row="+1" GI.Column="+1"/>
-    <TextBlock GI.Row="+1" GI.Column="+1"/>
-</Grid>
-```
-
 ## 🗑️ Deprecated
 
 ### 🌏 Localizer
