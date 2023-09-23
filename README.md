@@ -108,18 +108,3 @@ Then bind your annotations using ``ScrollBarExtensions.VerticalAnnotations`` att
 ```
 
 ![ScrollBar Extensions Annotations Screenshot](Assets/scrollbar-extensions-annotations-screenshot.png)
-
-## 🗑️ Deprecated
-
-### 🌏 Localizer
-
-> **Note**: Localizer has been replaced with [WinUI3Localizer](https://github.com/AndrewKeepCoding/WinUI3Localizer).
-
-[🎬 YouTube](https://youtu.be/6Y5saLQ9bcs)
-
-Localizer helps you to localize your app.
-
-- Switch languages **without restarting** the app
-- You (users) can **edit** localized strings even after deployment
-- You (users) can **add** new languages even after deployment
-- Use the starndard **Resources.resw**
