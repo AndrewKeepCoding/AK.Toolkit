@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -71,7 +72,9 @@ public sealed class TextBlockEx : Control
         HighlighterForeground = Foreground;
     }
 
-    public bool IsHighlighterEnabled
+    public event EventHandler? TextHighlighted;
+
+    public event EventHandler? TextUnhighlighted;
     {
         get => (bool)GetValue(IsHighlighterEnabledProperty);
         set => SetValue(IsHighlighterEnabledProperty, value);
@@ -159,6 +162,15 @@ public sealed class TextBlockEx : Control
             textHighlighter.Foreground = HighlighterForeground;
             textHighlighter.Background = HighlighterBackground;
             RichTextBlockControl.TextHighlighters.Add(textHighlighter);
+        }
+
+        if (matches.Count > 0)
+        {
+            TextHighlighted?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            TextUnhighlighted?.Invoke(this, EventArgs.Empty);
         }
     }
 
