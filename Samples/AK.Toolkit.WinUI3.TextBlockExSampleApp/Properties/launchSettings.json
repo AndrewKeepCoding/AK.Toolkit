@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.WinUI3.TextBlockExSampleApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.WinUI3.TextBlockExSampleApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:TextHighlightablePage
+    x:Class="AK.Toolkit.WinUI3.TextBlockExSampleApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AK.Toolkit.WinUI3"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AK.Toolkit.WinUI3.TextBlockExSampleApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ThisPage"
+    mc:Ignorable="d">
+
+    <local:TextHighlightablePage.Resources>
+        <DataTemplate x:Key="HighlightableTextContentTemplate">
+            <controls:TextBlockEx
+                HighlightingText="{Binding ElementName=ThisPage, Path=HighlightingText}"
+                IsHitTestVisible="False"
+                Text="{Binding}" />
+        </DataTemplate>
+    </local:TextHighlightablePage.Resources>
+
+    <Grid ColumnDefinitions="*,0.5*">
+        <StackPanel
+            Grid.Column="0"
+            Spacing="20">
+
+            <Button
+                Content="Button"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <DropDownButton
+                Content="DropDownButton"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <HyperlinkButton
+                Content="HyperlinkButton"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <RepeatButton
+                Content="RepeatButton"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <ToggleButton
+                Content="ToggleButton"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}"
+                IsChecked="True" />
+
+            <SplitButton
+                Content="SplitButton"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <CheckBox
+                Content="CheckBox"
+                ContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <ColorPicker
+                HorizontalAlignment="Left"
+                Loaded="ColorPicker_Loaded" />
+
+            <ComboBox
+                ItemTemplate="{StaticResource HighlightableTextContentTemplate}"
+                Loaded="ComboBox_Loaded"
+                PlaceholderText="ComboBox">
+                <x:String>Item 1</x:String>
+                <x:String>Item 2</x:String>
+                <x:String>Item 3</x:String>
+            </ComboBox>
+
+        </StackPanel>
+        <StackPanel
+            Grid.Column="1"
+            Spacing="20">
+
+            <RadioButtons
+                ItemTemplate="{StaticResource HighlightableTextContentTemplate}"
+                SelectedIndex="0">
+                <x:String>Item 1</x:String>
+                <x:String>Item 2</x:String>
+                <x:String>Item 3</x:String>
+            </RadioButtons>
+
+            <RatingControl
+                HorizontalAlignment="Left"
+                Caption="RatingControl"
+                Loaded="RatingControl_Loaded"
+                Value="5" />
+
+            <Slider
+                Header="Slider"
+                HeaderTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <ToggleSwitch
+                IsOn="True"
+                OffContent="Disabled"
+                OffContentTemplate="{StaticResource HighlightableTextContentTemplate}"
+                OnContent="Enabled"
+                OnContentTemplate="{StaticResource HighlightableTextContentTemplate}" />
+
+            <StackPanel>
+                <controls:TextBlockEx
+                    HighlightingText="{x:Bind HighlightingText, Mode=OneWay}"
+                    Text="ListBox" />
+                <ListBox
+                    ItemTemplate="{StaticResource HighlightableTextContentTemplate}"
+                    SelectedIndex="0">
+                    <x:String>Item 1</x:String>
+                    <x:String>Item 2</x:String>
+                    <x:String>Item 3</x:String>
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel>
+                <controls:TextBlockEx
+                    HighlightingText="{x:Bind HighlightingText, Mode=OneWay}"
+                    Text="ListView" />
+                <ListView
+                    ItemTemplate="{StaticResource HighlightableTextContentTemplate}"
+                    SelectedIndex="0">
+                    <x:String>Item 1</x:String>
+                    <x:String>Item 2</x:String>
+                    <x:String>Item 3</x:String>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel>
+                <controls:TextBlockEx
+                    HighlightingText="{x:Bind HighlightingText, Mode=OneWay}"
+                    Text="TreeView" />
+                <TreeView ItemTemplate="{StaticResource HighlightableTextContentTemplate}">
+                    <TreeView.RootNodes>
+                        <TreeViewNode
+                            Content="Item 1"
+                            IsExpanded="True">
+                            <TreeViewNode.Children>
+                                <TreeViewNode Content="Item 1-1" />
+                            </TreeViewNode.Children>
+                        </TreeViewNode>
+                        <TreeViewNode Content="Item 2" />
+                        <TreeViewNode Content="Item 3" />
+                    </TreeView.RootNodes>
+                </TreeView>
+            </StackPanel>
+
+            <CalendarDatePicker
+                Header="CalendarDatePicker"
+                HeaderTemplate="{StaticResource HighlightableTextContentTemplate}"
+                Loaded="CalendarDatePicker_Loaded" />
+
+        </StackPanel>
+    </Grid>
+
+</local:TextHighlightablePage>

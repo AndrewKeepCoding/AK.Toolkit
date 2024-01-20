@@ -1,0 +1,43 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AK.Toolkit.WinUI3">
+
+    <SolidColorBrush
+        x:Key="TextHighlightBackground"
+        Color="Yellow" />
+    <SolidColorBrush
+        x:Key="TextHighlightForeground"
+        Color="Black" />
+    <x:Boolean x:Key="IsTextHighlightCaseSensitive">false</x:Boolean>
+
+    <Style TargetType="local:TextBlockEx">
+        <Setter Property="TextHighlightBackground" Value="{ThemeResource TextHighlightBackground}" />
+        <Setter Property="TextHighlightForeground" Value="{ThemeResource TextHighlightForeground}" />
+        <Setter Property="IsTextHighlightCaseSensitive" Value="{ThemeResource IsTextHighlightCaseSensitive}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:TextBlockEx">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <RichTextBlock
+                            x:Name="RichTextBlockControl"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            CharacterSpacing="{TemplateBinding CharacterSpacing}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontStyle="{TemplateBinding FontStyle}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"
+                            TextAlignment="{TemplateBinding TextAlignment}"
+                            TextWrapping="{TemplateBinding TextWrapping}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
