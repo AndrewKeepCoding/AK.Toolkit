@@ -10,30 +10,30 @@ namespace AK.Toolkit.WinUI3;
 
 public sealed class TextBlockEx : Control
 {
-    public static readonly DependencyProperty IsHighlighterEnabledProperty =
+    public static readonly DependencyProperty IsTextHighlightEnabledProperty =
         DependencyProperty.Register(
-            nameof(IsHighlighterEnabled),
+            nameof(IsTextHighlightEnabled),
             typeof(bool),
             typeof(TextBlockEx),
             new PropertyMetadata(true, (d, e) => (d as TextBlockEx)?.RefreshHighlightingText()));
 
-    public static readonly DependencyProperty IsHighlighterCaseSensitiveProperty =
+    public static readonly DependencyProperty IsTextHighlightCaseSensitiveProperty =
         DependencyProperty.Register(
-            nameof(IsHighlighterCaseSensitive),
+            nameof(IsTextHighlightCaseSensitive),
             typeof(bool),
             typeof(TextBlockEx),
             new PropertyMetadata(default, (d, e) => (d as TextBlockEx)?.RefreshHighlightingText()));
 
-    public static readonly DependencyProperty HighlighterBackgroundProperty =
+    public static readonly DependencyProperty TextHighlightBackgroundProperty =
         DependencyProperty.Register(
-            nameof(HighlighterBackground),
+            nameof(TextHighlightBackground),
             typeof(Brush),
             typeof(TextBlockEx),
             new PropertyMetadata(default));
 
-    public static readonly DependencyProperty HighlighterForegroundProperty =
+    public static readonly DependencyProperty TextHighlightForegroundProperty =
         DependencyProperty.Register(
-            nameof(HighlighterForeground),
+            nameof(TextHighlightForeground),
             typeof(Brush),
             typeof(TextBlockEx),
             new PropertyMetadata(default));
@@ -69,21 +69,22 @@ public sealed class TextBlockEx : Control
     public TextBlockEx()
     {
         DefaultStyleKey = typeof(TextBlockEx);
-        HighlighterForeground = Foreground;
     }
 
     public event EventHandler? TextHighlighted;
 
     public event EventHandler? TextUnhighlighted;
+
+    public bool IsTextHighlightEnabled
     {
-        get => (bool)GetValue(IsHighlighterEnabledProperty);
-        set => SetValue(IsHighlighterEnabledProperty, value);
+        get => (bool)GetValue(IsTextHighlightEnabledProperty);
+        set => SetValue(IsTextHighlightEnabledProperty, value);
     }
 
-    public bool IsHighlighterCaseSensitive
+    public bool IsTextHighlightCaseSensitive
     {
-        get => (bool)GetValue(IsHighlighterCaseSensitiveProperty);
-        set => SetValue(IsHighlighterCaseSensitiveProperty, value);
+        get => (bool)GetValue(IsTextHighlightCaseSensitiveProperty);
+        set => SetValue(IsTextHighlightCaseSensitiveProperty, value);
     }
 
     public string HighlightingText
@@ -92,16 +93,16 @@ public sealed class TextBlockEx : Control
         set => SetValue(HighlightingTextProperty, value);
     }
 
-    public Brush HighlighterBackground
+    public Brush TextHighlightBackground
     {
-        get => (Brush)GetValue(HighlighterBackgroundProperty);
-        set => SetValue(HighlighterBackgroundProperty, value);
+        get => (Brush)GetValue(TextHighlightBackgroundProperty);
+        set => SetValue(TextHighlightBackgroundProperty, value);
     }
 
-    public Brush HighlighterForeground
+    public Brush TextHighlightForeground
     {
-        get => (Brush)GetValue(HighlighterForegroundProperty);
-        set => SetValue(HighlighterForegroundProperty, value);
+        get => (Brush)GetValue(TextHighlightForegroundProperty);
+        set => SetValue(TextHighlightForegroundProperty, value);
     }
 
     public string Text
@@ -141,14 +142,15 @@ public sealed class TextBlockEx : Control
 
         RichTextBlockControl.TextHighlighters.Clear();
 
-        if (IsHighlighterEnabled is false ||
+        if (IsTextHighlightEnabled is false ||
+            string.IsNullOrEmpty(Text) ||
             string.IsNullOrEmpty(HighlightingText))
         {
             return;
         }
 
         string pattern = Regex.Escape(HighlightingText);
-        RegexOptions regexOptions = IsHighlighterCaseSensitive is true
+        RegexOptions regexOptions = IsTextHighlightCaseSensitive is true
             ? RegexOptions.None
             : RegexOptions.IgnoreCase;
         Regex regex = new(pattern, regexOptions);
@@ -159,8 +161,8 @@ public sealed class TextBlockEx : Control
             TextHighlighter textHighlighter = new();
             TextRange textRange = new(_StartIndex: match.Index, _Length: match.Length);
             textHighlighter.Ranges.Add(textRange);
-            textHighlighter.Foreground = HighlighterForeground;
-            textHighlighter.Background = HighlighterBackground;
+            textHighlighter.Foreground = TextHighlightForeground;
+            textHighlighter.Background = TextHighlightBackground;
             RichTextBlockControl.TextHighlighters.Add(textHighlighter);
         }
 

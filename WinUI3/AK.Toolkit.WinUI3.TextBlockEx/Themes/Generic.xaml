@@ -4,13 +4,17 @@
     xmlns:local="using:AK.Toolkit.WinUI3">
 
     <SolidColorBrush
-        x:Key="HighlightingBackground"
+        x:Key="TextHighlightBackground"
         Color="Yellow" />
-    <x:Boolean x:Key="IsHighlighterCaseSensitive">false</x:Boolean>
+    <SolidColorBrush
+        x:Key="TextHighlightForeground"
+        Color="Black" />
+    <x:Boolean x:Key="IsTextHighlightCaseSensitive">false</x:Boolean>
 
     <Style TargetType="local:TextBlockEx">
-        <Setter Property="HighlighterBackground" Value="{ThemeResource HighlightingBackground}" />
-        <Setter Property="IsHighlighterCaseSensitive" Value="{ThemeResource IsHighlighterCaseSensitive}" />
+        <Setter Property="TextHighlightBackground" Value="{ThemeResource TextHighlightBackground}" />
+        <Setter Property="TextHighlightForeground" Value="{ThemeResource TextHighlightForeground}" />
+        <Setter Property="IsTextHighlightCaseSensitive" Value="{ThemeResource IsTextHighlightCaseSensitive}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TextBlockEx">
@@ -20,6 +24,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <RichTextBlock
                             x:Name="RichTextBlockControl"
+                            Padding="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             CharacterSpacing="{TemplateBinding CharacterSpacing}"
