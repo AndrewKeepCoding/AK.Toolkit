@@ -1,10 +1,8 @@
-using Microsoft.UI.Xaml;
-
 namespace AK.Toolkit.WinUI3.TextBlockExSampleApp;
 
-public sealed partial class MainWindow : Window
+public sealed partial class ButtonPage : TextHighlightablePage
 {
-    public MainWindow()
+    public ButtonPage()
     {
         InitializeComponent();
     }

@@ -1,18 +1,18 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace AK.Toolkit.WinUI3.TextBlockExSampleApp;
 public partial class App : Application
 {
-    private Window? _window;
+    private Window? window;
 
     public App()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        _window = new MainWindow();
-        _window.Activate();
+        this.window = new MainWindow();
+        this.window.Activate();
     }
 }
