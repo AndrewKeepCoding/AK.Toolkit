@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
