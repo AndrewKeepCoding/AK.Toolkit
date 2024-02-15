@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AK.Toolkit.WinUI3"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="HighlightingTextContentTemplate">
+            <RichTextBlock
+                controls:RichTextBlockExtensions.HighlightingText="{Binding ElementName=HighlightingAutoSuggestBox, Path=Text}"
+                controls:RichTextBlockExtensions.Text="{Binding}"
+                IsHitTestVisible="False" />
+        </DataTemplate>
+        <Style TargetType="NavigationViewItem">
+            <Setter Property="IsExpanded" Value="True" />
+        </Style>
+    </Page.Resources>
+
+    <NavigationView
+        IsBackButtonVisible="Collapsed"
+        Loaded="NavigationView_Loaded"
+        OpenPaneLength="250"
+        SelectionChanged="NavigationView_SelectionChanged">
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox
+                x:Name="HighlightingAutoSuggestBox"
+                PlaceholderText="Enter highlighting text..."
+                QueryIcon="Highlight" />
+        </NavigationView.AutoSuggestBox>
+        <NavigationView.MenuItems>
+            <NavigationViewItem
+                Content="Main Page"
+                Icon="AllApps"
+                Tag="MainPage">
+                <NavigationViewItem.MenuItems>
+                    <NavigationViewItem
+                        Content="Sub Page"
+                        Icon="Emoji"
+                        Tag="SubPage" />
+                </NavigationViewItem.MenuItems>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+        <Frame
+            x:Name="ContentFrame"
+            Margin="30"
+            Navigated="ContentFrame_Navigated" />
+    </NavigationView>
+</Page>
