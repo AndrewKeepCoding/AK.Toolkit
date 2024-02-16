@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0DFB7268-1E7E-460F-A670-8336E61A13A4}"
 	ProjectSection(SolutionItems) = preProject
 		Assets\auto-complete-textbox-screenshot.png = Assets\auto-complete-textbox-screenshot.png
+		Assets\richtextblock-extensions-screenshot.png = Assets\richtextblock-extensions-screenshot.png
 		Assets\scrollbar-extensions-annotations-screenshot.png = Assets\scrollbar-extensions-annotations-screenshot.png
 	EndProjectSection
 EndProject
@@ -37,9 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.TextBlock
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.TextBlockExSampleApp", "Samples\AK.Toolkit.WinUI3.TextBlockExSampleApp\AK.Toolkit.WinUI3.TextBlockExSampleApp.csproj", "{B2459114-5D81-48A4-8166-0B893CA00EC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.WinUI3.RichTextBlockExtensions", "WinUI3\AK.Toolkit.WinUI3.RichTextBlockExtensions\AK.Toolkit.WinUI3.RichTextBlockExtensions.csproj", "{70BC2116-5863-4F79-95A4-19176CCF3F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.RichTextBlockExtensions", "WinUI3\AK.Toolkit.WinUI3.RichTextBlockExtensions\AK.Toolkit.WinUI3.RichTextBlockExtensions.csproj", "{70BC2116-5863-4F79-95A4-19176CCF3F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp", "Samples\AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp\AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp.csproj", "{DCDA10E1-12BB-4437-AADE-1BA1D79F1E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp", "Samples\AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp\AK.Toolkit.WinUI3.RichTextBlockExtensionsSampleApp.csproj", "{DCDA10E1-12BB-4437-AADE-1BA1D79F1E00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
