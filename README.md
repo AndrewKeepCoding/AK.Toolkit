@@ -4,6 +4,22 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 
 ## 🔵 WinUI 3
 
+### 📜 RichTextBlockExtensions
+
+Extensions that make it easier to highlight `RichTextBlock`.
+
+```xaml
+<Button>
+    <RichTextBlock
+        toolkit:RichTextBlockExtensions.HighlightingText="{x:Bind HighlightingText, Mode=OneWay}"
+        toolkit:RichTextBlockExtensions.Text="Button"
+        IsHitTestVisible="False" />
+</Button>
+```
+
+![ScrollBar Extensions Annotations Screenshot](Assets/richtextblock-extensions-screenshot.png)
+
+
 ### 💻 AutoCompleteTextBox
 
 [🎬 YouTube](https://youtu.be/G17jbGSXLnk)
