@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window
+    x:Class="AK.Toolkit.WinUI3.ButtonExtensionsSampleApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AK.Toolkit.WinUI3.ButtonExtensionsSampleApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:AK.Toolkit.WinUI3"
+    mc:Ignorable="d">
+
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+        <Grid.Resources>
+            <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+                <Setter Property="Width" Value="100" />
+            </Style>
+        </Grid.Resources>
+
+        <StackPanel
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Spacing="20">
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="32"
+                Text="😲 Default Button's behaviors" />
+            <StackPanel
+                x:Name="DefaultButtonsStackPanel"
+                HorizontalAlignment="Center"
+                Spacing="10">
+                <Button Click="Button_Click" Content="Click" />
+                <Button
+                    Background="Red"
+                    Click="Button_Click"
+                    Content="Click" />
+                <Button
+                    Background="Green"
+                    Click="Button_Click"
+                    Content="Click" />
+                <Button
+                    Background="Blue"
+                    Click="Button_Click"
+                    Content="Click" />
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Spacing="20">
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="32"
+                Text="🤩 This video's goal" />
+            <StackPanel
+                x:Name="ExtendedButtonsStackPanel"
+                HorizontalAlignment="Center"
+                Spacing="10">
+                <Button
+                    toolkit:ButtonExtensions.PointerOverBackgroundLightnessFactor="1.2"
+                    toolkit:ButtonExtensions.PressedBackgroundLightnessFactor="0.8"
+                    Background="Red"
+                    Click="Button_Click"
+                    Content="Click" />
+                <Button
+                    toolkit:ButtonExtensions.PointerOverBackgroundLightnessFactor="1.2"
+                    toolkit:ButtonExtensions.PressedBackgroundLightnessFactor="0.8"
+                    Background="Green"
+                    Click="Button_Click"
+                    Content="Click" />
+                <Button
+                    toolkit:ButtonExtensions.PointerOverBackgroundLightnessFactor="1.2"
+                    toolkit:ButtonExtensions.PressedBackgroundLightnessFactor="0.8"
+                    Background="Blue"
+                    Click="Button_Click"
+                    Content="Click" />
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+
+</Window>
