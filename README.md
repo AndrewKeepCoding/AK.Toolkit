@@ -6,6 +6,8 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 
 ### ⏺️ ButtonExtensions
 
+[🎬 YouTube](https://youtu.be/3PX2oLuqEqA?si=BCg9dpG2Oq-RvJHU)
+
 Provides additional features for the Button control:
 - PointerOverBackgroundLightnessFactor
 - PressedBackgroundLightnessFactor
