@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AK.Toolkit.WinUI3.ButtonExtensionsSampleApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AK.Toolkit.WinUI3.ButtonExtensionsSampleApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

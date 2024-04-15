@@ -4,6 +4,21 @@ The AK.Toolkit will be a collection of controls, helpers, etc... stuff that I ne
 
 ## 🔵 WinUI 3
 
+### ⏺️ ButtonExtensions
+
+Provides additional features for the Button control:
+- PointerOverBackgroundLightnessFactor
+- PressedBackgroundLightnessFactor
+
+```xaml
+<Button
+    toolkit:ButtonExtensions.PointerOverBackgroundLightnessFactor="1.2"
+    toolkit:ButtonExtensions.PressedBackgroundLightnessFactor="0.8"
+    Background="Blue"
+    Click="Button_Click"
+    Content="Click" />
+```
+
 ### 📜 RichTextBlockExtensions
 
 Extensions that make it easier to highlight `RichTextBlock`.
@@ -14,7 +29,6 @@ Extensions that make it easier to highlight `RichTextBlock`.
         toolkit:RichTextBlockExtensions.HighlightingText="{x:Bind HighlightingText, Mode=OneWay}"
         toolkit:RichTextBlockExtensions.Text="Button"
         IsHitTestVisible="False" />
-</Button>
 ```
 
 ![ScrollBar Extensions Annotations Screenshot](Assets/richtextblock-extensions-screenshot.png)
