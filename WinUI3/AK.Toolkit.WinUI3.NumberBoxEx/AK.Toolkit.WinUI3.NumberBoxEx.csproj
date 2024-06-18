@@ -15,7 +15,7 @@
       - NumberHorizontalAlignment DependencyProperty
       - IsDeleteButtonVisible DependencyProperty
     </Description>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <PackageTags>winui3;winappsdk;numberbox;control;customcontrol</PackageTags>
     <PackageProjectUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AndrewKeepCoding/AK.Toolkit</RepositoryUrl>
@@ -25,7 +25,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageId>AK.Toolkit.WinUI3.NumberBoxEx</PackageId>
     <Product>AK.Toolkit.WinUI3.NumberBoxEx</Product>
-    <Copyright>Copyright (c) Andrew KeepCoding 2023</Copyright>
+    <Copyright>Copyright (c) Andrew KeepCoding 2024</Copyright>
     <Authors>Andrew KeepCoding</Authors>
     <PackageReadMeFile>README.md</PackageReadMeFile>
     <PackageIcon>winui.png</PackageIcon>
