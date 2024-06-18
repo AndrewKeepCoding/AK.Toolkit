@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,8 @@ public class NumberBoxEx : NumberBox
 
     private ScrollViewer? ContentElement { get; set; }
 
+    private TextBox? InputBox { get; set; }
+
     private Button? DeleteButton { get; set; }
 
     private long DeleteButtonPropertyChangedCallbackToken { get; set; }
@@ -80,6 +83,21 @@ public class NumberBoxEx : NumberBox
         {
             ContentElement = scrollViewer;
             UpdateNumberHorizontalAlignment();
+        }
+
+        if (FindChildrenOfType<TextBox>(this)
+            .Where(x => x.Name == nameof(InputBox))
+            .FirstOrDefault() is TextBox inputBox)
+        {
+            InputBox = inputBox;
+            InputBox.SetBinding(
+                TextBox.MinWidthProperty,
+                new Binding
+                {
+                    Source = this,
+                    Path = new PropertyPath("MinWidth"),
+                    Mode = BindingMode.OneWay,
+                });
         }
 
         if (FindChildrenOfType<Button>(this)
