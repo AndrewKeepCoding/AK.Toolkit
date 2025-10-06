@@ -1,4 +1,3 @@
-using CommunityToolkit.WinUI.UI;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -256,7 +255,7 @@ public partial class ScrollBarExtensions
     }
 }
 
-internal class AnnotationsPresenter : Canvas
+internal partial class AnnotationsPresenter : Canvas
 {
     public static readonly DependencyProperty AnnotationsProperty = DependencyProperty.Register(
         nameof(Annotations),
