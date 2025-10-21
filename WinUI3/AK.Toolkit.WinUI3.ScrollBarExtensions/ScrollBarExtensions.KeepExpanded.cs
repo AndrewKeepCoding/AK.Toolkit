@@ -1,4 +1,3 @@
-using CommunityToolkit.WinUI.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -9,7 +8,7 @@ namespace AK.Toolkit.WinUI3;
 
 public partial class ScrollBarExtensions
 {
-    private static List<RemovingVisualState> RemovedVisualStates { get; } = new();
+    private static List<RemovingVisualState> RemovedVisualStates { get; } = [];
 
     private record RemovingVisualState(VisualStateGroup VisualStateGroup, VisualState VisualState);
 

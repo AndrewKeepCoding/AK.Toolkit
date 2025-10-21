@@ -29,51 +29,60 @@
             AutoGenerateColumns="False"
             ItemsSource="{x:Bind Users}">
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn
-                    Binding="{Binding Id}"
-                    Header="ID" />
-                <controls:DataGridTextColumn
-                    Binding="{Binding FirstName}"
-                    Header="First Name" />
-                <controls:DataGridTextColumn
-                    Binding="{Binding LastName}"
-                    Header="Last Name" />
-                <controls:DataGridTextColumn
-                    Binding="{Binding Address}"
-                    Header="Address" />
+                <controls:DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                <controls:DataGridTextColumn Binding="{Binding FirstName}" Header="First Name" />
+                <controls:DataGridTextColumn Binding="{Binding LastName}" Header="Last Name" />
+                <controls:DataGridTextColumn Binding="{Binding Address}" Header="Address" />
             </controls:DataGrid.Columns>
         </controls:DataGrid>
 
         <StackPanel
             Grid.Row="1"
             Grid.Column="1"
-            Spacing="20">
-            <TextBox Text="{x:Bind RedAnnotationsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.Header>
-                    <TextBlock
-                        Margin="0"
-                        Padding="0"
-                        Foreground="HotPink"
-                        Text="Red annotations" />
-                </TextBox.Header>
-            </TextBox>
-            <TextBox Text="{x:Bind GreenAnnotationsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.Header>
-                    <TextBlock
-                        Foreground="LightGreen"
-                        Text="Green annotations" />
-                </TextBox.Header>
-            </TextBox>
-            <TextBox Text="{x:Bind BlueAnnotationsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.Header>
-                    <TextBlock
-                        Foreground="SkyBlue"
-                        Text="Blue annotations" />
-                </TextBox.Header>
-            </TextBox>
-            <toolkit:NumberBoxEx
-                Header="Annotations height"
-                Value="{x:Bind AnnotationsHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            MinWidth="200"
+            Spacing="8">
+
+            <TextBlock Text="Annotations" />
+            <ItemsControl ItemsSource="{x:Bind AnnotationSettingsList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="local:AnnotationSettings">
+                        <TextBox TextChanged="AnnotationSettingsTextBox_TextChanged">
+                            <TextBox.Header>
+                                <TextBlock Foreground="{x:Bind local:AnnotationsPage.ToBrush(Color)}" Text="{x:Bind Name}" />
+                            </TextBox.Header>
+                        </TextBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <StackPanel>
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Grid.Column="0" Text="Height" />
+                    <TextBlock Grid.Column="1" Text="{x:Bind local:AnnotationsPage.ToString(AnnotationHeightSlider.Value, 0), Mode=OneWay}" />
+                </Grid>
+                <Slider
+                    x:Name="AnnotationHeightSlider"
+                    Maximum="16"
+                    Minimum="1"
+                    SnapsTo="StepValues"
+                    StepFrequency="1"
+                    ValueChanged="AnnotationHeightSlider_ValueChanged" />
+            </StackPanel>
+
+            <StackPanel>
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Grid.Column="0" Text="Opacity" />
+                    <TextBlock Grid.Column="1" Text="{x:Bind local:AnnotationsPage.ToString(AnnotationOpacitySlider.Value, 1), Mode=OneWay}" />
+                </Grid>
+                <Slider
+                    x:Name="AnnotationOpacitySlider"
+                    Maximum="1"
+                    Minimum="0.1"
+                    SnapsTo="StepValues"
+                    StepFrequency="0.1"
+                    ValueChanged="AnnotationOpacitySlider_ValueChanged" />
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 

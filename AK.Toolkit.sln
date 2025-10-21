@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.WinUI3.ButtonExt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AK.Toolkit.WinUI3.ButtonExtensionsSampleApp", "AK.Toolkit.WinUI3.ButtonExtensionsSampleApp\AK.Toolkit.WinUI3.ButtonExtensionsSampleApp.csproj", "{C58364A2-840A-4D37-8DFB-960A562F7DD0}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AK.Toolkit.WinUI3.Shared", "WinUI3\AK.Toolkit.WinUI3.Shared\AK.Toolkit.WinUI3.Shared.shproj", "{31DAE469-2B03-4087-828C-712388602F70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -398,8 +400,12 @@ Global
 		{DCDA10E1-12BB-4437-AADE-1BA1D79F1E00} = {EDEB400F-756D-4F11-895A-4A8D2C72176A}
 		{3D24D1D2-5AAE-4C2C-9F24-0AB0C2E84FCF} = {7F954F26-CA57-40C7-9268-51868AAE52D7}
 		{C58364A2-840A-4D37-8DFB-960A562F7DD0} = {EDEB400F-756D-4F11-895A-4A8D2C72176A}
+		{31DAE469-2B03-4087-828C-712388602F70} = {7F954F26-CA57-40C7-9268-51868AAE52D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5291613D-E375-45A4-ACBB-E655A7307CCC}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		WinUI3\AK.Toolkit.WinUI3.Shared\AK.Toolkit.WinUI3.Shared.projitems*{31dae469-2b03-4087-828c-712388602f70}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

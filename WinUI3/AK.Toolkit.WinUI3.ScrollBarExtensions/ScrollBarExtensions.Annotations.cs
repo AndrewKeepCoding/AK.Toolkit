@@ -1,4 +1,3 @@
-using CommunityToolkit.WinUI.UI;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -48,7 +47,7 @@ public record BasicAnnotation : IAnnotation
 
 public partial class ScrollBarExtensions
 {
-    private static Dictionary<ScrollBar, AnnotationsPresenter> AnnotationPresenters { get; } = new();
+    private static Dictionary<ScrollBar, AnnotationsPresenter> AnnotationPresenters { get; } = [];
 
     private static void OnAnnotationsPropertyChanged(FrameworkElement annotationsTarget, Orientation orientation, IEnumerable<IAnnotation> annotations)
     {
@@ -80,7 +79,7 @@ public partial class ScrollBarExtensions
         if (sender is FrameworkElement target)
         {
             target.Unloaded -= AnnotationsTarget_Unloaded;
-            ApplyAnnotations(target, Orientation.Vertical, Enumerable.Empty<IAnnotation>());
+            ApplyAnnotations(target, Orientation.Vertical, []);
         }
     }
 
@@ -256,7 +255,7 @@ public partial class ScrollBarExtensions
     }
 }
 
-internal class AnnotationsPresenter : Canvas
+internal partial class AnnotationsPresenter : Canvas
 {
     public static readonly DependencyProperty AnnotationsProperty = DependencyProperty.Register(
         nameof(Annotations),

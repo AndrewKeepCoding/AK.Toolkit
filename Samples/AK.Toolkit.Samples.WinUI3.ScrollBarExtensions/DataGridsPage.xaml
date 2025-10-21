@@ -35,12 +35,8 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: False" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: False" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         Grid.Row="1"
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="False"
@@ -55,12 +51,8 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="True"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
@@ -74,12 +66,8 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="{x:Bind HorizontalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
@@ -111,9 +99,7 @@
                     Grid.Row="0"
                     Style="{StaticResource SubtitleTextBlockStyle}"
                     Text="KeepExpanded: False" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="False"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
@@ -127,12 +113,8 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="True"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
@@ -146,12 +128,8 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="{x:Bind HorizontalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
@@ -179,12 +157,8 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: False" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: False" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="False"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
@@ -198,12 +172,8 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="True"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
@@ -217,12 +187,8 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <controls:DataGrid
                         toolkit:ScrollBarExtensions.KeepHorizontalExpanded="{x:Bind HorizontalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
@@ -250,12 +216,8 @@
                 IsOn="False"
                 OffContent="KeepExpanded"
                 OnContent="KeepExpanded" />
-            <Button
-                Click="AddItemButton_Click"
-                Content="Add item" />
-            <Button
-                Click="RemoveItemButton_Click"
-                Content="Remove item" />
+            <Button Click="AddItemButton_Click" Content="Add item" />
+            <Button Click="RemoveItemButton_Click" Content="Remove item" />
         </StackPanel>
     </Grid>
 </Page>
