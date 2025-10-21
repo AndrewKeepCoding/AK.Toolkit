@@ -47,7 +47,7 @@ public record BasicAnnotation : IAnnotation
 
 public partial class ScrollBarExtensions
 {
-    private static Dictionary<ScrollBar, AnnotationsPresenter> AnnotationPresenters { get; } = new();
+    private static Dictionary<ScrollBar, AnnotationsPresenter> AnnotationPresenters { get; } = [];
 
     private static void OnAnnotationsPropertyChanged(FrameworkElement annotationsTarget, Orientation orientation, IEnumerable<IAnnotation> annotations)
     {
@@ -79,7 +79,7 @@ public partial class ScrollBarExtensions
         if (sender is FrameworkElement target)
         {
             target.Unloaded -= AnnotationsTarget_Unloaded;
-            ApplyAnnotations(target, Orientation.Vertical, Enumerable.Empty<IAnnotation>());
+            ApplyAnnotations(target, Orientation.Vertical, []);
         }
     }
 
