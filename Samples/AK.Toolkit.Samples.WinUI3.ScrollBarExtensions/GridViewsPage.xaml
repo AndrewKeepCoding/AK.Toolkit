@@ -11,9 +11,7 @@
 
     <Page.Resources>
         <ItemsPanelTemplate x:Key="GridViewItemsPanelTemplate">
-            <ItemsWrapGrid
-                MaximumRowsOrColumns="2"
-                Orientation="Horizontal" />
+            <ItemsWrapGrid MaximumRowsOrColumns="2" Orientation="Horizontal" />
         </ItemsPanelTemplate>
         <Style TargetType="GridView">
             <Setter Property="ItemsPanel" Value="{StaticResource GridViewItemsPanelTemplate}" />
@@ -45,12 +43,8 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: False" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
+                <TextBlock Grid.Row="0" Text="KeepExpanded: False" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
                     <GridView
                         Grid.Row="1"
                         toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
@@ -62,15 +56,9 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
-                        ItemsSource="{x:Bind EmptyList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" ItemsSource="{x:Bind EmptyList}" />
                 </Grid>
             </Grid>
             <!--  Toggle  -->
@@ -78,15 +66,9 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
-                        ItemsSource="{x:Bind EmptyList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}" ItemsSource="{x:Bind EmptyList}" />
                 </Grid>
             </Grid>
         </Grid>
@@ -112,12 +94,8 @@
                     Grid.Row="0"
                     Style="{StaticResource SubtitleTextBlockStyle}"
                     Text="KeepExpanded: False" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
-                        ItemsSource="{x:Bind SmallList}" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="False" ItemsSource="{x:Bind SmallList}" />
                 </Grid>
             </Grid>
             <!--  True  -->
@@ -125,15 +103,9 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
-                        ItemsSource="{x:Bind SmallList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" ItemsSource="{x:Bind SmallList}" />
                 </Grid>
             </Grid>
             <!--  Toggle  -->
@@ -141,15 +113,9 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
-                        ItemsSource="{x:Bind SmallList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}" ItemsSource="{x:Bind SmallList}" />
                 </Grid>
             </Grid>
         </Grid>
@@ -171,15 +137,9 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: False" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="False"
-                        ItemsSource="{x:Bind LargeList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: False" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="False" ItemsSource="{x:Bind LargeList}" />
                 </Grid>
             </Grid>
             <!--  True  -->
@@ -187,15 +147,9 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="True"
-                        ItemsSource="{x:Bind LargeList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="True" ItemsSource="{x:Bind LargeList}" />
                 </Grid>
             </Grid>
             <!--  Toggle  -->
@@ -203,15 +157,9 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
-                <Grid
-                    Grid.Row="1"
-                    Style="{StaticResource GridBoxStyle}">
-                    <GridView
-                        toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}"
-                        ItemsSource="{x:Bind LargeList}" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
+                <Grid Grid.Row="1" Style="{StaticResource GridBoxStyle}">
+                    <GridView toolkit:ScrollBarExtensions.KeepVerticalExpanded="{x:Bind VerticalScrollBarsKeepExpandedSwitch.IsOn, Mode=OneWay}" ItemsSource="{x:Bind LargeList}" />
                 </Grid>
             </Grid>
         </Grid>
@@ -227,12 +175,8 @@
                 IsOn="False"
                 OffContent="KeepExpanded"
                 OnContent="KeepExpanded" />
-            <Button
-                Click="AddItemButton_Click"
-                Content="Add item" />
-            <Button
-                Click="RemoveItemButton_Click"
-                Content="Remove item" />
+            <Button Click="AddItemButton_Click" Content="Add item" />
+            <Button Click="RemoveItemButton_Click" Content="Remove item" />
         </StackPanel>
     </Grid>
 </Page>

@@ -33,9 +33,7 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: False" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: False" />
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,Auto"
@@ -64,9 +62,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,Auto"
@@ -95,9 +91,7 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,Auto"
@@ -140,9 +134,7 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: False" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: False" />
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,Auto"
@@ -173,9 +165,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: True" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: True" />
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,Auto"
@@ -206,9 +196,7 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 RowDefinitions="Auto,*">
-                <TextBlock
-                    Grid.Row="0"
-                    Text="KeepExpanded: Binding" />
+                <TextBlock Grid.Row="0" Text="KeepExpanded: Binding" />
                 <Grid
                     Grid.Row="1"
                     ColumnDefinitions="*,Auto"

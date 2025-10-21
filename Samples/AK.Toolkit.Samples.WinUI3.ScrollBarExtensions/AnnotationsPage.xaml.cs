@@ -1,8 +1,8 @@
 using AK.Toolkit.WinUI3;
 using Bogus;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using System;
@@ -34,33 +34,33 @@ public record ColorAnnotation : BasicAnnotation
     public Color Color { get; }
 }
 
-[ObservableObject]
+public class AnnotationSettings(string name, Color color, double leftOffset, double width)
+{
+    public string Name { get; } = name;
+
+    public Color Color { get; } = color;
+
+    public double LeftOffset { get; } = leftOffset;
+
+    public double Width { get; } = width;
+}
+
 public sealed partial class AnnotationsPage : Page
 {
-    [ObservableProperty]
-    public ObservableCollection<IAnnotation> annotations = new();
-
-    [ObservableProperty]
-    private string redAnnotationsText = string.Empty;
-
-    [ObservableProperty]
-    private string greenAnnotationsText = string.Empty;
-
-    [ObservableProperty]
-    private string blueAnnotationsText = string.Empty;
-
-    [ObservableProperty]
-    private double annotationsHeight = 1.0;
-
     public AnnotationsPage()
     {
         InitializeComponent();
 
-        AnnotationsWidth = (double)Resources["ScrollBarSize"] / 3;
-        AnnotationsHeight = 2.0;
-        RedAnnotationsLeftOffset = 0.0;
-        GreenAnnotationsLeftOffset = RedAnnotationsLeftOffset + AnnotationsWidth;
-        BlueAnnotationsLeftOffset = GreenAnnotationsLeftOffset + AnnotationsWidth;
+        double annotationWidth = (double)Resources["ScrollBarSize"] / 3;
+        double leftOffset = 0.0;
+        AnnotationSettingsList.Add(new AnnotationSettings("Red", Colors.HotPink, leftOffset, annotationWidth));
+        leftOffset += annotationWidth;
+        AnnotationSettingsList.Add(new AnnotationSettings("Green", Colors.LightGreen, leftOffset, annotationWidth));
+        leftOffset += annotationWidth;
+        AnnotationSettingsList.Add(new AnnotationSettings("Blue", Colors.SkyBlue, leftOffset, annotationWidth));
+
+        this.AnnotationHeightSlider.Value = 2.0;
+        this.AnnotationOpacitySlider.Value = 0.8;
 
         Users = new ObservableCollection<User>(
             new Faker<User>()
@@ -72,104 +72,52 @@ public sealed partial class AnnotationsPage : Page
                 .Generate(100));
     }
 
-    public ObservableCollection<User> Users { get; } = new();
+    private ObservableCollection<IAnnotation> Annotations { get; } = [];
 
-    private double AnnotationsWidth { get; set; }
+    private ObservableCollection<User> Users { get; }
 
-    private double RedAnnotationsLeftOffset { get; set; }
+    private List<AnnotationSettings> AnnotationSettingsList { get; } = [];
 
-    private double GreenAnnotationsLeftOffset { get; set; }
+    public static SolidColorBrush ToBrush(Color color) => new(color);
 
-    private double BlueAnnotationsLeftOffset { get; set; }
+    public static string ToString(double value, int decimalPlaces) => value.ToString($"F{decimalPlaces}");
 
-    partial void OnRedAnnotationsTextChanged(string value)
-    {
-        foreach (ColorAnnotation removingAnnotation in Annotations
-            .OfType<ColorAnnotation>()
-            .Where(x => x.Color == Colors.HotPink)
-            .ToList())
-        {
-            _ = Annotations.Remove(removingAnnotation);
-        }
-
-        foreach (User user in GetFilteredUsers(RedAnnotationsText))
-        {
-            Annotations.Add(
-                CreateAnnotation(
-                    value: ((double)user.Id / Users.Count) * 100,
-                    width: AnnotationsWidth,
-                    height: AnnotationsHeight,
-                    leftOffset: RedAnnotationsLeftOffset,
-                    color: Colors.HotPink));
-        }
-    }
-
-    partial void OnGreenAnnotationsTextChanged(string value)
-    {
-        foreach (ColorAnnotation removingAnnotation in Annotations
-            .OfType<ColorAnnotation>()
-            .Where(x => x.Color == Colors.LightGreen)
-            .ToList())
-        {
-            _ = Annotations.Remove(removingAnnotation);
-        }
-
-        foreach (User user in GetFilteredUsers(GreenAnnotationsText))
-        {
-            Annotations.Add(
-                CreateAnnotation(
-                    value: ((double)user.Id / Users.Count) * 100,
-                    width: AnnotationsWidth,
-                    height: AnnotationsHeight,
-                    leftOffset: GreenAnnotationsLeftOffset,
-                    color: Colors.LightGreen));
-        }
-    }
-
-    partial void OnBlueAnnotationsTextChanged(string value)
-    {
-        foreach (ColorAnnotation removingAnnotation in Annotations
-            .OfType<ColorAnnotation>()
-            .Where(x => x.Color == Colors.SkyBlue)
-            .ToList())
-        {
-            _ = Annotations.Remove(removingAnnotation);
-        }
-
-        foreach (User user in GetFilteredUsers(BlueAnnotationsText))
-        {
-            Annotations.Add(
-                CreateAnnotation(
-                    value: ((double)user.Id / Users.Count) * 100,
-                    width: AnnotationsWidth,
-                    height: AnnotationsHeight,
-                    leftOffset: BlueAnnotationsLeftOffset,
-                    color: Colors.SkyBlue));
-        }
-    }
-
-    partial void OnAnnotationsHeightChanged(double value)
-    {
-        OnRedAnnotationsTextChanged(RedAnnotationsText);
-        OnGreenAnnotationsTextChanged(GreenAnnotationsText);
-        OnBlueAnnotationsTextChanged(BlueAnnotationsText);
-    }
-
-    private IAnnotation CreateAnnotation(double value, double width = 16, double height = 1, double leftOffset = 0.0, Color color = default, double opacity = 0.9)
-    {
-        return new ColorAnnotation(
+    private static ColorAnnotation CreateAnnotation(double value, double width, double height, double leftOffset, Color color, double opacity)
+        => new(
             value,
             shape: new Rectangle
             {
                 Fill = new SolidColorBrush(color),
                 Height = height,
-                Width = AnnotationsWidth,
+                Width = width,
                 Opacity = opacity,
             },
             color)
         {
             LeftOffset = leftOffset
         };
+
+    private void RefreshAnnotations(string filterText, Color color, double leftOffset, double width, double height, double opacity)
+    {
+        foreach (ColorAnnotation removingAnnotation in Annotations
+            .OfType<ColorAnnotation>()
+            .Where(x => x.Color == color)
+            .ToList())
+        {
+            _ = Annotations.Remove(removingAnnotation);
+        }
+
+        foreach (User user in GetFilteredUsers(filterText))
+        {
+            Annotations.Add(
+                CreateAnnotation(
+                    value: ((double)user.Id / Users.Count) * 100,
+                    width,
+                    height,
+                    leftOffset,
+                    color,
+                    opacity));
+        }
     }
 
     private IEnumerable<User> GetFilteredUsers(string filter)
@@ -181,6 +129,75 @@ public sealed partial class AnnotationsPage : Page
                     x.FirstName.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
                     x.LastName.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
                     x.Address.Contains(filter, StringComparison.OrdinalIgnoreCase))
-                : Enumerable.Empty<User>();
+                : [];
+    }
+
+    private void AnnotationSettingsTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is not TextBox textBox ||
+            textBox.DataContext is not AnnotationSettings settings)
+        {
+            return;
+        }
+
+        RefreshAnnotations(
+            textBox.Text,
+            settings.Color,
+            settings.LeftOffset,
+            settings.Width,
+            this.AnnotationHeightSlider.Value,
+            this.AnnotationOpacitySlider.Value);
+    }
+
+    private void AnnotationHeightSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+    {
+        RefreshAnnotationsHeight(e.NewValue);
+    }
+
+    private void AnnotationOpacitySlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+    {
+        RefreshAnnotationsOpacity(e.NewValue);
+    }
+
+    private void RefreshAnnotationsHeight(double height)
+    {
+        if (double.IsNaN(height) || height <= 0.0)
+        {
+            return;
+        }
+
+        foreach (ColorAnnotation annotation in Annotations.OfType<ColorAnnotation>().ToList())
+        {
+            _ = Annotations.Remove(annotation);
+            Annotations.Add(
+                CreateAnnotation(
+                    annotation.Value,
+                    annotation.Shape.Width,
+                    height,
+                    annotation.LeftOffset,
+                    annotation.Color,
+                    this.AnnotationOpacitySlider.Value));
+        }
+    }
+
+    private void RefreshAnnotationsOpacity(double opacity)
+    {
+        if (double.IsNaN(opacity) || opacity < 0.0 || opacity > 1.0)
+        {
+            return;
+        }
+
+        foreach (ColorAnnotation annotation in Annotations.OfType<ColorAnnotation>().ToList())
+        {
+            _ = Annotations.Remove(annotation);
+            Annotations.Add(
+                CreateAnnotation(
+                    annotation.Value,
+                    annotation.Shape.Width,
+                    annotation.Shape.Height,
+                    annotation.LeftOffset,
+                    annotation.Color,
+                    opacity));
+        }
     }
 }

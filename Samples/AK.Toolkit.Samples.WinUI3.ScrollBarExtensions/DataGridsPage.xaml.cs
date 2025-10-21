@@ -13,11 +13,11 @@ public sealed partial class DataGridsPage : Page
         Loaded += DataGrids_Loaded;
     }
 
-    public ObservableCollection<string> EmptyList { get; } = new();
+    public ObservableCollection<string> EmptyList { get; } = [];
 
-    public ObservableCollection<string> SmallList { get; } = new();
+    public ObservableCollection<string> SmallList { get; } = [];
 
-    public ObservableCollection<string> LargeList { get; } = new();
+    public ObservableCollection<string> LargeList { get; } = [];
 
     private void DataGrids_Loaded(object sender, RoutedEventArgs e)
     {

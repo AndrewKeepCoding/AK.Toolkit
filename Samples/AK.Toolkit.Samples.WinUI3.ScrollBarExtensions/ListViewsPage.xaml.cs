@@ -13,11 +13,11 @@ public sealed partial class ListViewsPage : Page
         Loaded += ListViews_Loaded;
     }
 
-    public ObservableCollection<string> EmptyList { get; } = new();
+    public ObservableCollection<string> EmptyList { get; } = [];
 
-    public ObservableCollection<string> SmallList { get; } = new();
+    public ObservableCollection<string> SmallList { get; } = [];
 
-    public ObservableCollection<string> LargeList { get; } = new();
+    public ObservableCollection<string> LargeList { get; } = [];
 
     private void ListViews_Loaded(object sender, RoutedEventArgs e)
     {
